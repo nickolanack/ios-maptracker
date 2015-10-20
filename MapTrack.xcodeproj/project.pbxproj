@@ -26,6 +26,8 @@
 		900723EA1BD6AAA9009793A0 /* maptracker-icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723E11BD6AAA9009793A0 /* maptracker-icon-152.png */; settings = {ASSET_TAGS = (); }; };
 		900723EB1BD6AAA9009793A0 /* maptracker-icon-180.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723E21BD6AAA9009793A0 /* maptracker-icon-180.png */; settings = {ASSET_TAGS = (); }; };
 		900723ED1BD6AAE5009793A0 /* maptracker-icon-58.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723EC1BD6AAE5009793A0 /* maptracker-icon-58.png */; settings = {ASSET_TAGS = (); }; };
+		900723F11BD6B18E009793A0 /* icon-track-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723F01BD6B18E009793A0 /* icon-track-100.png */; settings = {ASSET_TAGS = (); }; };
+		900723F41BD6B42D009793A0 /* StyleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 900723F31BD6B42D009793A0 /* StyleButton.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,9 @@
 		900723E21BD6AAA9009793A0 /* maptracker-icon-180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-180.png"; sourceTree = "<group>"; };
 		900723EC1BD6AAE5009793A0 /* maptracker-icon-58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-58.png"; sourceTree = "<group>"; };
 		900723EE1BD6ADFA009793A0 /* buttons.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = buttons.xcf; sourceTree = "<group>"; };
+		900723F01BD6B18E009793A0 /* icon-track-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-track-100.png"; sourceTree = "<group>"; };
+		900723F21BD6B42D009793A0 /* StyleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyleButton.h; sourceTree = "<group>"; };
+		900723F31BD6B42D009793A0 /* StyleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyleButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +132,7 @@
 		900723A31BD592B7009793A0 /* MapTrack */ = {
 			isa = PBXGroup;
 			children = (
+				900723EF1BD6B180009793A0 /* buttons */,
 				907C79551BD63A61001AEFD8 /* appicon */,
 				900723A71BD592B7009793A0 /* AppDelegate.h */,
 				900723A81BD592B7009793A0 /* AppDelegate.m */,
@@ -165,6 +171,16 @@
 				900723CB1BD592BA009793A0 /* Info.plist */,
 			);
 			path = MapTrackUITests;
+			sourceTree = "<group>";
+		};
+		900723EF1BD6B180009793A0 /* buttons */ = {
+			isa = PBXGroup;
+			children = (
+				900723F01BD6B18E009793A0 /* icon-track-100.png */,
+				900723F21BD6B42D009793A0 /* StyleButton.h */,
+				900723F31BD6B42D009793A0 /* StyleButton.m */,
+			);
+			name = buttons;
 			sourceTree = "<group>";
 		};
 		907C79551BD63A61001AEFD8 /* appicon */ = {
@@ -302,6 +318,7 @@
 				900723E31BD6AAA9009793A0 /* maptracker-icon-29.png in Resources */,
 				900723B41BD592B8009793A0 /* LaunchScreen.storyboard in Resources */,
 				900723E61BD6AAA9009793A0 /* maptracker-icon-76.png in Resources */,
+				900723F11BD6B18E009793A0 /* icon-track-100.png in Resources */,
 				900723ED1BD6AAE5009793A0 /* maptracker-icon-58.png in Resources */,
 				900723E51BD6AAA9009793A0 /* maptracker-icon-60.png in Resources */,
 				900723E71BD6AAA9009793A0 /* maptracker-icon-80.png in Resources */,
@@ -335,6 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				900723AC1BD592B7009793A0 /* ViewController.m in Sources */,
+				900723F41BD6B42D009793A0 /* StyleButton.m in Sources */,
 				900723A91BD592B7009793A0 /* AppDelegate.m in Sources */,
 				900723A61BD592B7009793A0 /* main.m in Sources */,
 			);

@@ -8,14 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "StyleButton.h"
 
-@interface ViewController : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate>
+@interface ViewController : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 
 
-
+- (IBAction)onTrackButtonClick:(id)sender;
+@property (weak, nonatomic) IBOutlet StyleButton *trackButton;
 
 
 @end

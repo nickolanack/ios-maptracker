@@ -16,12 +16,39 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    self.lm = [[CLLocationManager alloc]init];
+    [self.lm setDelegate:self];
+    
+    if([CLLocationManager authorizationStatus]!=kCLAuthorizationStatusAuthorizedAlways){
+        [self.lm requestAlwaysAuthorization];
+    }else{
+        [self startMonitoring];
+    }
+  
+    
+}
+
+- (void)startMonitoring{
+
+    
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+    
+    if([CLLocationManager authorizationStatus]!=kCLAuthorizationStatusAuthorizedAlways){
+        //exit(0);
+        NSLog(@"%d", [CLLocationManager authorizationStatus]);
+    }else{
+        [self startMonitoring];
+    }
+
 }
 
 @end

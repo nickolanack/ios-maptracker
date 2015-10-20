@@ -15,6 +15,7 @@
 		900723B41BD592B8009793A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 900723B21BD592B8009793A0 /* LaunchScreen.storyboard */; };
 		900723BF1BD592B9009793A0 /* MapTrackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 900723BE1BD592B9009793A0 /* MapTrackTests.m */; };
 		900723CA1BD592BA009793A0 /* MapTrackUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 900723C91BD592BA009793A0 /* MapTrackUITests.m */; };
+		900723D81BD5958E009793A0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 900723D71BD5958E009793A0 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		900723C51BD592B9009793A0 /* MapTrackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapTrackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		900723C91BD592BA009793A0 /* MapTrackUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapTrackUITests.m; sourceTree = "<group>"; };
 		900723CB1BD592BA009793A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		900723D71BD5958E009793A0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				900723D81BD5958E009793A0 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +84,7 @@
 		900723981BD592B4009793A0 = {
 			isa = PBXGroup;
 			children = (
+				900723D71BD5958E009793A0 /* MapKit.framework */,
 				900723A31BD592B7009793A0 /* MapTrack */,
 				900723BD1BD592B9009793A0 /* MapTrackTests */,
 				900723C81BD592BA009793A0 /* MapTrackUITests */,
@@ -207,6 +211,11 @@
 				TargetAttributes = {
 					900723A01BD592B6009793A0 = {
 						CreatedOnToolsVersion = 7.0;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					900723B91BD592B9009793A0 = {
 						CreatedOnToolsVersion = 7.0;
@@ -414,6 +423,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MapTrack/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Nick-Blackwell.MapTrack";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -425,6 +435,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MapTrack/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Nick-Blackwell.MapTrack";
 				PRODUCT_NAME = "$(TARGET_NAME)";

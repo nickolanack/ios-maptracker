@@ -16,6 +16,10 @@
 		900723BF1BD592B9009793A0 /* MapTrackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 900723BE1BD592B9009793A0 /* MapTrackTests.m */; };
 		900723CA1BD592BA009793A0 /* MapTrackUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 900723C91BD592BA009793A0 /* MapTrackUITests.m */; };
 		900723D81BD5958E009793A0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 900723D71BD5958E009793A0 /* MapKit.framework */; };
+		907C795A1BD63A8B001AEFD8 /* maptracker-icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 907C79561BD63A8B001AEFD8 /* maptracker-icon-29.png */; settings = {ASSET_TAGS = (); }; };
+		907C795B1BD63A8B001AEFD8 /* maptracker-icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 907C79571BD63A8B001AEFD8 /* maptracker-icon-40.png */; settings = {ASSET_TAGS = (); }; };
+		907C795C1BD63A8B001AEFD8 /* maptracker-icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 907C79581BD63A8B001AEFD8 /* maptracker-icon-60.png */; settings = {ASSET_TAGS = (); }; };
+		907C795D1BD63A8B001AEFD8 /* maptracker-icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 907C79591BD63A8B001AEFD8 /* maptracker-icon-76.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,10 @@
 		900723C91BD592BA009793A0 /* MapTrackUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapTrackUITests.m; sourceTree = "<group>"; };
 		900723CB1BD592BA009793A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		900723D71BD5958E009793A0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		907C79561BD63A8B001AEFD8 /* maptracker-icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-29.png"; sourceTree = "<group>"; };
+		907C79571BD63A8B001AEFD8 /* maptracker-icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-40.png"; sourceTree = "<group>"; };
+		907C79581BD63A8B001AEFD8 /* maptracker-icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-60.png"; sourceTree = "<group>"; };
+		907C79591BD63A8B001AEFD8 /* maptracker-icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-76.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +113,7 @@
 		900723A31BD592B7009793A0 /* MapTrack */ = {
 			isa = PBXGroup;
 			children = (
+				907C79551BD63A61001AEFD8 /* appicon */,
 				900723A71BD592B7009793A0 /* AppDelegate.h */,
 				900723A81BD592B7009793A0 /* AppDelegate.m */,
 				900723AA1BD592B7009793A0 /* ViewController.h */,
@@ -142,6 +151,17 @@
 				900723CB1BD592BA009793A0 /* Info.plist */,
 			);
 			path = MapTrackUITests;
+			sourceTree = "<group>";
+		};
+		907C79551BD63A61001AEFD8 /* appicon */ = {
+			isa = PBXGroup;
+			children = (
+				907C79561BD63A8B001AEFD8 /* maptracker-icon-29.png */,
+				907C79571BD63A8B001AEFD8 /* maptracker-icon-40.png */,
+				907C79581BD63A8B001AEFD8 /* maptracker-icon-60.png */,
+				907C79591BD63A8B001AEFD8 /* maptracker-icon-76.png */,
+			);
+			name = appicon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,8 +272,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				907C795B1BD63A8B001AEFD8 /* maptracker-icon-40.png in Resources */,
 				900723B41BD592B8009793A0 /* LaunchScreen.storyboard in Resources */,
+				907C795A1BD63A8B001AEFD8 /* maptracker-icon-29.png in Resources */,
 				900723B11BD592B8009793A0 /* Assets.xcassets in Resources */,
+				907C795D1BD63A8B001AEFD8 /* maptracker-icon-76.png in Resources */,
+				907C795C1BD63A8B001AEFD8 /* maptracker-icon-60.png in Resources */,
 				900723AF1BD592B8009793A0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,6 +533,7 @@
 				900723D01BD592BA009793A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		900723D11BD592BA009793A0 /* Build configuration list for PBXNativeTarget "MapTrackTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +542,7 @@
 				900723D31BD592BA009793A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		900723D41BD592BA009793A0 /* Build configuration list for PBXNativeTarget "MapTrackUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +551,7 @@
 				900723D61BD592BA009793A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

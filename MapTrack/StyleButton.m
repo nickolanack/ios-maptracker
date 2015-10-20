@@ -29,6 +29,9 @@
     self.layer.shadowOpacity = 0.4;
     self.layer.shadowRadius = 20;
     
+    self.layer.borderColor = [UIColor blackColor].CGColor;
+    self.layer.borderWidth=1.5;
+    
     
     return self;
 }

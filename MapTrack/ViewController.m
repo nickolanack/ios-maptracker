@@ -18,8 +18,15 @@
 @property bool isTracking;
 @property bool isMonitoring;
 
+@property bool isMovingRegion;
 
-@property NSMutableArray *lines;
+@property CLLocation *currentLocation;
+
+
+//@property NSMutableArray *lines;
+//@property NSMutableArray *points;
+@property NSMutableArray *offScreenViews;
+
 
 
 @end
@@ -32,6 +39,7 @@
     self.precision=5.0f;
     self.isTracking=false;
     self.isMonitoring=false;
+    self.isMovingRegion=false;
     
     /*
      * Initialize the track with a fake starting point.
@@ -42,6 +50,10 @@
     [self.lm setDelegate:self];
     [self.mapView setDelegate:self];
     
+    self.offScreenViews=[[NSMutableArray alloc] init];
+    
+    //NSMutableArray *lines=[[NSMutableArray alloc] init];
+    //NSMutableArray *points=[[NSMutableArray alloc] init];
     
     if([CLLocationManager authorizationStatus]!=kCLAuthorizationStatusAuthorizedAlways){
         [self.lm requestAlwaysAuthorization];
@@ -97,8 +109,7 @@
     [self.mapView setShowsUserLocation:true];
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
     
-    self.currentLine=[[MKPolyline alloc] init];
-    [self.mapView addOverlay:self.currentLine];
+    
     
     //[self.lm startUpdatingHeading];
     [self.lm startUpdatingLocation];
@@ -122,11 +133,13 @@
     
     NSLog(@"Stop tracking");
     self.currentPoints=nil;
-    [self.mapView removeOverlay:self.currentLine];
-    self.currentLine=nil;
+    if(self.currentLine){
+        [self.mapView removeOverlay:self.currentLine];
+        self.currentLine=nil;
+    }
     [self.trackButton setBackgroundColor:[UIColor whiteColor]];
     self.isTracking=false;
-
+    
     
 }
 
@@ -137,13 +150,14 @@
         
         if(buttonIndex==1){
             MKPolyline *p=self.currentLine;
+            // [self.lines addObject:p];
             [self stopTrackingLocation];
             [self.mapView addOverlay:p];
-                    }
+        }
         
         if(buttonIndex==2){
             [self stopTrackingLocation];
-         
+            
         }
         
         if(buttonIndex==0){
@@ -176,7 +190,7 @@
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
     
     CLLocation *point=[locations lastObject];
-    
+    self.currentLocation=point;
     if(self.isTracking){
         if(!self.currentPoints){
             self.currentPoints=[[NSMutableArray alloc] initWithObjects:point, nil];
@@ -204,7 +218,10 @@
     
     // check for loops?
     // redraw
-    [self.mapView removeOverlay:self.currentLine];
+    if(self.currentLine){
+        [self.mapView removeOverlay:self.currentLine];
+    }
+    
     
     CLLocationCoordinate2D locations[[self.currentPoints count]];
     
@@ -232,6 +249,101 @@
     
 }
 
+
+
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
+    
+    if([annotation isKindOfClass:[MKUserLocation class]]){
+        return nil;
+    }
+    
+    
+    MKAnnotationView *p=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
+    [p setImage:[UIImage imageNamed:@"waypoint-default-25x28.png"]];
+    [p setDraggable:true];
+    
+    return p;
+}
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState{
+    
+    if (newState == MKAnnotationViewDragStateEnding)
+    {
+        CLLocationCoordinate2D droppedAt = view.annotation.coordinate;
+        NSLog(@"dropped at %f,%f", droppedAt.latitude, droppedAt.longitude);
+        
+        [view setDragState:MKAnnotationViewDragStateNone];
+    }
+    
+}
+
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated{
+    self.isMovingRegion=true;
+   [self updateOffscreenItems];
+    
+}
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
+    
+     self.isMovingRegion=false;
+     [self updateOffscreenItems];
+}
+
+
+
+
+-(void)updateOffscreenItems{
+   
+    NSArray *annotations= self.mapView.annotations;
+    CLLocationCoordinate2D center=[self.mapView centerCoordinate];
+    int i=0;
+    for (MKPointAnnotation *a in annotations) {
+        MKMapRect mr=self.mapView.visibleMapRect;
+        MKMapPoint p=MKMapPointForCoordinate(a.coordinate);
+        if(!MKMapRectContainsPoint(mr, p)){
+            
+            UIImageView *image;
+            if([self.offScreenViews count] >i){
+                image=[self.offScreenViews objectAtIndex:i];
+            }else{;
+                image=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"waypoint-offscreen-15.png"]];
+                [self.offScreenViews addObject:image];
+                [self.view addSubview:image];
+                
+            }
+            
+            
+            CGPoint intersect=[self calcRectIntersectionPoint:a.coordinate];
+            [image setCenter:intersect];
+
+            
+            i++;
+        }
+        
+    }
+    
+     NSLog(@"update offscreen: %d (%d)", i, [self.offScreenViews count]);
+    for(int j=[self.offScreenViews count]-1; j>=i; j--){
+        NSLog(@"remove %d",j);
+        UIImageView *v= [self.offScreenViews objectAtIndex:j];
+        [self.offScreenViews removeObjectAtIndex:j];
+        [v removeFromSuperview];
+        v=nil;
+    }
+    
+    
+    if(self.isMovingRegion){
+        [self performSelector:@selector(updateOffscreenItems) withObject:nil afterDelay:0.1];
+    }
+    
+}
+
+
+-(CGPoint)calcRectIntersectionPoint:(CLLocationCoordinate2D) coord{
+    
+    CGPoint p=[self.mapView convertCoordinate:coord toPointToView:self.view];
+
+    return CGPointMake(0, 0);
+}
+
 - (IBAction)onTrackButtonClick:(id)sender {
     
     if(!self.isTracking){
@@ -244,4 +356,17 @@
         
     }
 }
+
+- (IBAction)onWaypointButtonClick:(id)sender {
+    
+    
+    MKPointAnnotation *point=[[MKPointAnnotation alloc] init];
+    //[point setCoordinate:self.currentLocation.coordinate];
+    [point setCoordinate:self.mapView.centerCoordinate];
+    
+    //[self.points addObject:point];
+    [self.mapView addAnnotation:point];
+    
+}
+
 @end

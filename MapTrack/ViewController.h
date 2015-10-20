@@ -19,6 +19,7 @@
 - (IBAction)onTrackButtonClick:(id)sender;
 @property (weak, nonatomic) IBOutlet StyleButton *trackButton;
 
+- (IBAction)onWaypointButtonClick:(id)sender;
 
 @end
 

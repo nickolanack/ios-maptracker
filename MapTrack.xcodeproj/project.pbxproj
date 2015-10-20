@@ -16,10 +16,16 @@
 		900723BF1BD592B9009793A0 /* MapTrackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 900723BE1BD592B9009793A0 /* MapTrackTests.m */; };
 		900723CA1BD592BA009793A0 /* MapTrackUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 900723C91BD592BA009793A0 /* MapTrackUITests.m */; };
 		900723D81BD5958E009793A0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 900723D71BD5958E009793A0 /* MapKit.framework */; };
-		907C795A1BD63A8B001AEFD8 /* maptracker-icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 907C79561BD63A8B001AEFD8 /* maptracker-icon-29.png */; settings = {ASSET_TAGS = (); }; };
-		907C795B1BD63A8B001AEFD8 /* maptracker-icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 907C79571BD63A8B001AEFD8 /* maptracker-icon-40.png */; settings = {ASSET_TAGS = (); }; };
-		907C795C1BD63A8B001AEFD8 /* maptracker-icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 907C79581BD63A8B001AEFD8 /* maptracker-icon-60.png */; settings = {ASSET_TAGS = (); }; };
-		907C795D1BD63A8B001AEFD8 /* maptracker-icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 907C79591BD63A8B001AEFD8 /* maptracker-icon-76.png */; settings = {ASSET_TAGS = (); }; };
+		900723E31BD6AAA9009793A0 /* maptracker-icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723DA1BD6AAA9009793A0 /* maptracker-icon-29.png */; settings = {ASSET_TAGS = (); }; };
+		900723E41BD6AAA9009793A0 /* maptracker-icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723DB1BD6AAA9009793A0 /* maptracker-icon-40.png */; settings = {ASSET_TAGS = (); }; };
+		900723E51BD6AAA9009793A0 /* maptracker-icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723DC1BD6AAA9009793A0 /* maptracker-icon-60.png */; settings = {ASSET_TAGS = (); }; };
+		900723E61BD6AAA9009793A0 /* maptracker-icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723DD1BD6AAA9009793A0 /* maptracker-icon-76.png */; settings = {ASSET_TAGS = (); }; };
+		900723E71BD6AAA9009793A0 /* maptracker-icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723DE1BD6AAA9009793A0 /* maptracker-icon-80.png */; settings = {ASSET_TAGS = (); }; };
+		900723E81BD6AAA9009793A0 /* maptracker-icon-87.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723DF1BD6AAA9009793A0 /* maptracker-icon-87.png */; settings = {ASSET_TAGS = (); }; };
+		900723E91BD6AAA9009793A0 /* maptracker-icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723E01BD6AAA9009793A0 /* maptracker-icon-120.png */; settings = {ASSET_TAGS = (); }; };
+		900723EA1BD6AAA9009793A0 /* maptracker-icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723E11BD6AAA9009793A0 /* maptracker-icon-152.png */; settings = {ASSET_TAGS = (); }; };
+		900723EB1BD6AAA9009793A0 /* maptracker-icon-180.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723E21BD6AAA9009793A0 /* maptracker-icon-180.png */; settings = {ASSET_TAGS = (); }; };
+		900723ED1BD6AAE5009793A0 /* maptracker-icon-58.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723EC1BD6AAE5009793A0 /* maptracker-icon-58.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,10 +63,17 @@
 		900723C91BD592BA009793A0 /* MapTrackUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapTrackUITests.m; sourceTree = "<group>"; };
 		900723CB1BD592BA009793A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		900723D71BD5958E009793A0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		907C79561BD63A8B001AEFD8 /* maptracker-icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-29.png"; sourceTree = "<group>"; };
-		907C79571BD63A8B001AEFD8 /* maptracker-icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-40.png"; sourceTree = "<group>"; };
-		907C79581BD63A8B001AEFD8 /* maptracker-icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-60.png"; sourceTree = "<group>"; };
-		907C79591BD63A8B001AEFD8 /* maptracker-icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-76.png"; sourceTree = "<group>"; };
+		900723D91BD6A948009793A0 /* appicon.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = appicon.xcf; sourceTree = "<group>"; };
+		900723DA1BD6AAA9009793A0 /* maptracker-icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-29.png"; sourceTree = "<group>"; };
+		900723DB1BD6AAA9009793A0 /* maptracker-icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-40.png"; sourceTree = "<group>"; };
+		900723DC1BD6AAA9009793A0 /* maptracker-icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-60.png"; sourceTree = "<group>"; };
+		900723DD1BD6AAA9009793A0 /* maptracker-icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-76.png"; sourceTree = "<group>"; };
+		900723DE1BD6AAA9009793A0 /* maptracker-icon-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-80.png"; sourceTree = "<group>"; };
+		900723DF1BD6AAA9009793A0 /* maptracker-icon-87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-87.png"; sourceTree = "<group>"; };
+		900723E01BD6AAA9009793A0 /* maptracker-icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-120.png"; sourceTree = "<group>"; };
+		900723E11BD6AAA9009793A0 /* maptracker-icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-152.png"; sourceTree = "<group>"; };
+		900723E21BD6AAA9009793A0 /* maptracker-icon-180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-180.png"; sourceTree = "<group>"; };
+		900723EC1BD6AAE5009793A0 /* maptracker-icon-58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-58.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,10 +169,17 @@
 		907C79551BD63A61001AEFD8 /* appicon */ = {
 			isa = PBXGroup;
 			children = (
-				907C79561BD63A8B001AEFD8 /* maptracker-icon-29.png */,
-				907C79571BD63A8B001AEFD8 /* maptracker-icon-40.png */,
-				907C79581BD63A8B001AEFD8 /* maptracker-icon-60.png */,
-				907C79591BD63A8B001AEFD8 /* maptracker-icon-76.png */,
+				900723DA1BD6AAA9009793A0 /* maptracker-icon-29.png */,
+				900723DB1BD6AAA9009793A0 /* maptracker-icon-40.png */,
+				900723DC1BD6AAA9009793A0 /* maptracker-icon-60.png */,
+				900723EC1BD6AAE5009793A0 /* maptracker-icon-58.png */,
+				900723DD1BD6AAA9009793A0 /* maptracker-icon-76.png */,
+				900723DE1BD6AAA9009793A0 /* maptracker-icon-80.png */,
+				900723DF1BD6AAA9009793A0 /* maptracker-icon-87.png */,
+				900723E01BD6AAA9009793A0 /* maptracker-icon-120.png */,
+				900723E11BD6AAA9009793A0 /* maptracker-icon-152.png */,
+				900723E21BD6AAA9009793A0 /* maptracker-icon-180.png */,
+				900723D91BD6A948009793A0 /* appicon.xcf */,
 			);
 			name = appicon;
 			sourceTree = "<group>";
@@ -232,6 +252,9 @@
 					900723A01BD592B6009793A0 = {
 						CreatedOnToolsVersion = 7.0;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
@@ -272,12 +295,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				907C795B1BD63A8B001AEFD8 /* maptracker-icon-40.png in Resources */,
+				900723EB1BD6AAA9009793A0 /* maptracker-icon-180.png in Resources */,
+				900723E81BD6AAA9009793A0 /* maptracker-icon-87.png in Resources */,
+				900723E31BD6AAA9009793A0 /* maptracker-icon-29.png in Resources */,
 				900723B41BD592B8009793A0 /* LaunchScreen.storyboard in Resources */,
-				907C795A1BD63A8B001AEFD8 /* maptracker-icon-29.png in Resources */,
+				900723E61BD6AAA9009793A0 /* maptracker-icon-76.png in Resources */,
+				900723ED1BD6AAE5009793A0 /* maptracker-icon-58.png in Resources */,
+				900723E51BD6AAA9009793A0 /* maptracker-icon-60.png in Resources */,
+				900723E71BD6AAA9009793A0 /* maptracker-icon-80.png in Resources */,
+				900723E91BD6AAA9009793A0 /* maptracker-icon-120.png in Resources */,
 				900723B11BD592B8009793A0 /* Assets.xcassets in Resources */,
-				907C795D1BD63A8B001AEFD8 /* maptracker-icon-76.png in Resources */,
-				907C795C1BD63A8B001AEFD8 /* maptracker-icon-60.png in Resources */,
+				900723E41BD6AAA9009793A0 /* maptracker-icon-40.png in Resources */,
+				900723EA1BD6AAA9009793A0 /* maptracker-icon-152.png in Resources */,
 				900723AF1BD592B8009793A0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

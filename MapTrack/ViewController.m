@@ -12,7 +12,7 @@
 
 @property MKPolyline *currentLine;
 @property NSMutableArray *currentPoints;
-
+@property CLLocationManager *lm;
 @property float precision;
 
 @end
@@ -37,11 +37,41 @@
     if([CLLocationManager authorizationStatus]!=kCLAuthorizationStatusAuthorizedAlways){
         [self.lm requestAlwaysAuthorization];
     }
-  
-    
 }
 
-
+-(void)checkBackgroundRefresStatusAndNotify{
+    UIAlertView * alert;
+    //We have to make sure that the Background app Refresh is enabled for the Location updates to work in the background.
+    if([[UIApplication sharedApplication] backgroundRefreshStatus] == UIBackgroundRefreshStatusDenied)
+    {
+        
+        // The user explicitly disabled the background services for this app or for the whole system.
+        
+        alert = [[UIAlertView alloc]initWithTitle:@""
+                                          message:@"MapTracker has been explicitly denied access to update in the background. To turn it on, go to Settings > General > Background app Refresh"
+                                         delegate:nil
+                                cancelButtonTitle:@"Ok"
+                                otherButtonTitles:nil, nil];
+        [alert show];
+        
+    } else if([[UIApplication sharedApplication] backgroundRefreshStatus] == UIBackgroundRefreshStatusRestricted)
+    {
+        
+        // Background services are disabled and the user cannot turn them on.
+        // May occur when the device is restricted under parental control.
+        alert = [[UIAlertView alloc]initWithTitle:@""
+                                          message:@"MapTracker has been restricted, adn will be unable to operate in the background"
+                                         delegate:nil
+                                cancelButtonTitle:@"Ok"
+                                otherButtonTitles:nil, nil];
+        [alert show];
+        
+    } else
+    {
+        
+        // Background service is enabled, you can start the background supported location updates process
+    }
+}
 
 -(void)mapViewDidFinishLoadingMap:(MKMapView *)mapView{
 
@@ -60,19 +90,16 @@
     self.currentLine=[[MKPolyline alloc] init];
     [self.mapView addOverlay:self.currentLine];
     
-    [self.lm startUpdatingHeading];
+    //[self.lm startUpdatingHeading];
     [self.lm startUpdatingLocation];
 
 }
 
 -(void)stopTracking{
 
-    
+     [self.lm stopUpdatingLocation];
 
 }
-
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -99,32 +126,24 @@
     }else{
     
         if([self.currentPoints count]){
-            
             if([point distanceFromLocation:[self.currentPoints lastObject]]>self.precision){
-            
                 [self.currentPoints addObject:point];
                 [self addedPointToPath];
             }
-          
-        
         }
-    
     }
-    //NSLog(@"%@", locations);
+    NSLog(@"Got Location");
+    // NSLog(@"%@", locations);
 }
 
-
-
 -(void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
- //NSLog(@"%@", newHeading);
-
+ // NSLog(@"%@", newHeading);
 }
 
 -(void)addedPointToPath{
 
-    //check for loops?
-    //redraw
-    
+    // check for loops?
+    // redraw
     [self.mapView removeOverlay:self.currentLine];
 
     CLLocationCoordinate2D locations[[self.currentPoints count]];
@@ -135,13 +154,13 @@
         locations[i]= c;
     }
     
-    
     self.currentLine=[MKPolyline polylineWithCoordinates:locations count:[self.currentPoints count]];
   
     [self.mapView addOverlay:self.currentLine];
     NSLog(@" Draw line with %d point",[self.currentPoints count]);
 
 }
+
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay{
     
    MKPolylineRenderer *p= [[MKPolylineRenderer alloc]initWithOverlay:overlay];
@@ -152,6 +171,5 @@
     
 
 }
-
 
 @end

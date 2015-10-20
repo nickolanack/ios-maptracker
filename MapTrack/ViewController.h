@@ -12,12 +12,11 @@
 @interface ViewController : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (weak, nonatomic) IBOutlet UIButton *buttonOne;
-@property (weak, nonatomic) IBOutlet UIButton *buttonTwo;
 
 
 
-@property CLLocationManager *lm;
+
+
 
 @end
 

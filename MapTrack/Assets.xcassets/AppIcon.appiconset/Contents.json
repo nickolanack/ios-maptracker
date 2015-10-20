@@ -3,61 +3,61 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
+      "filename" : "maptracker-icon-58.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "maptracker-icon-87.png",
+      "scale" : "3x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "iphone",
+      "filename" : "maptracker-icon-80.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "iphone",
+      "filename" : "maptracker-icon-120.png",
+      "scale" : "3x"
+    },
+    {
+      "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "maptracker-icon-121.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "maptracker-icon-180.png",
+      "scale" : "3x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "ipad",
       "filename" : "maptracker-icon-29.png",
-      "scale" : "2x"
+      "scale" : "1x"
     },
     {
       "size" : "29x29",
-      "idiom" : "iphone",
-      "filename" : "maptracker-icon-30.png",
-      "scale" : "3x"
+      "idiom" : "ipad",
+      "filename" : "maptracker-icon-59.png",
+      "scale" : "2x"
     },
     {
       "size" : "40x40",
-      "idiom" : "iphone",
+      "idiom" : "ipad",
       "filename" : "maptracker-icon-40.png",
-      "scale" : "2x"
-    },
-    {
-      "size" : "40x40",
-      "idiom" : "iphone",
-      "filename" : "maptracker-icon-41.png",
-      "scale" : "3x"
-    },
-    {
-      "size" : "60x60",
-      "idiom" : "iphone",
-      "filename" : "maptracker-icon-60.png",
-      "scale" : "2x"
-    },
-    {
-      "size" : "60x60",
-      "idiom" : "iphone",
-      "filename" : "maptracker-icon-61.png",
-      "scale" : "3x"
-    },
-    {
-      "size" : "29x29",
-      "idiom" : "ipad",
-      "filename" : "maptracker-icon-31.png",
-      "scale" : "1x"
-    },
-    {
-      "size" : "29x29",
-      "idiom" : "ipad",
-      "filename" : "maptracker-icon-32.png",
-      "scale" : "2x"
-    },
-    {
-      "size" : "40x40",
-      "idiom" : "ipad",
-      "filename" : "maptracker-icon-42.png",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "maptracker-icon-43.png",
+      "filename" : "maptracker-icon-81.png",
       "scale" : "2x"
     },
     {
@@ -69,7 +69,7 @@
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "maptracker-icon-77.png",
+      "filename" : "maptracker-icon-152.png",
       "scale" : "2x"
     }
   ],

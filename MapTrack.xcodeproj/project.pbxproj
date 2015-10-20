@@ -74,6 +74,7 @@
 		900723E11BD6AAA9009793A0 /* maptracker-icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-152.png"; sourceTree = "<group>"; };
 		900723E21BD6AAA9009793A0 /* maptracker-icon-180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-180.png"; sourceTree = "<group>"; };
 		900723EC1BD6AAE5009793A0 /* maptracker-icon-58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maptracker-icon-58.png"; sourceTree = "<group>"; };
+		900723EE1BD6ADFA009793A0 /* buttons.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = buttons.xcf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +181,7 @@
 				900723E11BD6AAA9009793A0 /* maptracker-icon-152.png */,
 				900723E21BD6AAA9009793A0 /* maptracker-icon-180.png */,
 				900723D91BD6A948009793A0 /* appicon.xcf */,
+				900723EE1BD6ADFA009793A0 /* buttons.xcf */,
 			);
 			name = appicon;
 			sourceTree = "<group>";

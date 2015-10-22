@@ -234,7 +234,8 @@
     self.currentLine=[MKPolyline polylineWithCoordinates:locations count:[self.currentPoints count]];
     
     [self.mapView addOverlay:self.currentLine];
-    NSLog(@" Draw line with %d point",[self.currentPoints count]);
+    int c=(int)[self.currentPoints count];
+    NSLog(@" Draw line with %d point",c);
     
 }
 
@@ -293,7 +294,9 @@
 -(void)updateOffscreenItems{
    
     NSArray *annotations= self.mapView.annotations;
-    CLLocationCoordinate2D center=[self.mapView centerCoordinate];
+    //CLLocationCoordinate2D center=[self.mapView centerCoordinate];
+  
+
     int i=0;
     for (MKPointAnnotation *a in annotations) {
         MKMapRect mr=self.mapView.visibleMapRect;
@@ -319,9 +322,9 @@
         }
         
     }
-    
-     NSLog(@"update offscreen: %d (%d)", i, [self.offScreenViews count]);
-    for(int j=[self.offScreenViews count]-1; j>=i; j--){
+    int c=(int)[self.offScreenViews count];
+     NSLog(@"update offscreen: %d (%d)", i, c);
+    for(int j=c-1; j>=i; j--){
         NSLog(@"remove %d",j);
         UIImageView *v= [self.offScreenViews objectAtIndex:j];
         [self.offScreenViews removeObjectAtIndex:j];
@@ -339,7 +342,7 @@
 
 -(CGPoint)calcRectIntersectionPoint:(CLLocationCoordinate2D) coord{
     
-    CGPoint p=[self.mapView convertCoordinate:coord toPointToView:self.view];
+    //CGPoint p=[self.mapView convertCoordinate:coord toPointToView:self.view];
 
     return CGPointMake(0, 0);
 }

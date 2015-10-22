@@ -347,9 +347,7 @@
         
     }
     int c=(int)[self.offScreenViews count];
-     NSLog(@"update offscreen: %d (%d)", i, c);
     for(int j=c-1; j>=i; j--){
-        NSLog(@"remove %d",j);
         UIImageView *v= [self.offScreenViews objectAtIndex:j];
         [self.offScreenViews removeObjectAtIndex:j];
         [v removeFromSuperview];
@@ -358,7 +356,7 @@
     
     
     if(self.isMovingRegion){
-        [self performSelector:@selector(updateOffscreenItems) withObject:nil afterDelay:0.1];
+        [self performSelector:@selector(updateOffscreenItems) withObject:nil afterDelay:0.05];
     }
     
 }
@@ -366,9 +364,92 @@
 
 -(CGPoint)calcRectIntersectionPoint:(CLLocationCoordinate2D) coord{
     
-    //CGPoint p=[self.mapView convertCoordinate:coord toPointToView:self.view];
+    CGPoint p=[self.mapView convertCoordinate:coord toPointToView:self.mapView];
+    CGRect r=self.mapView.frame;
+    CGPoint c=CGPointMake((r.size.width/2.0), (r.size.height/2.0));
+    
+    float angle=[self angleFromPoint:p toCenter:c];
+    
+    float tr_angle=[self angleFromPoint:CGPointMake(r.size.width, 0) toCenter:c];
+    float br_angle=[self angleFromPoint:CGPointMake(r.size.width, r.size.height) toCenter:c];
+    
+    float tl_angle=[self angleFromPoint:CGPointMake(0, 0) toCenter:c];
+    float bl_angle=[self angleFromPoint:CGPointMake(0, r.size.height) toCenter:c];
+    
+    float x=0;
+    float y=0;
+    
+    if(tl_angle>angle&&tr_angle<=angle){
+        //top
+        //y=0;
+         x=r.size.width/2.0;
+        if(angle!=M_PI_2){
+            x=x-((-r.size.height/2.0)/tan(angle));
+        
+        }
+        
+    }else if(bl_angle>angle&&tl_angle<=angle){
+        //left
+        //x=0;
+        y=r.size.height/2.0;
+        if(angle!=M_PI){
+            y=y-(r.size.width/2.0)*tan(M_PI-angle);
+        }
+    
+    }else if(br_angle>angle&&bl_angle<=angle){
+        //bottom
+        y=r.size.height;
+        x=r.size.width/2.0;
+        if(angle!=(3*M_PI_2)){
+            x=x-y*tan(3*M_PI_2-angle);
+        }
+        
+    }else{
+        //right
+        x=r.size.width-10;
+        y=r.size.height/2.0;
+        if(angle!=0){
+            if(angle>M_PI){
+                //overflow
+                angle=angle-2*M_PI; //do want a negative angle for overflow
+            }
+                y=y-(r.size.width/2.0)*tan(angle);
+            
+        }
+    }
+    
 
-    return CGPointMake(0, 0);
+    return CGPointMake(x, y);
+}
+
+-(float)angleFromPoint:(CGPoint) p toCenter:(CGPoint)c{
+    float dx=p.x-c.x;
+    float dy=p.y-c.y;
+    dy=-dy; //flip y axis so that my math is easier
+    if(dy==0){
+        if(dx>0){
+            return 0;
+        }
+        return M_PI;
+    }
+    
+    float h=sqrtf(powf(dx, 2)+powf(dy,2));
+    float angle= asinf(dy/h);
+
+    if(dy>=0&&dx<0){
+        return M_PI-angle;
+    }
+    
+    if(dx<0&&dy<0){
+        return M_PI-angle;
+    }
+    
+    if(dx>=0&&dy<0){
+        return 2*M_PI+angle;
+    }
+    
+    return angle;
+
 }
 
 - (IBAction)onTrackButtonClick:(id)sender {

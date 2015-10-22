@@ -26,6 +26,7 @@
 //@property NSMutableArray *lines;
 //@property NSMutableArray *points;
 @property NSMutableArray *offScreenViews;
+@property UIImageView *offScreenUserLocaton;
 
 
 

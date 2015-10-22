@@ -8,6 +8,11 @@
 
 #import "StyleButton.h"
 #import <QuartzCore/QuartzCore.h>
+@interface StyleButton ()
+
+@property UIColor *defaultColor;
+
+@end
 
 @implementation StyleButton
 
@@ -32,9 +37,16 @@
     self.layer.borderColor = [UIColor blackColor].CGColor;
     self.layer.borderWidth=1.5;
     
+    self.defaultColor=self.backgroundColor;
     
     return self;
+    
 }
 
+-(void)setSelected:(BOOL)selected{
+    [self setBackgroundColor:(selected?[UIColor magentaColor]:self.defaultColor)];
+    [super setSelected:selected];
+    
+}
 
 @end

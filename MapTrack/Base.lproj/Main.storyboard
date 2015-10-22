@@ -22,8 +22,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJ4-k9-cVt" customClass="StyleButton">
-                                <rect key="frame" x="545" y="104" width="35" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJ4-k9-cVt" customClass="StyleButton">
+                                <rect key="frame" x="20" y="38" width="35" height="35"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
@@ -32,8 +32,8 @@
                                     <action selector="onTrackButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z2Y-qC-IBV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Su8-lV-cRb" userLabel="Waypoint Button" customClass="StyleButton">
-                                <rect key="frame" x="545" y="147" width="35" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Su8-lV-cRb" userLabel="Waypoint Button" customClass="StyleButton">
+                                <rect key="frame" x="20" y="81" width="35" height="35"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
@@ -46,12 +46,10 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tFz-53-MLp" secondAttribute="bottom" id="2Hs-Em-QUm"/>
                             <constraint firstItem="tFz-53-MLp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="4LA-g7-wPM"/>
                             <constraint firstItem="tFz-53-MLp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="6BY-6v-OKL"/>
-                            <constraint firstItem="IJ4-k9-cVt" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Abd-8l-aOQ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="tFz-53-MLp" secondAttribute="trailing" constant="-20" id="etM-f1-eE6"/>
-                            <constraint firstItem="Su8-lV-cRb" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="rFv-Rh-glR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tFz-53-MLp" secondAttribute="trailing" constant="-20" id="Zhs-bn-Wew"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tFz-53-MLp" secondAttribute="bottom" id="jrg-WN-kxB"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

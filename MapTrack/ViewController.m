@@ -7,6 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "SaxKmlParser.h"
+
+#import "MKImageOverlay.h"
+#import "MKImageOverlayRenderer.h"
 
 @interface ViewController ()
 
@@ -59,6 +63,8 @@
     if([CLLocationManager authorizationStatus]!=kCLAuthorizationStatusAuthorizedAlways){
         [self.lm requestAlwaysAuthorization];
     }
+    
+    [self loadSampleData];
 }
 
 -(void)checkBackgroundRefresStatusAndNotify{
@@ -101,6 +107,8 @@
         [self startMonitoringLocation];
     }
     
+    
+    
 }
 
 -(void)startMonitoringLocation{
@@ -128,7 +136,8 @@
 -(void)startTrackingLocation{
     
     self.isTracking=true;
-    [self.trackButton setBackgroundColor:[UIColor magentaColor]];
+    [self.trackButton setSelected:true];
+    //[self.trackButton setBackgroundColor:[UIColor magentaColor]];
 }
 -(void)stopTrackingLocation{
     
@@ -138,7 +147,8 @@
         [self.mapView removeOverlay:self.currentLine];
         self.currentLine=nil;
     }
-    [self.trackButton setBackgroundColor:[UIColor whiteColor]];
+    [self.trackButton setSelected:false];
+    //[self.trackButton setBackgroundColor:[UIColor whiteColor]];
     self.isTracking=false;
     
     
@@ -241,12 +251,25 @@
 }
 
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay{
+    MKOverlayRenderer *r=nil;
+    if([overlay isKindOfClass:[MKImageOverlay class] ]){
     
-    MKPolylineRenderer *p= [[MKPolylineRenderer alloc]initWithOverlay:overlay];
+        NSLog(@"got to imageview");
+        MKImageOverlayRenderer *p=[[MKImageOverlayRenderer alloc] initWithOverlay:overlay];
+        r=p;
+        
+        [r setAlpha:0.5];
+    
+    }else{
+    
+    
+     MKPolylineRenderer *p= [[MKPolylineRenderer alloc]initWithOverlay:overlay];
     [p setStrokeColor:[UIColor blueColor]];
     [p setLineWidth:2.0f];
+        r=p;
+    }
     
-    return p;
+    return r;
     
     
 }
@@ -372,5 +395,37 @@
     [self.mapView addAnnotation:point];
     
 }
+
+-(void)loadSampleData{
+
+    NSString *path=[[NSBundle mainBundle] pathForResource:@"ok-mnt-park.kml" ofType:nil];
+    NSError *err;
+    NSString *kml=[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
+    [[[SaxKmlParser alloc] initWithDelegate:self] parseString:kml];
+
+
+}
+
+-(void) loadMapItemFromDictionary:(NSDictionary *)dictionary{}
+-(void) loadStyleFromDictionary:(NSDictionary *)dictionary{}
+-(void) loadFolderFromDictionary:(NSDictionary *)dictionary{}
+-(void) loadGroundOverlayFromDictionary:(NSDictionary *)dictionary{
+
+    NSLog(@"Ground Overlay: %@", dictionary);
+    
+    MKImageOverlay *o=[[MKImageOverlay alloc] init];
+    
+
+    NSString *image=[[dictionary valueForKey:@"href"] stringByReplacingOccurrencesOfString:@"files/" withString:@""];
+    
+    [o setImage:image];
+    [o setRotation:[[dictionary valueForKey:@"rotation"] floatValue]];
+    [o setScale:[[dictionary valueForKey:@"viewboundscale"] floatValue]];
+    [o setNorth:[[dictionary valueForKey:@"north"] floatValue] South:[[dictionary valueForKey:@"south"] floatValue] East:[[dictionary valueForKey:@"east"] floatValue] West:[[dictionary valueForKey:@"west"] floatValue]];
+
+    [self.mapView addOverlay:o];
+    
+}
+
 
 @end

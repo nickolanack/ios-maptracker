@@ -32,6 +32,11 @@
 		900723F81BD6CC47009793A0 /* waypoint-default-25x28.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723F71BD6CC47009793A0 /* waypoint-default-25x28.png */; settings = {ASSET_TAGS = (); }; };
 		900723FD1BD6DC7D009793A0 /* waypoint-offscreen-15.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723FC1BD6DC7D009793A0 /* waypoint-offscreen-15.png */; settings = {ASSET_TAGS = (); }; };
 		900723FF1BD6E541009793A0 /* userlocation-offscreen-15.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723FE1BD6E541009793A0 /* userlocation-offscreen-15.png */; settings = {ASSET_TAGS = (); }; };
+		90A5A27E1BD93FB300FFE3F1 /* ok-mnt-park.kml in Resources */ = {isa = PBXBuildFile; fileRef = 90A5A27C1BD93FB300FFE3F1 /* ok-mnt-park.kml */; settings = {ASSET_TAGS = (); }; };
+		90A5A27F1BD93FB300FFE3F1 /* ok-mnt-park.png in Resources */ = {isa = PBXBuildFile; fileRef = 90A5A27D1BD93FB300FFE3F1 /* ok-mnt-park.png */; settings = {ASSET_TAGS = (); }; };
+		90A5A2841BD940B800FFE3F1 /* SaxKmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A5A2831BD940B800FFE3F1 /* SaxKmlParser.m */; settings = {ASSET_TAGS = (); }; };
+		90A5A2891BD95A6600FFE3F1 /* MKImageOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A5A2881BD95A6600FFE3F1 /* MKImageOverlay.m */; settings = {ASSET_TAGS = (); }; };
+		90A5A28C1BD95A7600FFE3F1 /* MKImageOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A5A28B1BD95A7600FFE3F1 /* MKImageOverlayRenderer.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +95,15 @@
 		900723FB1BD6DC76009793A0 /* offscreen.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = offscreen.xcf; sourceTree = "<group>"; };
 		900723FC1BD6DC7D009793A0 /* waypoint-offscreen-15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "waypoint-offscreen-15.png"; sourceTree = "<group>"; };
 		900723FE1BD6E541009793A0 /* userlocation-offscreen-15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userlocation-offscreen-15.png"; sourceTree = "<group>"; };
+		90A5A27C1BD93FB300FFE3F1 /* ok-mnt-park.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "ok-mnt-park.kml"; sourceTree = "<group>"; };
+		90A5A27D1BD93FB300FFE3F1 /* ok-mnt-park.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ok-mnt-park.png"; sourceTree = "<group>"; };
+		90A5A2821BD940B800FFE3F1 /* SaxKmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaxKmlParser.h; sourceTree = "<group>"; };
+		90A5A2831BD940B800FFE3F1 /* SaxKmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaxKmlParser.m; sourceTree = "<group>"; };
+		90A5A2851BD940E300FFE3F1 /* SAXKmlParserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAXKmlParserDelegate.h; sourceTree = "<group>"; };
+		90A5A2871BD95A6600FFE3F1 /* MKImageOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKImageOverlay.h; sourceTree = "<group>"; };
+		90A5A2881BD95A6600FFE3F1 /* MKImageOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKImageOverlay.m; sourceTree = "<group>"; };
+		90A5A28A1BD95A7600FFE3F1 /* MKImageOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKImageOverlayRenderer.h; sourceTree = "<group>"; };
+		90A5A28B1BD95A7600FFE3F1 /* MKImageOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKImageOverlayRenderer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +156,9 @@
 		900723A31BD592B7009793A0 /* MapTrack */ = {
 			isa = PBXGroup;
 			children = (
+				90A5A2861BD95A3E00FFE3F1 /* overlays */,
+				90A5A2811BD940A200FFE3F1 /* parser */,
+				90A5A2791BD93CC300FFE3F1 /* sampledata */,
 				900723F91BD6CC4B009793A0 /* waypoints */,
 				900723EF1BD6B180009793A0 /* buttons */,
 				907C79551BD63A61001AEFD8 /* appicon */,
@@ -224,6 +241,36 @@
 				900723EE1BD6ADFA009793A0 /* buttons.xcf */,
 			);
 			name = appicon;
+			sourceTree = "<group>";
+		};
+		90A5A2791BD93CC300FFE3F1 /* sampledata */ = {
+			isa = PBXGroup;
+			children = (
+				90A5A27C1BD93FB300FFE3F1 /* ok-mnt-park.kml */,
+				90A5A27D1BD93FB300FFE3F1 /* ok-mnt-park.png */,
+			);
+			name = sampledata;
+			sourceTree = "<group>";
+		};
+		90A5A2811BD940A200FFE3F1 /* parser */ = {
+			isa = PBXGroup;
+			children = (
+				90A5A2821BD940B800FFE3F1 /* SaxKmlParser.h */,
+				90A5A2831BD940B800FFE3F1 /* SaxKmlParser.m */,
+				90A5A2851BD940E300FFE3F1 /* SAXKmlParserDelegate.h */,
+			);
+			name = parser;
+			sourceTree = "<group>";
+		};
+		90A5A2861BD95A3E00FFE3F1 /* overlays */ = {
+			isa = PBXGroup;
+			children = (
+				90A5A2871BD95A6600FFE3F1 /* MKImageOverlay.h */,
+				90A5A2881BD95A6600FFE3F1 /* MKImageOverlay.m */,
+				90A5A28A1BD95A7600FFE3F1 /* MKImageOverlayRenderer.h */,
+				90A5A28B1BD95A7600FFE3F1 /* MKImageOverlayRenderer.m */,
+			);
+			name = overlays;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,6 +399,8 @@
 				900723FD1BD6DC7D009793A0 /* waypoint-offscreen-15.png in Resources */,
 				900723B11BD592B8009793A0 /* Assets.xcassets in Resources */,
 				900723E41BD6AAA9009793A0 /* maptracker-icon-40.png in Resources */,
+				90A5A27F1BD93FB300FFE3F1 /* ok-mnt-park.png in Resources */,
+				90A5A27E1BD93FB300FFE3F1 /* ok-mnt-park.kml in Resources */,
 				900723FF1BD6E541009793A0 /* userlocation-offscreen-15.png in Resources */,
 				900723EA1BD6AAA9009793A0 /* maptracker-icon-152.png in Resources */,
 				900723AF1BD592B8009793A0 /* Main.storyboard in Resources */,
@@ -380,8 +429,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				900723AC1BD592B7009793A0 /* ViewController.m in Sources */,
+				90A5A2841BD940B800FFE3F1 /* SaxKmlParser.m in Sources */,
+				90A5A28C1BD95A7600FFE3F1 /* MKImageOverlayRenderer.m in Sources */,
 				900723F41BD6B42D009793A0 /* StyleButton.m in Sources */,
 				900723A91BD592B7009793A0 /* AppDelegate.m in Sources */,
+				90A5A2891BD95A6600FFE3F1 /* MKImageOverlay.m in Sources */,
 				900723A61BD592B7009793A0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

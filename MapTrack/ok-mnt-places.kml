@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>ok-mnt-places.kmz</name>
+	<StyleMap id="msn_flag">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_flag</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_flag</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="msn_picnic">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_picnic</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_picnic</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_picnic">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/picnic.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<ListStyle>
+		</ListStyle>
+	</Style>
+	<Style id="sh_flag">
+		<IconStyle>
+			<scale>1.4</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/flag.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<ListStyle>
+		</ListStyle>
+	</Style>
+	<Style id="sh_picnic">
+		<IconStyle>
+			<scale>1.4</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/picnic.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<ListStyle>
+		</ListStyle>
+	</Style>
+	<Style id="sn_flag">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/flag.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<ListStyle>
+		</ListStyle>
+	</Style>
+	<Folder>
+		<name>Places</name>
+		<open>1</open>
+		<Placemark>
+			<name>Lighthouse</name>
+			<LookAt>
+				<longitude>-119.6925481042122</longitude>
+				<latitude>49.76425035239662</latitude>
+				<altitude>0</altitude>
+				<heading>-20.17914207712718</heading>
+				<tilt>43.99655458815913</tilt>
+				<range>149.2758653467065</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_flag</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-119.6925583451657,49.76397796661285,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Landing Point</name>
+			<LookAt>
+				<longitude>-119.6840431548743</longitude>
+				<latitude>49.76737283640249</latitude>
+				<altitude>0</altitude>
+				<heading>-20.15520263934248</heading>
+				<tilt>50.89374514086012</tilt>
+				<range>322.0801551469321</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_picnic</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-119.6833132787626,49.76673751702989,0</coordinates>
+			</Point>
+		</Placemark>
+	</Folder>
+</Document>
+</kml>

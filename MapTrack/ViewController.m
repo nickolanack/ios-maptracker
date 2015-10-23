@@ -316,34 +316,62 @@
 
 
 -(void)updateOffscreenItems{
-   
+    
     NSArray *annotations= self.mapView.annotations;
     //CLLocationCoordinate2D center=[self.mapView centerCoordinate];
-  
-
+    
+    
     int i=0;
     for (MKPointAnnotation *a in annotations) {
+        
+        
+        
         MKMapRect mr=self.mapView.visibleMapRect;
         MKMapPoint p=MKMapPointForCoordinate(a.coordinate);
         if(!MKMapRectContainsPoint(mr, p)){
             
-            UIImageView *image;
-            if([self.offScreenViews count] >i){
-                image=[self.offScreenViews objectAtIndex:i];
-            }else{;
-                image=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"waypoint-offscreen-15.png"]];
-                [self.offScreenViews addObject:image];
-                [self.view addSubview:image];
+            if(![a isKindOfClass:[MKUserLocation class]]){
+                
+                
+                
+                UIImageView *image;
+                if([self.offScreenViews count] >i){
+                    image=[self.offScreenViews objectAtIndex:i];
+                }else{;
+                    image=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"waypoint-offscreen-15.png"]];
+                    [self.offScreenViews addObject:image];
+                    [self.view addSubview:image];
+                    
+                }
+                
+                
+                CGPoint intersect=[self calcRectIntersectionPoint:a.coordinate];
+                [image setCenter:intersect];
+                
+                
+                i++;
+                
+            }else{
+                
+                if(!self.offScreenUserLocaton){
+                    self.offScreenUserLocaton=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"userlocation-offscreen-15.png"]];
+                    [self.view addSubview:self.offScreenUserLocaton];
+                }
+                
+                [self.offScreenUserLocaton setHidden:false];
+                CGPoint intersect=[self calcRectIntersectionPoint:a.coordinate];
+                [self.offScreenUserLocaton setCenter:intersect];
+                
+                
                 
             }
-            
-            
-            CGPoint intersect=[self calcRectIntersectionPoint:a.coordinate];
-            [image setCenter:intersect];
-
-            
-            i++;
-        }
+        }else{
+            if([a isKindOfClass:[MKUserLocation class]]){
+                [self.offScreenUserLocaton setHidden:true];
+            }
+        
+        
+    }
         
     }
     int c=(int)[self.offScreenViews count];
@@ -478,16 +506,35 @@
 }
 
 -(void)loadSampleData{
-
+    
+    {
     NSString *path=[[NSBundle mainBundle] pathForResource:@"ok-mnt-park.kml" ofType:nil];
     NSError *err;
     NSString *kml=[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
     [[[SaxKmlParser alloc] initWithDelegate:self] parseString:kml];
-
+    }
+    
+    {
+   // NSString *path=[[NSBundle mainBundle] pathForResource:@"ok-mnt-places.kml" ofType:nil];
+   // NSError *err;
+   // NSString *kml=[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
+   // [[[SaxKmlParser alloc] initWithDelegate:self] parseString:kml];
+    }
 
 }
 
--(void) loadMapItemFromDictionary:(NSDictionary *)dictionary{}
+-(void) loadMapItemFromDictionary:(NSDictionary *)dictionary{
+
+    //NSLog(@"Placemark: %@", dictionary);
+    //[[dictionary valueForKey:@"coordinates"] componentsSeparatedByString:@","];
+    
+    
+   // MKPointAnnotation *p=[[MKPointAnnotation alloc] init];
+    
+    //p setCoordinate:CLLocationCoordinate2DMake(<#CLLocationDegrees latitude#>, <#CLLocationDegrees longitude#>)
+    
+
+}
 -(void) loadStyleFromDictionary:(NSDictionary *)dictionary{}
 -(void) loadFolderFromDictionary:(NSDictionary *)dictionary{}
 -(void) loadGroundOverlayFromDictionary:(NSDictionary *)dictionary{

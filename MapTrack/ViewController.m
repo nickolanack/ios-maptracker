@@ -253,8 +253,7 @@
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay{
     MKOverlayRenderer *r=nil;
     if([overlay isKindOfClass:[MKImageOverlay class] ]){
-    
-        NSLog(@"got to imageview");
+        // this is my custom image overlay class
         MKImageOverlayRenderer *p=[[MKImageOverlayRenderer alloc] initWithOverlay:overlay];
         r=p;
         
@@ -487,10 +486,10 @@
 
 }
 
--(void) loadMapItemFromDictionary:(NSDictionary *)dictionary{}
--(void) loadStyleFromDictionary:(NSDictionary *)dictionary{}
--(void) loadFolderFromDictionary:(NSDictionary *)dictionary{}
--(void) loadGroundOverlayFromDictionary:(NSDictionary *)dictionary{
+-(void) onKmlPlacemark:(NSDictionary *)dictionary{}
+-(void) onKmlStyle:(NSDictionary *)dictionary{}
+-(void) onKmlFolder:(NSDictionary *)dictionary{}
+-(void) onKmlGroundOverlay:(NSDictionary *)dictionary{
 
     NSLog(@"Ground Overlay: %@", dictionary);
     

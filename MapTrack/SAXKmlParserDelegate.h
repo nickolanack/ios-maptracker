@@ -14,9 +14,9 @@
 
 @required
 
--(void) loadMapItemFromDictionary:(NSDictionary *)dictionary;
--(void) loadStyleFromDictionary:(NSDictionary *)dictionary;
--(void) loadFolderFromDictionary:(NSDictionary *)dictionary;
--(void) loadGroundOverlayFromDictionary:(NSDictionary *)dictionary;
+-(void) onKmlPlacemark:(NSDictionary *)dictionary;
+-(void) onKmlStyle:(NSDictionary *)dictionary;
+-(void) onKmlFolder:(NSDictionary *)dictionary;
+-(void) onKmlGroundOverlay:(NSDictionary *)dictionary;
 
 @end

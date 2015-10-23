@@ -181,15 +181,15 @@
     
     if([tagName isEqualToString:@"placemark"]){
         if(self.delegate!=nil){
-            [self.delegate loadMapItemFromDictionary:self.currentObject];
+            [self.delegate onKmlPlacemark:self.currentObject];
         }
     }else if([tagName isEqualToString:@"style"]){
         if(self.delegate!=nil){
-            [self.delegate loadStyleFromDictionary:self.currentObject];
+            [self.delegate onKmlStyle:self.currentObject];
         }
     }else if([tagName isEqualToString:@"groundoverlay"]){
         if(self.delegate!=nil){
-            [self.delegate loadGroundOverlayFromDictionary:self.currentObject];
+            [self.delegate onKmlGroundOverlay:self.currentObject];
         }
     }
     

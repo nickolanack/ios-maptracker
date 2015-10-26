@@ -15,6 +15,8 @@
 @required
 
 -(void) onKmlPlacemark:(NSDictionary *)dictionary;
+-(void) onKmlPolyline:(NSDictionary *)dictionary;
+-(void) onKmlPolygon:(NSDictionary *)dictionary;
 -(void) onKmlStyle:(NSDictionary *)dictionary;
 -(void) onKmlFolder:(NSDictionary *)dictionary;
 -(void) onKmlGroundOverlay:(NSDictionary *)dictionary;

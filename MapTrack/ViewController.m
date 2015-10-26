@@ -257,7 +257,14 @@
         MKImageOverlayRenderer *p=[[MKImageOverlayRenderer alloc] initWithOverlay:overlay];
         r=p;
         
-        [r setAlpha:0.5];
+        if([self.onOverlaysButton isSelected]){
+            [r setAlpha:0.5];
+        }else{
+            [r setAlpha:0.1];
+        }
+        
+        
+        
     
     }else{
     
@@ -504,25 +511,78 @@
     
 }
 
+- (IBAction)onOverlaysButtonClick:(id)sender {
+    [self.onOverlaysButton setSelected:![sender isSelected]];
+    for(id o in self.mapView.overlays) {
+       
+        [self.mapView removeOverlay:o];
+        [self.mapView addOverlay:o];
+        
+        //[o setNeedsDisplay];
+    }
+}
+
+- (IBAction)onUserLocationClick:(id)sender {
+    
+    for(id o in self.mapView.annotations) {
+        
+        if([o isKindOfClass:[MKUserLocation class]]){
+            
+            MKUserLocation *u=o;
+
+            MKMapRect mr=self.mapView.visibleMapRect;
+        
+            MKMapPoint p=MKMapPointForCoordinate(u.coordinate);
+            if(!MKMapRectContainsPoint(mr, p)){
+                [self.mapView setCenterCoordinate:u.coordinate];
+            }
+        }
+    }
+}
+
 -(void)loadSampleData{
     
     {
-    NSString *path=[[NSBundle mainBundle] pathForResource:@"ok-mnt-park.kml" ofType:nil];
-    NSError *err;
-    NSString *kml=[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
-    [[[SaxKmlParser alloc] initWithDelegate:self] parseString:kml];
+        NSString *path=[[NSBundle mainBundle] pathForResource:@"ok-mnt-park.kml" ofType:nil];
+        NSError *err;
+        NSString *kml=[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
+        [[[SaxKmlParser alloc] initWithDelegate:self] parseString:kml];
     }
     
     {
-   // NSString *path=[[NSBundle mainBundle] pathForResource:@"ok-mnt-places.kml" ofType:nil];
-   // NSError *err;
-   // NSString *kml=[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
-   // [[[SaxKmlParser alloc] initWithDelegate:self] parseString:kml];
+        NSString *path=[[NSBundle mainBundle] pathForResource:@"ok-mnt-places.kml" ofType:nil];
+        NSError *err;
+        NSString *kml=[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
+        [[[SaxKmlParser alloc] initWithDelegate:self] parseString:kml];
     }
-
+    
+    
+//    {
+//        NSString *path=[[NSBundle mainBundle] pathForResource:@"ok-mnt-wild-horse-canyon.kml" ofType:nil];
+//        NSError *err;
+//        NSString *kml=[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
+//        [[[SaxKmlParser alloc] initWithDelegate:self] parseString:kml];
+//    }
+    
 }
 
--(void) onKmlPlacemark:(NSDictionary *)dictionary{}
+-(void) onKmlPlacemark:(NSDictionary *)dictionary{
+
+
+    NSArray *coords=[[dictionary valueForKey:@"coordinates"] componentsSeparatedByString:@","];
+    
+    
+    
+    MKPointAnnotation *point=[[MKPointAnnotation alloc] init];
+    //[point setCoordinate:self.currentLocation.coordinate];
+    [point setCoordinate:CLLocationCoordinate2DMake([[[coords objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] floatValue], [[[coords objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] floatValue])];
+    
+    //[self.points addObject:point];
+    [self.mapView addAnnotation:point];
+    
+    
+
+}
 -(void) onKmlStyle:(NSDictionary *)dictionary{}
 -(void) onKmlFolder:(NSDictionary *)dictionary{}
 -(void) onKmlGroundOverlay:(NSDictionary *)dictionary{
@@ -542,6 +602,8 @@
     [self.mapView addOverlay:o];
     
 }
+-(void)onKmlPolyline:(NSDictionary *)dictionary{}
+-(void)onKmlPolygon:(NSDictionary *)dictionary{}
 
 
 @end

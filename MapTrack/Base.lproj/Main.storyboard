@@ -23,7 +23,7 @@
                                 <animations/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJ4-k9-cVt" customClass="StyleButton">
-                                <rect key="frame" x="20" y="38" width="35" height="35"/>
+                                <rect key="frame" x="5" y="38" width="35" height="35"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
@@ -33,7 +33,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Su8-lV-cRb" userLabel="Waypoint Button" customClass="StyleButton">
-                                <rect key="frame" x="20" y="81" width="35" height="35"/>
+                                <rect key="frame" x="5" y="81" width="35" height="35"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
@@ -43,7 +43,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LcD-p5-tzU" userLabel="Overlays Button" customClass="StyleButton">
-                                <rect key="frame" x="20" y="124" width="35" height="35"/>
+                                <rect key="frame" x="5" y="124" width="35" height="35"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
@@ -53,36 +53,57 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3H8-EG-aEN" userLabel="Goto Userlocation Button" customClass="StyleButton">
-                                <rect key="frame" x="20" y="167" width="35" height="35"/>
+                                <rect key="frame" x="5" y="167" width="35" height="35"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
-                                <state key="normal" image="icon-layers-100.png"/>
+                                <state key="normal" image="icon-userlocation-100.png"/>
+                                <connections>
+                                    <action selector="onUserLocationClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hr4-NL-T4V"/>
+                                </connections>
                             </button>
+                            <view alpha="0.29999999999999999" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vta-YT-fw7">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view alpha="0.59999999999999998" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a85-M8-HF2">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="tFz-53-MLp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="4LA-g7-wPM"/>
                             <constraint firstItem="tFz-53-MLp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="6BY-6v-OKL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vta-YT-fw7" secondAttribute="trailing" constant="-20" id="Fbh-Oi-Mfe"/>
+                            <constraint firstItem="a85-M8-HF2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="OwU-vf-wv7"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="a85-M8-HF2" secondAttribute="bottom" id="VWy-lP-fU2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tFz-53-MLp" secondAttribute="trailing" constant="-20" id="Zhs-bn-Wew"/>
+                            <constraint firstItem="vta-YT-fw7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="brR-kV-tvv"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tFz-53-MLp" secondAttribute="bottom" id="jrg-WN-kxB"/>
+                            <constraint firstItem="vta-YT-fw7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="r2o-zq-2yc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="a85-M8-HF2" secondAttribute="trailing" constant="-20" id="xM1-iS-VPB"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="tFz-53-MLp" id="mWv-7y-Lat"/>
+                        <outlet property="onOverlaysButton" destination="LcD-p5-tzU" id="pji-k3-oNg"/>
                         <outlet property="trackButton" destination="IJ4-k9-cVt" id="mVO-GZ-fhO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="292" y="408"/>
+            <point key="canvasLocation" x="288" y="405"/>
         </scene>
     </scenes>
     <resources>
         <image name="icon-layers-100.png" width="100" height="100"/>
         <image name="icon-track-100.png" width="100" height="100"/>
+        <image name="icon-userlocation-100.png" width="100" height="100"/>
         <image name="icon-waypointadd-100.png" width="100" height="100"/>
     </resources>
 </document>

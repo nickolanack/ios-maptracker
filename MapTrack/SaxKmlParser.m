@@ -183,6 +183,14 @@
         if(self.delegate!=nil){
             [self.delegate onKmlPlacemark:self.currentObject];
         }
+    }else if([tagName isEqualToString:@"polyline"]){
+        if(self.delegate!=nil){
+            [self.delegate onKmlPolyline:self.currentObject];
+        }
+    }else if([tagName isEqualToString:@"polygon"]){
+        if(self.delegate!=nil){
+            [self.delegate onKmlPolygon:self.currentObject];
+        }
     }else if([tagName isEqualToString:@"style"]){
         if(self.delegate!=nil){
             [self.delegate onKmlStyle:self.currentObject];
@@ -191,6 +199,9 @@
         if(self.delegate!=nil){
             [self.delegate onKmlGroundOverlay:self.currentObject];
         }
+    }else{
+        NSLog(@"end %@", tagName);
+    
     }
     
     

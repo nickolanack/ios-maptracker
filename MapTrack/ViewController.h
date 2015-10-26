@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet StyleButton *trackButton;
 
 - (IBAction)onWaypointButtonClick:(id)sender;
+- (IBAction)onOverlaysButtonClick:(id)sender;
+- (IBAction)onUserLocationClick:(id)sender;
+@property (weak, nonatomic) IBOutlet StyleButton *onOverlaysButton;
 
 @end
 

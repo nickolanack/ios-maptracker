@@ -13,9 +13,9 @@
 //@property NSMutableArray *lines;
 //@property NSMutableArray *points;
 @property NSMutableArray *offScreenViews;
-@property UIImageView *offScreenUserLocaton;
+@property UIView *offScreenUserLocaton;
 @property UIView *view;
-@property bool isMovingRegion;
+@property bool updating;
 
 @end
 
@@ -37,11 +37,11 @@
 
 
 -(void)startUpdating{
-    _isMovingRegion=true;
+    _updating=true;
     [self updateOffscreenItems];
 }
 -(void)stopUpdating{
-    _isMovingRegion=false;
+    _updating=false;
 }
 
 
@@ -67,11 +67,15 @@
                 
                 
                 
-                UIImageView *image;
+                UIView *image;
                 if([self.offScreenViews count] >i){
                     image=[self.offScreenViews objectAtIndex:i];
-                }else{;
-                    image=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"waypoint-offscreen-15.png"]];
+                }else{
+                    image=[self.delegate viewForOffscreenPointFeature:a];
+                    if(!image){
+                        image=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"waypoint-offscreen-15.png"]];
+                    }
+                    
                     [self.offScreenViews addObject:image];
                     [self.view addSubview:image];
                     
@@ -87,7 +91,11 @@
             }else{
                 
                 if(!self.offScreenUserLocaton){
-                    self.offScreenUserLocaton=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"userlocation-offscreen-15.png"]];
+                    self.offScreenUserLocaton=[self.delegate viewForOffscreenPointFeature:a];
+                    if(!self.offScreenUserLocaton){
+                        self.offScreenUserLocaton=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"userlocation-offscreen-15.png"]];
+                    }
+
                     [self.view addSubview:self.offScreenUserLocaton];
                 }
                 
@@ -116,7 +124,7 @@
     }
     
     
-    if(_isMovingRegion){
+    if(_updating){
         [self performSelector:@selector(updateOffscreenItems) withObject:nil afterDelay:0.05];
     }
     
@@ -212,5 +220,6 @@
     return angle;
     
 }
+
 
 @end

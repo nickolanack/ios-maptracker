@@ -99,14 +99,14 @@
             [self.currentObject setObject:ID forKey:@"id"];
         }
         [self.currentObject setObject:@"marker" forKey:@"mapitemtype"];
-    }else if([tagName isEqualToString:@"polygon"]){
-        [self.currentObjectType addObject:@"polygon"];
+    }else if([tagName isEqualToString:@"linestring"]){
+        //[self.currentObjectType addObject:@"linestring"];
        // self.currentObject=[[NSMutableDictionary alloc] init];
        // NSString *ID=[attributeDict objectForKey:@"id"];
        // if(ID!=nil){
         //    [self.currentObject setObject:ID forKey:@"id"];
         //}
-        [self.currentObject setObject:@"polygon" forKey:@"mapitemtype"];
+        [self.currentObject setObject:@"polyline" forKey:@"mapitemtype"];
         //NSLog(@"Polygon");
     }else if([tagName isEqualToString:@"style"]){
         [self.currentObjectType addObject:@"style"];
@@ -181,7 +181,13 @@
     
     if([tagName isEqualToString:@"placemark"]){
         if(self.delegate!=nil){
-            [self.delegate onKmlPlacemark:self.currentObject];
+            if([[self.currentObject objectForKey:@"mapitemtype"] isEqualToString:@"polyline"]){
+                [self.delegate onKmlPolyline:self.currentObject];
+            }else if([[self.currentObject objectForKey:@"mapitemtype"] isEqualToString:@"polygon"]){
+                [self.delegate onKmlPolygon:self.currentObject];
+            }else{
+             [self.delegate onKmlPlacemark:self.currentObject];
+            }
         }
     }else if([tagName isEqualToString:@"polyline"]){
         if(self.delegate!=nil){

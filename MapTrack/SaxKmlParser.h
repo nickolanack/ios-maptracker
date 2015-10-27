@@ -7,16 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SAXKmlParserDelegate.h"
+#import "SaxKmlParserDelegate.h"
 
 @class SAXKmlParserDelegate;
 
 @interface SaxKmlParser : NSObject<NSXMLParserDelegate>
 
-@property id<SAXKmlParserDelegate> delegate;
+@property id<SaxKmlParserDelegate> delegate;
 
 
--(instancetype)initWithDelegate:(id<SAXKmlParserDelegate>) delegate;
+-(instancetype)initWithDelegate:(id<SaxKmlParserDelegate>) delegate;
 
 -(void) parseString:(NSString *)string;
 

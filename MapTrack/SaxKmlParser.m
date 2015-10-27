@@ -20,7 +20,7 @@
 @implementation SaxKmlParser
 
 
--(instancetype)initWithDelegate:(id<SAXKmlParserDelegate>)delegate{
+-(instancetype)initWithDelegate:(id<SaxKmlParserDelegate>)delegate{
     self=[super init];
     self.delegate=delegate;
     return self;

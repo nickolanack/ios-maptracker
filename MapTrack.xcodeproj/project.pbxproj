@@ -40,6 +40,7 @@
 		90A5A2891BD95A6600FFE3F1 /* MKImageOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A5A2881BD95A6600FFE3F1 /* MKImageOverlay.m */; settings = {ASSET_TAGS = (); }; };
 		90A5A28C1BD95A7600FFE3F1 /* MKImageOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A5A28B1BD95A7600FFE3F1 /* MKImageOverlayRenderer.m */; settings = {ASSET_TAGS = (); }; };
 		90A5A28E1BD9AB5800FFE3F1 /* ok-mnt-places.kml in Resources */ = {isa = PBXBuildFile; fileRef = 90A5A28D1BD9AB5800FFE3F1 /* ok-mnt-places.kml */; settings = {ASSET_TAGS = (); }; };
+		90CB07811BE01370004F9183 /* MKOffscreenFeatureRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CB07801BE01370004F9183 /* MKOffscreenFeatureRenderer.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,12 +105,15 @@
 		90A5A27D1BD93FB300FFE3F1 /* ok-mnt-park.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ok-mnt-park.png"; sourceTree = "<group>"; };
 		90A5A2821BD940B800FFE3F1 /* SaxKmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaxKmlParser.h; sourceTree = "<group>"; };
 		90A5A2831BD940B800FFE3F1 /* SaxKmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaxKmlParser.m; sourceTree = "<group>"; };
-		90A5A2851BD940E300FFE3F1 /* SAXKmlParserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAXKmlParserDelegate.h; sourceTree = "<group>"; };
+		90A5A2851BD940E300FFE3F1 /* SaxKmlParserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaxKmlParserDelegate.h; sourceTree = "<group>"; };
 		90A5A2871BD95A6600FFE3F1 /* MKImageOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKImageOverlay.h; sourceTree = "<group>"; };
 		90A5A2881BD95A6600FFE3F1 /* MKImageOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKImageOverlay.m; sourceTree = "<group>"; };
 		90A5A28A1BD95A7600FFE3F1 /* MKImageOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKImageOverlayRenderer.h; sourceTree = "<group>"; };
 		90A5A28B1BD95A7600FFE3F1 /* MKImageOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKImageOverlayRenderer.m; sourceTree = "<group>"; };
 		90A5A28D1BD9AB5800FFE3F1 /* ok-mnt-places.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "ok-mnt-places.kml"; sourceTree = "<group>"; };
+		90CB077F1BE01370004F9183 /* MKOffscreenFeatureRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKOffscreenFeatureRenderer.h; sourceTree = "<group>"; };
+		90CB07801BE01370004F9183 /* MKOffscreenFeatureRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKOffscreenFeatureRenderer.m; sourceTree = "<group>"; };
+		90CB07821BE0139D004F9183 /* MKOffscreenFeatureRendererDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKOffscreenFeatureRendererDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +166,7 @@
 		900723A31BD592B7009793A0 /* MapTrack */ = {
 			isa = PBXGroup;
 			children = (
+				90CB077E1BE01310004F9183 /* offscreenFeatures */,
 				90A5A2861BD95A3E00FFE3F1 /* overlays */,
 				90A5A2811BD940A200FFE3F1 /* parser */,
 				90A5A2791BD93CC300FFE3F1 /* sampledata */,
@@ -266,7 +271,7 @@
 			children = (
 				90A5A2821BD940B800FFE3F1 /* SaxKmlParser.h */,
 				90A5A2831BD940B800FFE3F1 /* SaxKmlParser.m */,
-				90A5A2851BD940E300FFE3F1 /* SAXKmlParserDelegate.h */,
+				90A5A2851BD940E300FFE3F1 /* SaxKmlParserDelegate.h */,
 			);
 			name = parser;
 			sourceTree = "<group>";
@@ -280,6 +285,16 @@
 				90A5A28B1BD95A7600FFE3F1 /* MKImageOverlayRenderer.m */,
 			);
 			name = overlays;
+			sourceTree = "<group>";
+		};
+		90CB077E1BE01310004F9183 /* offscreenFeatures */ = {
+			isa = PBXGroup;
+			children = (
+				90CB077F1BE01370004F9183 /* MKOffscreenFeatureRenderer.h */,
+				90CB07801BE01370004F9183 /* MKOffscreenFeatureRenderer.m */,
+				90CB07821BE0139D004F9183 /* MKOffscreenFeatureRendererDelegate.h */,
+			);
+			name = offscreenFeatures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -445,6 +460,7 @@
 				90A5A28C1BD95A7600FFE3F1 /* MKImageOverlayRenderer.m in Sources */,
 				900723F41BD6B42D009793A0 /* StyleButton.m in Sources */,
 				900723A91BD592B7009793A0 /* AppDelegate.m in Sources */,
+				90CB07811BE01370004F9183 /* MKOffscreenFeatureRenderer.m in Sources */,
 				90A5A2891BD95A6600FFE3F1 /* MKImageOverlay.m in Sources */,
 				900723A61BD592B7009793A0 /* main.m in Sources */,
 			);

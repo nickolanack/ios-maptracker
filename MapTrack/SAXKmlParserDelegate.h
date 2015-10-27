@@ -10,7 +10,7 @@
 
 
 
-@protocol SAXKmlParserDelegate <NSObject>
+@protocol SaxKmlParserDelegate <NSObject>
 
 @required
 

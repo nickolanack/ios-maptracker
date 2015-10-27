@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "StyleButton.h"
-#import "SAXKmlParserDelegate.h"
+#import "SaxKmlParserDelegate.h"
+#import "MKOffscreenFeatureRendererDelegate.h"
 
-@interface ViewController : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate, UIAlertViewDelegate, SAXKmlParserDelegate>
+@interface ViewController : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate, UIAlertViewDelegate, SaxKmlParserDelegate, MKOffscreenFeatureRendererDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 

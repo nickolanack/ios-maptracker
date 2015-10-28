@@ -7,10 +7,12 @@
 //
 
 #import "MKUserTracker.h"
+#import "SaxKmlParser.h"
 
 @interface MKUserTracker()
 
-@property MKPolyline *currentLine;
+@property MKPolyline *currentPath;
+@property NSMutableArray *previousPaths;
 @property NSMutableArray *currentPoints;
 @property CLLocationManager *lm;
 @property float precision;
@@ -29,21 +31,23 @@
 @synthesize delegate;
 
 -(instancetype)initWithMap:(MKMapView *)map{
-
+    
     self=[super init];
     self.mapView=map;
     
-    self.lm = [[CLLocationManager alloc]init];
-    [self.lm setDelegate:self];
-    
+    _lm = [[CLLocationManager alloc]init];
+    [_lm setDelegate:self];
     
     if([CLLocationManager authorizationStatus]!=kCLAuthorizationStatusAuthorizedAlways){
-        [self.lm requestAlwaysAuthorization];
+        [_lm requestAlwaysAuthorization];
     }
     
     [self checkBackgroundRefreshStatusAndNotify];
+    [self restoreUserPathFeatures];
+    
+    
     return self;
-
+    
 }
 
 
@@ -122,8 +126,8 @@
     
     // check for loops?
     // redraw
-    if(self.currentLine){
-        [self.mapView removeOverlay:self.currentLine];
+    if(_currentPath){
+        [self.mapView removeOverlay:_currentPath];
     }
     
     
@@ -135,9 +139,9 @@
         locations[i]= c;
     }
     
-    self.currentLine=[MKPolyline polylineWithCoordinates:locations count:[self.currentPoints count]];
+    _currentPath=[MKPolyline polylineWithCoordinates:locations count:[self.currentPoints count]];
     
-    [self.mapView addOverlay:self.currentLine];
+    [self.mapView addOverlay:_currentPath];
     int c=(int)[self.currentPoints count];
     NSLog(@" Draw line with %d point",c);
     
@@ -153,8 +157,8 @@
     
     
     
-    //[self.lm startUpdatingHeading];
-    [self.lm startUpdatingLocation];
+    //[_lm startUpdatingHeading];
+    [_lm startUpdatingLocation];
     
     self.isMonitoring=true;
     
@@ -162,7 +166,7 @@
 
 -(void)stopMonitoringLocation{
     
-    [self.lm stopUpdatingLocation];
+    [_lm stopUpdatingLocation];
     self.isMonitoring=false;
 }
 
@@ -175,15 +179,106 @@
     
     NSLog(@"Stopped tracking");
     self.currentPoints=nil;
-    if(self.currentLine){
-        self.currentLine=nil;
+    if(_currentPath){
+        [self storeUserPathFeatures];
+        [self addPolylineToPreviousPaths:_currentPath];
+        _currentPath=nil;
     }
-
+    
     //[self.trackButton setBackgroundColor:[UIColor whiteColor]];
     self.isTracking=false;
     
+}
+
+-(void)restoreUserPathFeatures{
+    
+    NSString *file = [[NSHomeDirectory()
+                       stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"yourpath.kml"];
+    NSFileManager *f=[NSFileManager defaultManager];
+    if([f fileExistsAtPath:file]){
+        
+        NSLog(@"File Exists");
+        NSError *err;
+        SaxKmlParser *parser=[[SaxKmlParser alloc] init];
+        [parser setDelegate:self];
+        [parser parseString:[NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:&err]];
+        
+    }
     
 }
 
+-(void) onKmlPlacemark:(NSDictionary *)dictionary{}
+-(void) onKmlPolyline:(NSDictionary *)dictionary{
+    
+    NSArray *coordinateStrings=[SaxKmlParser ParseCoordinateArrayString:[dictionary objectForKey:@"coordinates"]];
+    CLLocationCoordinate2D locations[[coordinateStrings count]];
+    
+    for (int i=0; i<[coordinateStrings count]; i++) {
+        locations[i]= [SaxKmlParser ParseCoordinateString:[coordinateStrings objectAtIndex:i]];
+    }
+    
+    
+    MKPolyline * p= [MKPolyline polylineWithCoordinates:locations count:[coordinateStrings count]];
+    
+    [_mapView addOverlay:p];
+    [self addPolylineToPreviousPaths:p];
+    
+}
+
+-(void)addPolylineToPreviousPaths:(MKPolyline *) path{
+    if(!_previousPaths){
+        _previousPaths=[[NSMutableArray alloc] init];
+    }
+    
+    [_previousPaths addObject:path];
+    
+}
+
+-(void) onKmlPolygon:(NSDictionary *)dictionary{}
+-(void) onKmlStyle:(NSDictionary *)dictionary{}
+-(void) onKmlFolder:(NSDictionary *)dictionary{}
+-(void) onKmlGroundOverlay:(NSDictionary *)dictionary{}
+
+-(void)storeUserPathFeatures{
+    
+    NSString *file = [[NSHomeDirectory()
+                       stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"yourpath.kml"];
+    NSError *err;
+    
+    
+    NSString *kml=@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:kml=\"http://www.opengis.net/kml/2.2\" xmlns:atom=\"http://www.w3.org/2005/Atom\"><Document>";
+    
+    
+    for(int i=0;i<_previousPaths.count;i++){
+        kml=[kml stringByAppendingString:[self polyline:[_previousPaths objectAtIndex:i] ToKmlString:[NSString stringWithFormat:@"Previous Path %i", i]]];
+    }
+    
+    kml=[kml stringByAppendingString:[self polyline:_currentPath ToKmlString:@"Your Path"]];
+    kml=[kml stringByAppendingString:@"</Document></kml>"];
+    
+    
+    [kml writeToFile:file atomically:true encoding:NSUTF8StringEncoding error:&err];
+    if(err){
+        NSLog(@"%@", err.description);
+    }
+    
+}
+
+-(NSString *)polyline:(MKPolyline *) polyline ToKmlString:(NSString *) name{
+    
+    
+    NSString *kmlSnippit=[NSString stringWithFormat:@"<Placemark><name>%@</name><LineString><tessellate>1</tessellate><coordinates>", name];
+    for(int i=0;i<polyline.pointCount;i++){
+        
+        CLLocationCoordinate2D c=MKCoordinateForMapPoint(polyline.points[i]);
+        kmlSnippit=[kmlSnippit stringByAppendingString:[NSString stringWithFormat:@"%f,%f,0 ",c.longitude,c.latitude]];
+        
+    }
+    kmlSnippit=[kmlSnippit stringByAppendingString:@"</coordinates></LineString></Placemark>"];
+    
+    
+    return kmlSnippit;
+    
+}
 
 @end

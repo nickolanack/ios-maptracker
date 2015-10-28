@@ -10,9 +10,10 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "MKUserTrackerDelegate.h"
+#import "SaxKmlParserDelegate.h"
 
 
-@interface MKUserTracker : NSObject<CLLocationManagerDelegate>
+@interface MKUserTracker : NSObject<CLLocationManagerDelegate, SaxKmlParserDelegate>
 
 @property id<MKUserTrackerDelegate> delegate;
 

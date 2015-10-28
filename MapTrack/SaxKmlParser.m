@@ -160,6 +160,8 @@
         [self.currentObjectType addObject:@"rotation"];
     }else if([tagName isEqualToString:@"href"]){
         [self.currentObjectType addObject:@"href"];
+    }else if([tagName isEqualToString:@"tessellate"]){
+        [self.currentObjectType addObject:@"tessellate"];
     }else{
         NSLog(@"Unknown Tag %@", tagName);
     }
@@ -315,5 +317,37 @@
     NSLog(@" validationErrorOccurred %@",validationError);
 }
 // If validation is on, this will report a fatal validation error to the delegate. The parser will stop parsing.
+
+
+
+
+
++(NSArray*) ParseCoordinateArrayString:(NSString *)coordinates{
+
+    NSArray *coordinateArray=[[coordinates stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    return coordinateArray;
+
+}
+
++(CLLocationCoordinate2D *)ParseCoordinateStringArray:(NSArray *)coordinateStrings{
+
+    CLLocationCoordinate2D locations[[coordinateStrings count]];
+    
+    for (int i=0; i<[coordinateStrings count]; i++) {
+        locations[i]= [SaxKmlParser ParseCoordinateString:[coordinateStrings objectAtIndex:i]];
+    }
+    return locations;
+
+}
+
++(CLLocationCoordinate2D)ParseCoordinateString:(NSString *)coordinate{
+
+    NSArray *coords=[coordinate componentsSeparatedByString:@","];
+
+return CLLocationCoordinate2DMake([[[coords objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] floatValue], [[[coords objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] floatValue]);
+
+
+}
+
 
 @end

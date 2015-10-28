@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 #import "SaxKmlParserDelegate.h"
 
 @class SAXKmlParserDelegate;
@@ -20,5 +21,10 @@
 
 -(void) parseString:(NSString *)string;
 
+
+
+
++(NSArray*) ParseCoordinateArrayString:(NSString *)coordinates; 
++(CLLocationCoordinate2D)ParseCoordinateString:(NSString *)coordinate;
 
 @end

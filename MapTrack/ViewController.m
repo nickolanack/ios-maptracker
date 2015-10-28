@@ -140,12 +140,10 @@
 
 - (IBAction)onWaypointButtonClick:(id)sender {
     
-    
-    MKPointAnnotation *point=[[MKPointAnnotation alloc] init];
-    [point setCoordinate:self.mapView.centerCoordinate];
-    
-    //[self.points addObject:point];
-    [self.mapView addAnnotation:point];
+   
+    [self.waypointButton setSelected:!self.waypointButton.isSelected];
+    [self.markerDropButton setHidden:!self.waypointButton.isSelected];
+    [self.takePhotoButton setHidden:!self.waypointButton.isSelected];
     
 }
 
@@ -253,4 +251,13 @@
 -(void)onKmlPolygon:(NSDictionary *)dictionary{}
 
 
+- (IBAction)onMarkerDropClick:(id)sender {
+    MKPointAnnotation *point=[[MKPointAnnotation alloc] init];
+    [point setCoordinate:self.mapView.centerCoordinate];
+    
+    //[self.points addObject:point];
+    [self.mapView addAnnotation:point];
+}
+- (IBAction)onTakePhotoButtonClick:(id)sender {
+}
 @end

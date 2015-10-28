@@ -40,6 +40,7 @@
 		90A5A2891BD95A6600FFE3F1 /* MKImageOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A5A2881BD95A6600FFE3F1 /* MKImageOverlay.m */; };
 		90A5A28C1BD95A7600FFE3F1 /* MKImageOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A5A28B1BD95A7600FFE3F1 /* MKImageOverlayRenderer.m */; };
 		90A5A28E1BD9AB5800FFE3F1 /* ok-mnt-places.kml in Resources */ = {isa = PBXBuildFile; fileRef = 90A5A28D1BD9AB5800FFE3F1 /* ok-mnt-places.kml */; };
+		90B920D91BE179A6004CC6EF /* icon-waypointdrop-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B920D81BE179A6004CC6EF /* icon-waypointdrop-100.png */; settings = {ASSET_TAGS = (); }; };
 		90CB07811BE01370004F9183 /* MKOffscreenFeatureRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CB07801BE01370004F9183 /* MKOffscreenFeatureRenderer.m */; };
 		90CB07861BE02E0E004F9183 /* MKUserTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CB07851BE02E0E004F9183 /* MKUserTracker.m */; };
 /* End PBXBuildFile section */
@@ -112,6 +113,8 @@
 		90A5A28A1BD95A7600FFE3F1 /* MKImageOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKImageOverlayRenderer.h; sourceTree = "<group>"; };
 		90A5A28B1BD95A7600FFE3F1 /* MKImageOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKImageOverlayRenderer.m; sourceTree = "<group>"; };
 		90A5A28D1BD9AB5800FFE3F1 /* ok-mnt-places.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "ok-mnt-places.kml"; sourceTree = "<group>"; };
+		90B920D71BE16FF5004CC6EF /* buttons.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = buttons.xcf; sourceTree = "<group>"; };
+		90B920D81BE179A6004CC6EF /* icon-waypointdrop-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-waypointdrop-100.png"; sourceTree = "<group>"; };
 		90CB077F1BE01370004F9183 /* MKOffscreenFeatureRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKOffscreenFeatureRenderer.h; sourceTree = "<group>"; };
 		90CB07801BE01370004F9183 /* MKOffscreenFeatureRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKOffscreenFeatureRenderer.m; sourceTree = "<group>"; };
 		90CB07821BE0139D004F9183 /* MKOffscreenFeatureRendererDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKOffscreenFeatureRendererDelegate.h; sourceTree = "<group>"; };
@@ -223,6 +226,8 @@
 				904CFD201BDC86AA004947CD /* icon-layers-100.png */,
 				900723F01BD6B18E009793A0 /* icon-track-100.png */,
 				900723F51BD6C7AE009793A0 /* icon-waypointadd-100.png */,
+				90B920D81BE179A6004CC6EF /* icon-waypointdrop-100.png */,
+				90B920D71BE16FF5004CC6EF /* buttons.xcf */,
 				900723F21BD6B42D009793A0 /* StyleButton.h */,
 				900723F31BD6B42D009793A0 /* StyleButton.m */,
 			);
@@ -439,6 +444,7 @@
 				904CFD211BDC86AA004947CD /* icon-layers-100.png in Resources */,
 				900723FD1BD6DC7D009793A0 /* waypoint-offscreen-15.png in Resources */,
 				900723B11BD592B8009793A0 /* Assets.xcassets in Resources */,
+				90B920D91BE179A6004CC6EF /* icon-waypointdrop-100.png in Resources */,
 				90A5A28E1BD9AB5800FFE3F1 /* ok-mnt-places.kml in Resources */,
 				900723E41BD6AAA9009793A0 /* maptracker-icon-40.png in Resources */,
 				90A5A27F1BD93FB300FFE3F1 /* ok-mnt-park.png in Resources */,

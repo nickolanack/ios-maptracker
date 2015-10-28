@@ -329,16 +329,7 @@
 
 }
 
-+(CLLocationCoordinate2D *)ParseCoordinateStringArray:(NSArray *)coordinateStrings{
 
-    CLLocationCoordinate2D locations[[coordinateStrings count]];
-    
-    for (int i=0; i<[coordinateStrings count]; i++) {
-        locations[i]= [SaxKmlParser ParseCoordinateString:[coordinateStrings objectAtIndex:i]];
-    }
-    return locations;
-
-}
 
 +(CLLocationCoordinate2D)ParseCoordinateString:(NSString *)coordinate{
 

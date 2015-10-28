@@ -59,6 +59,7 @@
         
         
         
+        
         MKMapRect mr=self.mapView.visibleMapRect;
         MKMapPoint p=MKMapPointForCoordinate(a.coordinate);
         if(!MKMapRectContainsPoint(mr, p)){

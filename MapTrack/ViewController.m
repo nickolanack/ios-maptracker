@@ -206,15 +206,9 @@
 
 -(void) onKmlPlacemark:(NSDictionary *)dictionary{
 
-
-    NSArray *coords=[[dictionary valueForKey:@"coordinates"] componentsSeparatedByString:@","];
-    
-    
     
     MKPointAnnotation *point=[[MKPointAnnotation alloc] init];
-    [point setCoordinate:CLLocationCoordinate2DMake([[[coords objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] floatValue], [[[coords objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] floatValue])];
-    
-    //[self.points addObject:point];
+    [point setCoordinate:[SaxKmlParser ParseCoordinateString:[dictionary valueForKey:@"coordinates"]]];
     [self.mapView addAnnotation:point];
     
     
@@ -241,23 +235,18 @@
 }
 -(void)onKmlPolyline:(NSDictionary *)dictionary{
     
-    NSArray *coordinateArray=[[[dictionary valueForKey:@"coordinates"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    
-    CLLocationCoordinate2D locations[[coordinateArray count]];
-    
-    for (int i=0; i<[coordinateArray count]; i++) {
-        NSArray *coords=[[coordinateArray objectAtIndex:i] componentsSeparatedByString:@","];
-        CLLocationCoordinate2D c=CLLocationCoordinate2DMake([[[coords objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] floatValue], [[[coords objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] floatValue]);
-        locations[i]= c;
-    }
-    
-    MKPolyline * p= [MKPolyline polylineWithCoordinates:locations count:[coordinateArray count]];
-   
-    
 
     
-    //[self.points addObject:point];
+    NSArray *coordinateStrings=[SaxKmlParser ParseCoordinateArrayString:[dictionary objectForKey:@"coordinates"]];
+    CLLocationCoordinate2D locations[[coordinateStrings count]];
+    
+    for (int i=0; i<[coordinateStrings count]; i++) {
+        locations[i]= [SaxKmlParser ParseCoordinateString:[coordinateStrings objectAtIndex:i]];
+    }
+ 
+    
+    MKPolyline * p= [MKPolyline polylineWithCoordinates:locations count:[coordinateStrings count]];
+
     [self.mapView addOverlay:p];
     
 }

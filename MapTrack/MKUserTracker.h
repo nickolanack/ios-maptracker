@@ -16,7 +16,7 @@
 @interface MKUserTracker : NSObject<CLLocationManagerDelegate, SaxKmlParserDelegate>
 
 @property id<MKUserTrackerDelegate> delegate;
-
+@property (readonly) CLLocation *currentLocation;
 -(instancetype)initWithMap:(MKMapView *)map;
 
 

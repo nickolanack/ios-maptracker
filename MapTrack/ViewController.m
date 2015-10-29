@@ -13,6 +13,7 @@
 #import "MKImageOverlayRenderer.h"
 #import "MKOffscreenFeatureRenderer.h"
 #import "MKUserTracker.h"
+#import "MKImageAnnotation.h"
 
 @interface ViewController ()
 
@@ -84,8 +85,16 @@
     }
     
     
+    
+    
     MKAnnotationView *p=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
-    [p setImage:[UIImage imageNamed:@"waypoint-default-25x28.png"]];
+    
+    
+    if([annotation isKindOfClass:[MKImageAnnotation class]]){
+        [p setImage:[((MKImageAnnotation *) annotation) getIcon]];
+    }else{
+        [p setImage:[UIImage imageNamed:@"waypoint-default-25x28.png"]];
+    }
     [p setDraggable:true];
     
     return p;
@@ -139,12 +148,18 @@
 }
 
 - (IBAction)onWaypointButtonClick:(id)sender {
+    [self toggleWaypointMenu];
+}
+
+
+-(void)toggleWaypointMenu{
     
-   
     [self.waypointButton setSelected:!self.waypointButton.isSelected];
     [self.markerDropButton setHidden:!self.waypointButton.isSelected];
     [self.takePhotoButton setHidden:!self.waypointButton.isSelected];
     
+
+
 }
 
 - (IBAction)onOverlaysButtonClick:(id)sender {
@@ -251,13 +266,67 @@
 -(void)onKmlPolygon:(NSDictionary *)dictionary{}
 
 
-- (IBAction)onMarkerDropClick:(id)sender {
+- (IBAction)onMarkerDropButtonClick:(id)sender {
     MKPointAnnotation *point=[[MKPointAnnotation alloc] init];
     [point setCoordinate:self.mapView.centerCoordinate];
     
+    
     //[self.points addObject:point];
     [self.mapView addAnnotation:point];
+    [self toggleWaypointMenu];
 }
 - (IBAction)onTakePhotoButtonClick:(id)sender {
+    
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    
+    //picker.wantsFullScreenLayout = YES;
+    picker.navigationBarHidden = YES;
+    picker.toolbarHidden = YES;
+    
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    //picker.showsCameraControls=YES;
+    
+    picker.mediaTypes=[UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+    
+    [picker setDelegate:self];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+    [self presentViewController:picker animated:false completion:^{
+         NSLog(@"Dismissed");
+    }];
+    
+    
+    
 }
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *) info{
+
+    NSLog(@"%@", info);
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    
+    NSString *type=[info objectForKey:UIImagePickerControllerMediaType];
+    if([type isEqualToString:@"public.image"]){
+    
+        MKImageAnnotation  *point=[[MKImageAnnotation alloc] initWithUIImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
+        [point setCoordinate:[_tracker.currentLocation coordinate]];
+        [self.mapView addAnnotation:point];
+        
+        
+    }else{
+        NSLog(@"Unknown Media Type: %@",type);
+    }
+    
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    
+    NSLog(@"Cancelled");
+
+
+
+}
+
 @end

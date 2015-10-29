@@ -26,17 +26,17 @@
     CGRect theRect = [self rectForMapRect:theMapRect];
 
     CGPoint p=[self pointForMapPoint:MKMapPointForCoordinate(o.coordinate)];
+    
+    //Move context origin to center, rotate, and then move context back
     float angle=-M_PI*o.rotation/180.0;
     CGContextTranslateCTM(context, p.x, p.y);
     CGContextRotateCTM(context,  angle) ;
     CGContextTranslateCTM(context, -p.x, -p.y);
-    //invert
+    
+    //Invert to fix UIImage differences
     CGContextScaleCTM(context, 1.0, -1.0);
     CGContextTranslateCTM(context, 0.0, -theRect.size.height);
-    //CGContextRotateCTM(context, (o.rotation/360.0)*M_PI);
-    //CGContextRotateCTM(context, (o.rotation/360.0)*M_PI);
-    
-    
+
     
     CGContextDrawImage(context, theRect, imageReference);
 }

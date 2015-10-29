@@ -20,7 +20,6 @@
 @property bool isTracking;
 @property bool isMonitoring;
 
-@property CLLocation *currentLocation;
 
 @property MKMapView *mapView;
 
@@ -28,7 +27,7 @@
 
 @implementation MKUserTracker
 
-@synthesize delegate;
+@synthesize delegate, currentLocation;
 
 -(instancetype)initWithMap:(MKMapView *)map{
     
@@ -101,7 +100,7 @@
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
     
     CLLocation *point=[locations lastObject];
-    self.currentLocation=point;
+    currentLocation=point;
     if(self.isTracking){
         if(!self.currentPoints){
             self.currentPoints=[[NSMutableArray alloc] initWithObjects:point, nil];

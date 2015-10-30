@@ -20,6 +20,9 @@
 @property bool isTracking;
 @property bool isMonitoring;
 
+@property bool isLogging;
+@property NSFileHandle *fileHandle;
+
 
 @property MKMapView *mapView;
 
@@ -44,11 +47,40 @@
     [self checkBackgroundRefreshStatusAndNotify];
     [self restoreUserPathFeatures];
     
+    // when _isLogging is set to true, then this class instance will record all
+    // location samples to file. which can be used for debuging, or for generating unit tests.
+    _isLogging=true;
+    
+    
+    
     
     return self;
     
 }
 
+-(void)startLogging{
+    
+    NSString *log=[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"photos"];
+    NSFileManager *fm=[NSFileManager defaultManager];
+    if([fm fileExistsAtPath:log]){
+        NSError *err;
+        [fm removeItemAtPath:log error:&err];
+        
+    }
+    
+    [fm createFileAtPath:log contents:nil attributes:nil];
+    _fileHandle = [NSFileHandle fileHandleForWritingAtPath:log];
+    
+}
+-(void)log:(CLLocation *)location{
+    
+    NSString *data=[NSString stringWithFormat:@"{\"lat\":%f, \"lng\":%f, \"alt\":%f, \"speed\":%f, \"course\":%f, \"timestamp\":%f, \"h-accuracy\":%f, \"v-accuracy\":%f},\n", location.coordinate.latitude, location.coordinate.longitude, location.altitude, location.speed, location.course, [location.timestamp timeIntervalSince1970], location.horizontalAccuracy, location.verticalAccuracy];
+    
+    [_fileHandle writeData:[data dataUsingEncoding:NSUTF8StringEncoding]];
+}
+-(void)stopLogging{
+    [_fileHandle closeFile];
+}
 
 
 -(void)checkBackgroundRefreshStatusAndNotify{
@@ -72,7 +104,7 @@
         // Background services are disabled and the user cannot turn them on.
         // May occur when the device is restricted under parental control.
         alert = [[UIAlertView alloc]initWithTitle:@""
-                                          message:@"MapTracker has been restricted, adn will be unable to operate in the background"
+                                          message:@"MapTracker has been restricted, and will be unable to operate in the background"
                                          delegate:nil
                                 cancelButtonTitle:@"Ok"
                                 otherButtonTitles:nil, nil];
@@ -101,6 +133,11 @@
     
     CLLocation *point=[locations lastObject];
     currentLocation=point;
+   
+    if(_isLogging){
+        [self log:point];
+    }
+    
     if(self.isTracking){
         if(!self.currentPoints){
             self.currentPoints=[[NSMutableArray alloc] initWithObjects:point, nil];
@@ -155,9 +192,9 @@
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
     
     
-    
-    //[_lm startUpdatingHeading];
+
     [_lm startUpdatingLocation];
+    
     
     self.isMonitoring=true;
     
@@ -167,12 +204,16 @@
     
     [_lm stopUpdatingLocation];
     self.isMonitoring=false;
+    
 }
 
 -(void)startTrackingLocation{
     
     self.isTracking=true;
     //[self.trackButton setBackgroundColor:[UIColor magentaColor]];
+    if(_isLogging){
+        [self startLogging];
+    }
 }
 -(void)stopTrackingLocation{
     
@@ -186,6 +227,10 @@
     
     //[self.trackButton setBackgroundColor:[UIColor whiteColor]];
     self.isTracking=false;
+    
+    if(_isLogging){
+        [self stopLogging];
+    }
     
 }
 

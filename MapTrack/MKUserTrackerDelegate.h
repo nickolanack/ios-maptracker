@@ -13,6 +13,6 @@
 
 @required
 
-
+-(void)userTrackerPaceDidChangeTo:(float) pace From:(float) previousPace;
 
 @end

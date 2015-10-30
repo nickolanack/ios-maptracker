@@ -32,18 +32,11 @@
 		900723FD1BD6DC7D009793A0 /* waypoint-offscreen-15.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723FC1BD6DC7D009793A0 /* waypoint-offscreen-15.png */; };
 		900723FF1BD6E541009793A0 /* userlocation-offscreen-15.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723FE1BD6E541009793A0 /* userlocation-offscreen-15.png */; };
 		90424EC71BE2857900ADA8E6 /* icon-waypointcamera-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 90424EC61BE2857900ADA8E6 /* icon-waypointcamera-100.png */; };
-		904953891BE3EFF3006D32BD /* tracklog-0.json in Resources */ = {isa = PBXBuildFile; fileRef = 904953861BE3EFF3006D32BD /* tracklog-0.json */; };
-		9049538A1BE3EFF3006D32BD /* tracklog-1.json in Resources */ = {isa = PBXBuildFile; fileRef = 904953871BE3EFF3006D32BD /* tracklog-1.json */; };
-		9049538B1BE3EFF3006D32BD /* tracklog-2.json in Resources */ = {isa = PBXBuildFile; fileRef = 904953881BE3EFF3006D32BD /* tracklog-2.json */; };
-		904CFD1F1BDB02AA004947CD /* ok-mnt-wild-horse-canyon.kml in Resources */ = {isa = PBXBuildFile; fileRef = 904CFD1E1BDB02AA004947CD /* ok-mnt-wild-horse-canyon.kml */; };
 		904CFD211BDC86AA004947CD /* icon-layers-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 904CFD201BDC86AA004947CD /* icon-layers-100.png */; };
 		904CFD231BDC8918004947CD /* icon-userlocation-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 904CFD221BDC8918004947CD /* icon-userlocation-100.png */; };
-		90A5A27E1BD93FB300FFE3F1 /* ok-mnt-park.kml in Resources */ = {isa = PBXBuildFile; fileRef = 90A5A27C1BD93FB300FFE3F1 /* ok-mnt-park.kml */; };
-		90A5A27F1BD93FB300FFE3F1 /* ok-mnt-park.png in Resources */ = {isa = PBXBuildFile; fileRef = 90A5A27D1BD93FB300FFE3F1 /* ok-mnt-park.png */; };
 		90A5A2841BD940B800FFE3F1 /* SaxKmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A5A2831BD940B800FFE3F1 /* SaxKmlParser.m */; };
 		90A5A2891BD95A6600FFE3F1 /* MKImageOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A5A2881BD95A6600FFE3F1 /* MKImageOverlay.m */; };
 		90A5A28C1BD95A7600FFE3F1 /* MKImageOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A5A28B1BD95A7600FFE3F1 /* MKImageOverlayRenderer.m */; };
-		90A5A28E1BD9AB5800FFE3F1 /* ok-mnt-places.kml in Resources */ = {isa = PBXBuildFile; fileRef = 90A5A28D1BD9AB5800FFE3F1 /* ok-mnt-places.kml */; };
 		90AEDFF21BE2D4B7002316FF /* MKImageAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AEDFF11BE2D4B7002316FF /* MKImageAnnotation.m */; };
 		90B920D91BE179A6004CC6EF /* icon-waypointdrop-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B920D81BE179A6004CC6EF /* icon-waypointdrop-100.png */; };
 		90CB07811BE01370004F9183 /* MKOffscreenFeatureRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CB07801BE01370004F9183 /* MKOffscreenFeatureRenderer.m */; };
@@ -460,22 +453,15 @@
 				900723F11BD6B18E009793A0 /* icon-track-100.png in Resources */,
 				900723F61BD6C7AF009793A0 /* icon-waypointadd-100.png in Resources */,
 				900723ED1BD6AAE5009793A0 /* maptracker-icon-58.png in Resources */,
-				904CFD1F1BDB02AA004947CD /* ok-mnt-wild-horse-canyon.kml in Resources */,
 				900723E71BD6AAA9009793A0 /* maptracker-icon-80.png in Resources */,
 				900723E91BD6AAA9009793A0 /* maptracker-icon-120.png in Resources */,
-				9049538A1BE3EFF3006D32BD /* tracklog-1.json in Resources */,
 				904CFD211BDC86AA004947CD /* icon-layers-100.png in Resources */,
 				900723FD1BD6DC7D009793A0 /* waypoint-offscreen-15.png in Resources */,
 				900723B11BD592B8009793A0 /* Assets.xcassets in Resources */,
 				90B920D91BE179A6004CC6EF /* icon-waypointdrop-100.png in Resources */,
-				90A5A28E1BD9AB5800FFE3F1 /* ok-mnt-places.kml in Resources */,
 				900723E41BD6AAA9009793A0 /* maptracker-icon-40.png in Resources */,
-				90A5A27F1BD93FB300FFE3F1 /* ok-mnt-park.png in Resources */,
-				9049538B1BE3EFF3006D32BD /* tracklog-2.json in Resources */,
-				90A5A27E1BD93FB300FFE3F1 /* ok-mnt-park.kml in Resources */,
 				90424EC71BE2857900ADA8E6 /* icon-waypointcamera-100.png in Resources */,
 				900723FF1BD6E541009793A0 /* userlocation-offscreen-15.png in Resources */,
-				904953891BE3EFF3006D32BD /* tracklog-0.json in Resources */,
 				900723EA1BD6AAA9009793A0 /* maptracker-icon-152.png in Resources */,
 				900723AF1BD592B8009793A0 /* Main.storyboard in Resources */,
 			);

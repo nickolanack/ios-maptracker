@@ -201,7 +201,8 @@
         
         NSString *ext=[path substringFromIndex:path.length-4];
         
-        if([ext isEqualToString:@".kml"]&&(![path isEqualToString:@"yourpath.kml"])){
+        
+        if([ext isEqualToString:@".kml"]&&(!([path characterAtIndex:0]=='.'))){
             
             NSError *err;
             NSString *kml=[NSString stringWithContentsOfFile:[folder stringByAppendingPathComponent:path] encoding:NSUTF8StringEncoding error:&err];

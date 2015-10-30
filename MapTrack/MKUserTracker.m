@@ -244,7 +244,7 @@
 -(void)restoreUserPathFeatures{
     
     NSString *file = [[NSHomeDirectory()
-                       stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"yourpath.kml"];
+                       stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@".yourpath.kml"];
     NSFileManager *f=[NSFileManager defaultManager];
     if([f fileExistsAtPath:file]){
         
@@ -293,7 +293,7 @@
 -(void)storeUserPathFeatures{
     
     NSString *file = [[NSHomeDirectory()
-                       stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"yourpath.kml"];
+                       stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@".yourpath.kml"];
     NSError *err;
     
     

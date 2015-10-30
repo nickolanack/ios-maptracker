@@ -30,13 +30,26 @@
     self=[super init];
     
     NSString *folder=[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"photos"];
-    bool isFolder;
-    if([[NSFileManager defaultManager] fileExistsAtPath:folder isDirectory:&isFolder]&&isFolder){
-        
+    NSFileManager *fm=[NSFileManager defaultManager];
+    if(![fm fileExistsAtPath:folder]){
+        NSError *err;
+        [fm createDirectoryAtPath:folder withIntermediateDirectories:true attributes:nil error:&err];
     }
     
-    NSString *file = [[NSHomeDirectory()
-                       stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"image.png"];
+    int i=0;
+    
+    NSString *name;
+    NSString *file;
+    
+    do{
+    name=[NSString stringWithFormat:@"photo-%d.png", i];
+    file = [[NSHomeDirectory()
+                       stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:name];
+        i++;
+        
+    }while([fm fileExistsAtPath:file]);
+    
+
     [UIImagePNGRepresentation(image) writeToFile:file atomically:true];
     
     

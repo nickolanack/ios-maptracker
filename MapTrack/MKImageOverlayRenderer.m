@@ -17,9 +17,9 @@
 - (void)drawMapRect:(MKMapRect)mapRect zoomScale:(MKZoomScale)zoomScale inContext:(CGContextRef)context{
     
     MKImageOverlay *o=self.overlay;
-    NSString *path=[[NSBundle mainBundle] pathForResource:o.image ofType:nil];
+    //NSString *path=[[NSBundle mainBundle] pathForResource:o.image ofType:nil];
 
-    UIImage *image = [UIImage imageWithContentsOfFile:path];
+    UIImage *image = [UIImage imageWithContentsOfFile:o.image];
     CGImageRef imageReference = image.CGImage;
     
     MKMapRect theMapRect = [self.overlay boundingMapRect];

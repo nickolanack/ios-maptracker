@@ -22,7 +22,7 @@
 
 @property bool isLogging;
 @property NSFileHandle *fileHandle;
-
+@property int *logCount;
 
 @property MKMapView *mapView;
 
@@ -60,26 +60,33 @@
 
 -(void)startLogging{
     
-    NSString *log=[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"photos"];
-    NSFileManager *fm=[NSFileManager defaultManager];
-    if([fm fileExistsAtPath:log]){
-        NSError *err;
-        [fm removeItemAtPath:log error:&err];
+    NSString *log;    NSFileManager *fm=[NSFileManager defaultManager];
+    int i=0;
+    do{
+    
+        log=[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"tracklog-%d.json", i]];
+        i++;
         
-    }
+    }while([fm fileExistsAtPath:log]);
     
     [fm createFileAtPath:log contents:nil attributes:nil];
     _fileHandle = [NSFileHandle fileHandleForWritingAtPath:log];
+     [_fileHandle writeData:[@"[\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    _logCount=0;
     
 }
 -(void)log:(CLLocation *)location{
-    
-    NSString *data=[NSString stringWithFormat:@"{\"lat\":%f, \"lng\":%f, \"alt\":%f, \"speed\":%f, \"course\":%f, \"timestamp\":%f, \"h-accuracy\":%f, \"v-accuracy\":%f},\n", location.coordinate.latitude, location.coordinate.longitude, location.altitude, location.speed, location.course, [location.timestamp timeIntervalSince1970], location.horizontalAccuracy, location.verticalAccuracy];
-    
-    [_fileHandle writeData:[data dataUsingEncoding:NSUTF8StringEncoding]];
+    if(_fileHandle){
+        NSString *data=[NSString stringWithFormat:@"%@{\"lat\":%f, \"lng\":%f, \"alt\":%f, \"spd\":%f, \"crs\":%f, \"tms\":%f, \"h-ac\":%f, \"v-ac\":%f}\n", (_logCount==0?@"   ":@",\n   "),location.coordinate.latitude, location.coordinate.longitude, location.altitude, location.speed, location.course, [location.timestamp timeIntervalSince1970], location.horizontalAccuracy, location.verticalAccuracy];
+        
+        [_fileHandle writeData:[data dataUsingEncoding:NSUTF8StringEncoding]];
+        _logCount++;
+    }
 }
 -(void)stopLogging{
+    [_fileHandle writeData:[@"\n]" dataUsingEncoding:NSUTF8StringEncoding]];
     [_fileHandle closeFile];
+       _fileHandle=nil;
 }
 
 
@@ -133,7 +140,7 @@
     
     CLLocation *point=[locations lastObject];
     currentLocation=point;
-   
+    
     if(_isLogging){
         [self log:point];
     }
@@ -192,7 +199,7 @@
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
     
     
-
+    
     [_lm startUpdatingLocation];
     
     

@@ -29,13 +29,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
+    
     
     [self.mapView setDelegate:self];
     self.tracker=[[MKUserTracker alloc] initWithMap:self.mapView];
     //[self.tracker setDelegate:self];
     
-    [self loadSampleData];
+    [self loadUserData];
 }
 
 
@@ -61,13 +61,13 @@
         
         
         
-    
+        
     }else{
-    
-    
-     MKPolylineRenderer *p= [[MKPolylineRenderer alloc]initWithOverlay:overlay];
-    [p setStrokeColor:[UIColor blueColor]];
-    [p setLineWidth:2.0f];
+        
+        
+        MKPolylineRenderer *p= [[MKPolylineRenderer alloc]initWithOverlay:overlay];
+        [p setStrokeColor:[UIColor blueColor]];
+        [p setLineWidth:2.0f];
         r=p;
     }
     
@@ -122,11 +122,11 @@
     }
     
     [_offscreenRenderer startUpdating];
-
+    
     
 }
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
-     [_offscreenRenderer stopUpdating];
+    [_offscreenRenderer stopUpdating];
 }
 
 
@@ -137,11 +137,11 @@
     if(!self.trackButton.isSelected){
         [self.trackButton setSelected:true];
         [self.tracker startTrackingLocation];
-       
+        
     }else{
-
+        
         [self.trackButton setSelected:false];
-         [self.tracker stopTrackingLocation];
+        [self.tracker stopTrackingLocation];
         
         
     }
@@ -158,14 +158,14 @@
     [self.markerDropButton setHidden:!self.waypointButton.isSelected];
     [self.takePhotoButton setHidden:!self.waypointButton.isSelected];
     
-
-
+    
+    
 }
 
 - (IBAction)onOverlaysButtonClick:(id)sender {
     [self.onOverlaysButton setSelected:![sender isSelected]];
     for(id o in self.mapView.overlays) {
-       
+        
         [self.mapView removeOverlay:o];
         [self.mapView addOverlay:o];
         
@@ -180,9 +180,9 @@
         if([o isKindOfClass:[MKUserLocation class]]){
             
             MKUserLocation *u=o;
-
+            
             MKMapRect mr=self.mapView.visibleMapRect;
-        
+            
             MKMapPoint p=MKMapPointForCoordinate(u.coordinate);
             if(!MKMapRectContainsPoint(mr, p)){
                 [self.mapView setCenterCoordinate:u.coordinate];
@@ -191,64 +191,59 @@
     }
 }
 
--(void)loadSampleData{
-    
-    {
-        NSString *path=[[NSBundle mainBundle] pathForResource:@"ok-mnt-park.kml" ofType:nil];
-        NSError *err;
-        NSString *kml=[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
-        [[[SaxKmlParser alloc] initWithDelegate:self] parseString:kml];
+-(void)loadUserData{
+    NSString *folder=[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSFileManager *fm =[NSFileManager defaultManager];
+    NSError *err;
+    NSArray *paths=[fm contentsOfDirectoryAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] error:&err];
+    for (NSString *path in paths) {
+        NSLog(@"%@", path);
+        
+        NSString *ext=[path substringFromIndex:path.length-4];
+        
+        if([ext isEqualToString:@".kml"]&&(![path isEqualToString:@"yourpath.kml"])){
+            
+            NSError *err;
+            NSString *kml=[NSString stringWithContentsOfFile:[folder stringByAppendingPathComponent:path] encoding:NSUTF8StringEncoding error:&err];
+            [[[SaxKmlParser alloc] initWithDelegate:self] parseString:kml];
+        }
     }
     
-    {
-        NSString *path=[[NSBundle mainBundle] pathForResource:@"ok-mnt-places.kml" ofType:nil];
-        NSError *err;
-        NSString *kml=[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
-        [[[SaxKmlParser alloc] initWithDelegate:self] parseString:kml];
-    }
-    
-    
-    {
-        NSString *path=[[NSBundle mainBundle] pathForResource:@"ok-mnt-wild-horse-canyon.kml" ofType:nil];
-        NSError *err;
-        NSString *kml=[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
-        [[[SaxKmlParser alloc] initWithDelegate:self] parseString:kml];
-    }
-    
+
 }
 
 -(void) onKmlPlacemark:(NSDictionary *)dictionary{
-
+    
     
     MKPointAnnotation *point=[[MKPointAnnotation alloc] init];
     [point setCoordinate:[SaxKmlParser ParseCoordinateString:[dictionary valueForKey:@"coordinates"]]];
     [self.mapView addAnnotation:point];
     
     
-
+    
 }
 -(void) onKmlStyle:(NSDictionary *)dictionary{}
 -(void) onKmlFolder:(NSDictionary *)dictionary{}
 -(void) onKmlGroundOverlay:(NSDictionary *)dictionary{
-
+    
     NSLog(@"Ground Overlay: %@", dictionary);
     
     MKImageOverlay *o=[[MKImageOverlay alloc] init];
     
-
+    NSString *folder=[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     NSString *image=[[dictionary valueForKey:@"href"] stringByReplacingOccurrencesOfString:@"files/" withString:@""];
     
-    [o setImage:image];
+    [o setImage:[folder stringByAppendingPathComponent:image]];
     [o setRotation:[[dictionary valueForKey:@"rotation"] floatValue]];
     [o setScale:[[dictionary valueForKey:@"viewboundscale"] floatValue]];
     [o setNorth:[[dictionary valueForKey:@"north"] floatValue] South:[[dictionary valueForKey:@"south"] floatValue] East:[[dictionary valueForKey:@"east"] floatValue] West:[[dictionary valueForKey:@"west"] floatValue]];
-
+    
     [self.mapView addOverlay:o];
     
 }
 -(void)onKmlPolyline:(NSDictionary *)dictionary{
     
-
+    
     
     NSArray *coordinateStrings=[SaxKmlParser ParseCoordinateArrayString:[dictionary objectForKey:@"coordinates"]];
     CLLocationCoordinate2D locations[[coordinateStrings count]];
@@ -256,10 +251,10 @@
     for (int i=0; i<[coordinateStrings count]; i++) {
         locations[i]= [SaxKmlParser ParseCoordinateString:[coordinateStrings objectAtIndex:i]];
     }
- 
+    
     
     MKPolyline * p= [MKPolyline polylineWithCoordinates:locations count:[coordinateStrings count]];
-
+    
     [self.mapView addOverlay:p];
     
 }
@@ -293,7 +288,7 @@
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     [self presentViewController:picker animated:false completion:^{
-         NSLog(@"Dismissed");
+        NSLog(@"Dismissed");
     }];
     
     
@@ -302,7 +297,7 @@
 
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *) info{
-
+    
     NSLog(@"%@", info);
     [self dismissViewControllerAnimated:YES completion:^{
         
@@ -310,7 +305,7 @@
     
     NSString *type=[info objectForKey:UIImagePickerControllerMediaType];
     if([type isEqualToString:@"public.image"]){
-    
+        
         MKImageAnnotation  *point=[[MKImageAnnotation alloc] initWithUIImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
         [point setCoordinate:[_tracker.currentLocation coordinate]];
         [self.mapView addAnnotation:point];
@@ -324,9 +319,9 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     
     NSLog(@"Cancelled");
-
-
-
+    
+    
+    
 }
 
 @end

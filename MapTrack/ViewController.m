@@ -175,20 +175,23 @@
 
 - (IBAction)onUserLocationClick:(id)sender {
     
-    for(id o in self.mapView.annotations) {
+    [self.locatonButton setSelected:!self.locatonButton.selected];
+    
+    if(self.locatonButton.selected){
+       
+
         
-        if([o isKindOfClass:[MKUserLocation class]]){
-            
-            MKUserLocation *u=o;
-            
             MKMapRect mr=self.mapView.visibleMapRect;
             
-            MKMapPoint p=MKMapPointForCoordinate(u.coordinate);
+            MKMapPoint p=MKMapPointForCoordinate(_tracker.currentLocation.coordinate);
             if(!MKMapRectContainsPoint(mr, p)){
-                [self.mapView setCenterCoordinate:u.coordinate];
+                [self.mapView setCenterCoordinate:_tracker.currentLocation.coordinate animated:true];
             }
-        }
     }
+    
+    
+    [self.lockLocationButton setHidden:!self.locatonButton.selected];
+
 }
 
 -(void)loadUserData{
@@ -296,6 +299,33 @@
     
 }
 
+- (IBAction)onLockLocationButtonClick:(id)sender {
+    
+    [self.lockLocationButton setSelected:!self.lockLocationButton.selected];
+    if(self.lockLocationButton.selected){
+    
+        [_tracker startMovingWithLocation];
+        [_tracker startRotatingWithHeading];
+    
+    }else{
+    
+        [_tracker stopMovingWithLocation];
+        [_tracker stopRotatingWithHeading];
+        
+    
+    }
+    
+}
+
+-(void)mapView:(MKMapView *)mapView didChangeUserTrackingMode:(MKUserTrackingMode)mode animated:(BOOL)animated{
+    if(mode==MKUserTrackingModeFollowWithHeading){
+        [self.lockLocationButton setSelected:true];
+    }else{
+       [self.lockLocationButton setSelected:false];
+    }
+
+}
+
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *) info{
     
@@ -320,8 +350,6 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     
     NSLog(@"Cancelled");
-    
-    
     
 }
 

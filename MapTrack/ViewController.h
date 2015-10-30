@@ -27,11 +27,14 @@
 @property (weak, nonatomic) IBOutlet StyleButton *onOverlaysButton;
 - (IBAction)onMarkerDropButtonClick:(id)sender;
 - (IBAction)onTakePhotoButtonClick:(id)sender;
+- (IBAction)onLockLocationButtonClick:(id)sender;
 
 
+@property (weak, nonatomic) IBOutlet StyleButton *locatonButton;
 @property (weak, nonatomic) IBOutlet StyleButton *waypointButton;
 @property (weak, nonatomic) IBOutlet StyleButton *markerDropButton;
 @property (weak, nonatomic) IBOutlet StyleButton *takePhotoButton;
+@property (weak, nonatomic) IBOutlet StyleButton *lockLocationButton;
 
 @end
 

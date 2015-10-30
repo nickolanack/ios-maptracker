@@ -31,6 +31,7 @@
 		900723F81BD6CC47009793A0 /* waypoint-default-25x28.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723F71BD6CC47009793A0 /* waypoint-default-25x28.png */; };
 		900723FD1BD6DC7D009793A0 /* waypoint-offscreen-15.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723FC1BD6DC7D009793A0 /* waypoint-offscreen-15.png */; };
 		900723FF1BD6E541009793A0 /* userlocation-offscreen-15.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723FE1BD6E541009793A0 /* userlocation-offscreen-15.png */; };
+		90115C2C1BE4080E002E8B20 /* icon-userlocationlock-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 90115C2B1BE4080E002E8B20 /* icon-userlocationlock-100.png */; };
 		90424EC71BE2857900ADA8E6 /* icon-waypointcamera-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 90424EC61BE2857900ADA8E6 /* icon-waypointcamera-100.png */; };
 		904CFD211BDC86AA004947CD /* icon-layers-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 904CFD201BDC86AA004947CD /* icon-layers-100.png */; };
 		904CFD231BDC8918004947CD /* icon-userlocation-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 904CFD221BDC8918004947CD /* icon-userlocation-100.png */; };
@@ -99,6 +100,7 @@
 		900723FB1BD6DC76009793A0 /* offscreen.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = offscreen.xcf; sourceTree = "<group>"; };
 		900723FC1BD6DC7D009793A0 /* waypoint-offscreen-15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "waypoint-offscreen-15.png"; sourceTree = "<group>"; };
 		900723FE1BD6E541009793A0 /* userlocation-offscreen-15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userlocation-offscreen-15.png"; sourceTree = "<group>"; };
+		90115C2B1BE4080E002E8B20 /* icon-userlocationlock-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-userlocationlock-100.png"; sourceTree = "<group>"; };
 		90424EC61BE2857900ADA8E6 /* icon-waypointcamera-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-waypointcamera-100.png"; sourceTree = "<group>"; };
 		904953861BE3EFF3006D32BD /* tracklog-0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "tracklog-0.json"; sourceTree = "<group>"; };
 		904953871BE3EFF3006D32BD /* tracklog-1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "tracklog-1.json"; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				90B920D81BE179A6004CC6EF /* icon-waypointdrop-100.png */,
 				90424EC61BE2857900ADA8E6 /* icon-waypointcamera-100.png */,
 				904CFD221BDC8918004947CD /* icon-userlocation-100.png */,
+				90115C2B1BE4080E002E8B20 /* icon-userlocationlock-100.png */,
 				90B920D71BE16FF5004CC6EF /* buttons.xcf */,
 				900723F21BD6B42D009793A0 /* StyleButton.h */,
 				900723F31BD6B42D009793A0 /* StyleButton.m */,
@@ -450,6 +453,7 @@
 				900723E31BD6AAA9009793A0 /* maptracker-icon-29.png in Resources */,
 				900723B41BD592B8009793A0 /* LaunchScreen.storyboard in Resources */,
 				900723E61BD6AAA9009793A0 /* maptracker-icon-76.png in Resources */,
+				90115C2C1BE4080E002E8B20 /* icon-userlocationlock-100.png in Resources */,
 				900723F11BD6B18E009793A0 /* icon-track-100.png in Resources */,
 				900723F61BD6C7AF009793A0 /* icon-waypointadd-100.png in Resources */,
 				900723ED1BD6AAE5009793A0 /* maptracker-icon-58.png in Resources */,

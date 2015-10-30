@@ -23,4 +23,11 @@
 -(void)startTrackingLocation;
 -(void)stopTrackingLocation;
 
+
+-(void)startMovingWithLocation;
+-(void)stopMovingWithLocation;
+
+-(void)startRotatingWithHeading;
+-(void)stopRotatingWithHeading;
+
 @end

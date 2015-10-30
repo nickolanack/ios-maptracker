@@ -25,7 +25,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJ4-k9-cVt" customClass="StyleButton">
                                 <rect key="frame" x="5" y="38" width="35" height="35"/>
                                 <animations/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.38715277777777674" green="0.75010382620370364" blue="0.96808449074074077" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <state key="normal" image="icon-track-100.png"/>
                                 <connections>
@@ -35,7 +35,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Su8-lV-cRb" userLabel="Waypoint Button" customClass="StyleButton">
                                 <rect key="frame" x="5" y="81" width="35" height="35"/>
                                 <animations/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.38715277777777674" green="0.55140590953703705" blue="0.96808449074074077" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <state key="normal" image="icon-waypointadd-100.png"/>
                                 <connections>
@@ -45,7 +45,7 @@
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rJd-ou-Cad" userLabel="Drop Marker Button" customClass="StyleButton">
                                 <rect key="frame" x="48" y="81" width="35" height="35"/>
                                 <animations/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.38715277777777674" green="0.55140590953703705" blue="0.96808449074074077" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <state key="normal" image="icon-waypointdrop-100.png"/>
                                 <connections>
@@ -55,7 +55,7 @@
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FiY-MZ-Toz" userLabel="Take Photo Button" customClass="StyleButton">
                                 <rect key="frame" x="91" y="81" width="35" height="35"/>
                                 <animations/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.38715277777777674" green="0.55140590953703705" blue="0.96808449074074077" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <state key="normal" image="icon-waypointcamera-100.png"/>
                                 <connections>
@@ -65,7 +65,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LcD-p5-tzU" userLabel="Overlays Button" customClass="StyleButton">
                                 <rect key="frame" x="5" y="124" width="35" height="35"/>
                                 <animations/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.73532986111111009" green="0.55140590953703705" blue="0.96808449074074077" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <state key="normal" image="icon-layers-100.png"/>
                                 <connections>
@@ -75,7 +75,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3H8-EG-aEN" userLabel="Goto Userlocation Button" customClass="StyleButton">
                                 <rect key="frame" x="5" y="167" width="35" height="35"/>
                                 <animations/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.28561921296296189" green="0.86998229842592589" blue="0.6308449074074074" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <state key="normal" image="icon-userlocation-100.png"/>
                                 <connections>
@@ -92,6 +92,16 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMG-p8-6Yi" userLabel="Lock Userlocation Button" customClass="StyleButton">
+                                <rect key="frame" x="48" y="167" width="35" height="35"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.28561921296296189" green="0.86998229842592589" blue="0.6308449074074074" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <state key="normal" image="icon-userlocationlock-100.png"/>
+                                <connections>
+                                    <action selector="onLockLocationButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Cs-Oo-kIN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -110,6 +120,8 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="locatonButton" destination="3H8-EG-aEN" id="WA0-Xm-1bO"/>
+                        <outlet property="lockLocationButton" destination="eMG-p8-6Yi" id="AA8-SY-c3C"/>
                         <outlet property="mapView" destination="tFz-53-MLp" id="mWv-7y-Lat"/>
                         <outlet property="markerDropButton" destination="rJd-ou-Cad" id="hR7-q4-Wcd"/>
                         <outlet property="onOverlaysButton" destination="LcD-p5-tzU" id="pji-k3-oNg"/>
@@ -127,6 +139,7 @@
         <image name="icon-layers-100.png" width="100" height="100"/>
         <image name="icon-track-100.png" width="100" height="100"/>
         <image name="icon-userlocation-100.png" width="100" height="100"/>
+        <image name="icon-userlocationlock-100.png" width="100" height="100"/>
         <image name="icon-waypointadd-100.png" width="100" height="100"/>
         <image name="icon-waypointcamera-100.png" width="100" height="100"/>
         <image name="icon-waypointdrop-100.png" width="100" height="100"/>

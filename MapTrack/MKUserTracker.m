@@ -17,14 +17,17 @@
 @property CLLocationManager *lm;
 @property float precision;
 
-@property bool isTracking;
-@property bool isMonitoring;
+@property bool isTrackingLocation;
+@property bool isTrackingHeading;
 
 @property bool isLogging;
-@property NSFileHandle *fileHandle;
+@property NSFileHandle *locationLogFileHandle;
 @property int *logCount;
 
 @property MKMapView *mapView;
+
+@property bool isMovingWithLocation;
+@property bool isRotatingWithLocation;
 
 @end
 
@@ -64,29 +67,29 @@
     int i=0;
     do{
     
-        log=[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"tracklog-%d.json", i]];
+        log=[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"locationlog-%d.json", i]];
         i++;
         
     }while([fm fileExistsAtPath:log]);
     
     [fm createFileAtPath:log contents:nil attributes:nil];
-    _fileHandle = [NSFileHandle fileHandleForWritingAtPath:log];
-     [_fileHandle writeData:[@"[\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    _locationLogFileHandle = [NSFileHandle fileHandleForWritingAtPath:log];
+     [_locationLogFileHandle writeData:[@"[\n" dataUsingEncoding:NSUTF8StringEncoding]];
     _logCount=0;
     
 }
 -(void)log:(CLLocation *)location{
-    if(_fileHandle){
+    if(_locationLogFileHandle){
         NSString *data=[NSString stringWithFormat:@"%@{\"lat\":%f, \"lng\":%f, \"alt\":%f, \"spd\":%f, \"crs\":%f, \"tms\":%f, \"h-ac\":%f, \"v-ac\":%f}\n", (_logCount==0?@"   ":@",\n   "),location.coordinate.latitude, location.coordinate.longitude, location.altitude, location.speed, location.course, [location.timestamp timeIntervalSince1970], location.horizontalAccuracy, location.verticalAccuracy];
         
-        [_fileHandle writeData:[data dataUsingEncoding:NSUTF8StringEncoding]];
+        [_locationLogFileHandle writeData:[data dataUsingEncoding:NSUTF8StringEncoding]];
         _logCount++;
     }
 }
 -(void)stopLogging{
-    [_fileHandle writeData:[@"\n]" dataUsingEncoding:NSUTF8StringEncoding]];
-    [_fileHandle closeFile];
-       _fileHandle=nil;
+    [_locationLogFileHandle writeData:[@"\n]" dataUsingEncoding:NSUTF8StringEncoding]];
+    [_locationLogFileHandle closeFile];
+       _locationLogFileHandle=nil;
 }
 
 
@@ -145,7 +148,8 @@
         [self log:point];
     }
     
-    if(self.isTracking){
+    
+    if(_isTrackingLocation){
         if(!self.currentPoints){
             self.currentPoints=[[NSMutableArray alloc] initWithObjects:point, nil];
         }else{
@@ -162,6 +166,13 @@
     }
     
     // NSLog(@"%@", locations);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
+
+    NSLog(@"%@",newHeading);
+    
+
 }
 
 
@@ -203,20 +214,19 @@
     [_lm startUpdatingLocation];
     
     
-    self.isMonitoring=true;
-    
+
 }
 
 -(void)stopMonitoringLocation{
     
     [_lm stopUpdatingLocation];
-    self.isMonitoring=false;
+
     
 }
 
 -(void)startTrackingLocation{
     
-    self.isTracking=true;
+    _isTrackingLocation=true;
     //[self.trackButton setBackgroundColor:[UIColor magentaColor]];
     if(_isLogging){
         [self startLogging];
@@ -233,7 +243,7 @@
     }
     
     //[self.trackButton setBackgroundColor:[UIColor whiteColor]];
-    self.isTracking=false;
+    _isTrackingLocation=false;
     
     if(_isLogging){
         [self stopLogging];
@@ -330,6 +340,44 @@
     
     return kmlSnippit;
     
+}
+
+
+
+-(void)startMovingWithLocation{
+    _isMovingWithLocation=true;
+    [self updateUserFollowMode];
+}
+-(void)stopMovingWithLocation{
+    _isMovingWithLocation=false;
+    [self updateUserFollowMode];
+}
+
+-(void)startRotatingWithHeading{
+    _isRotatingWithLocation=true;
+    [self updateUserFollowMode];
+
+}
+-(void)stopRotatingWithHeading{
+    _isRotatingWithLocation=false;
+    [self updateUserFollowMode];
+
+}
+
+
+-(void)updateUserFollowMode{
+
+
+    if(_isMovingWithLocation){
+        if(_isRotatingWithLocation){
+            [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
+        }else{
+            [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
+        }
+        //[_mapView setCenterCoordinate:point.coordinate animated:true];
+    }else{
+        [self.mapView setUserTrackingMode:MKUserTrackingModeNone animated:YES];
+    }
 }
 
 @end

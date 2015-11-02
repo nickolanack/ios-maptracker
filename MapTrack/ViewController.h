@@ -11,8 +11,9 @@
 #import "StyleButton.h"
 #import "SaxKmlParserDelegate.h"
 #import "MKOffscreenFeatureRendererDelegate.h"
+#import "MKUserTrackerDelegate.h"
 
-@interface ViewController : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate, UIAlertViewDelegate, SaxKmlParserDelegate, MKOffscreenFeatureRendererDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ViewController : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate, UIAlertViewDelegate, SaxKmlParserDelegate, MKOffscreenFeatureRendererDelegate, UIImagePickerControllerDelegate, MKUserTrackerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
@@ -35,6 +36,11 @@
 @property (weak, nonatomic) IBOutlet StyleButton *markerDropButton;
 @property (weak, nonatomic) IBOutlet StyleButton *takePhotoButton;
 @property (weak, nonatomic) IBOutlet StyleButton *lockLocationButton;
+@property (weak, nonatomic) IBOutlet UIView *trackInfoBar;
+@property (weak, nonatomic) IBOutlet UILabel *trackLabel;
+@property (weak, nonatomic) IBOutlet UILabel *trackTime;
+@property (weak, nonatomic) IBOutlet UIView *topBar;
+@property (weak, nonatomic) IBOutlet UILabel *trackDistance;
 
 @end
 

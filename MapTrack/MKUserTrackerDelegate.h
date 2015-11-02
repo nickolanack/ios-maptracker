@@ -14,5 +14,6 @@
 @required
 
 -(void)userTrackerPaceDidChangeTo:(float) pace From:(float) previousPace;
+-(void)userTrackerDistanceDidChange:(float) distance From:(float) previousDistance;
 
 @end

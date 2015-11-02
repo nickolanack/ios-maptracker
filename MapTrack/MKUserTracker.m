@@ -29,6 +29,11 @@
 @property bool isMovingWithLocation;
 @property bool isRotatingWithLocation;
 
+@property NSDate *startDate;
+
+
+@property float distance;
+
 @end
 
 @implementation MKUserTracker
@@ -76,6 +81,8 @@
     _locationLogFileHandle = [NSFileHandle fileHandleForWritingAtPath:log];
      [_locationLogFileHandle writeData:[@"[\n" dataUsingEncoding:NSUTF8StringEncoding]];
     _logCount=0;
+    
+    
     
 }
 -(void)log:(CLLocation *)location{
@@ -199,6 +206,41 @@
     int c=(int)[self.currentPoints count];
     NSLog(@" Draw line with %d point",c);
     
+    
+    [self updateDistance];
+    
+    
+}
+
+-(void)updateDistance{
+    
+    double oldDistance=_distance;
+    
+    if(self.currentPoints&&self.currentPoints.count>1){
+        
+        CLLocation *newCoordinate = [self.currentPoints objectAtIndex:self.currentPoints.count-1];
+        CLLocation *oldCoordinate = [self.currentPoints objectAtIndex:self.currentPoints.count-2];
+        
+        double meters=[newCoordinate distanceFromLocation:oldCoordinate];
+    
+        if(meters>0){
+            _distance=_distance+meters;
+            [self.delegate userTrackerDistanceDidChange:_distance From:oldDistance];
+        }
+        
+    }else if(_distance>0){
+        _distance=0;
+        [self.delegate userTrackerDistanceDidChange:_distance From:oldDistance];
+    
+    }
+    
+    
+    
+   
+    
+
+    
+
 }
 
 
@@ -213,15 +255,10 @@
     
     [_lm startUpdatingLocation];
     
-    
-
 }
 
 -(void)stopMonitoringLocation{
-    
     [_lm stopUpdatingLocation];
-
-    
 }
 
 -(void)startTrackingLocation{
@@ -231,7 +268,13 @@
     if(_isLogging){
         [self startLogging];
     }
+    
+    
+    _startDate = [NSDate date];
+    [self updateDistance];
+    
 }
+
 -(void)stopTrackingLocation{
     
     NSLog(@"Stopped tracking");
@@ -249,6 +292,17 @@
         [self stopLogging];
     }
     
+    _startDate=nil;
+    
+}
+
+-(NSTimeInterval) getTimeInterval{
+    if(_startDate!=nil){
+        
+        return -[_startDate timeIntervalSinceNow];
+    }else{
+        return 0;
+    }
 }
 
 -(void)restoreUserPathFeatures{
@@ -379,5 +433,8 @@
         [self.mapView setUserTrackingMode:MKUserTrackingModeNone animated:YES];
     }
 }
+
+
+
 
 @end

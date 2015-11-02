@@ -30,4 +30,7 @@
 -(void)startRotatingWithHeading;
 -(void)stopRotatingWithHeading;
 
+
+-(NSTimeInterval) getTimeInterval;
+
 @end

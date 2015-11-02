@@ -22,7 +22,7 @@
 @implementation MKOffscreenFeatureRenderer
 
 -(instancetype)initWithMap:(MKMapView *)map{
-
+    
     self=[super init];
     
     self.mapView=map;
@@ -64,71 +64,74 @@
         MKMapPoint p=MKMapPointForCoordinate(a.coordinate);
         if(!MKMapRectContainsPoint(mr, p)){
             
-            if(![a isKindOfClass:[MKUserLocation class]]){
+            if([self.delegate shouldRenderViewForOffscreenPointFeature:a]){
                 
-                
-                
-                UIView *image;
-                if([self.offScreenViews count] >i){
-                    image=[self.offScreenViews objectAtIndex:i];
+                if(![a isKindOfClass:[MKUserLocation class]]){
+                    
+                    
+                    
+                    UIView *image;
+                    if([self.offScreenViews count] >i){
+                        image=[self.offScreenViews objectAtIndex:i];
+                    }else{
+                        image=[self.delegate viewForOffscreenPointFeature:a];
+                        if(!image){
+                            image=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"waypoint-offscreen-15.png"]];
+                        }
+                        
+                        [self.offScreenViews addObject:image];
+                        [self.view addSubview:image];
+                        
+                    }
+                    
+                    
+                    CGPoint intersect=[self calcRectIntersectionPoint:a.coordinate];
+                    [image setCenter:intersect];
+                    
+                    
+                    i++;
+                    
                 }else{
-                    image=[self.delegate viewForOffscreenPointFeature:a];
-                    if(!image){
-                        image=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"waypoint-offscreen-15.png"]];
-                    }
                     
-                    [self.offScreenViews addObject:image];
-                    [self.view addSubview:image];
-                    
-                }
-                
-                
-                CGPoint intersect=[self calcRectIntersectionPoint:a.coordinate];
-                [image setCenter:intersect];
-                
-                
-                i++;
-                
-            }else{
-                
-                if(!self.offScreenUserLocaton){
-                    self.offScreenUserLocaton=[self.delegate viewForOffscreenPointFeature:a];
                     if(!self.offScreenUserLocaton){
-                        self.offScreenUserLocaton=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"userlocation-offscreen-15.png"]];
+                        self.offScreenUserLocaton=[self.delegate viewForOffscreenPointFeature:a];
+                        if(!self.offScreenUserLocaton){
+                            self.offScreenUserLocaton=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"userlocation-offscreen-15.png"]];
+                        }
+                        
+                        [self.view addSubview:self.offScreenUserLocaton];
                     }
-
-                    [self.view addSubview:self.offScreenUserLocaton];
+                    
+                    [self.offScreenUserLocaton setHidden:false];
+                    CGPoint intersect=[self calcRectIntersectionPoint:a.coordinate];
+                    [self.offScreenUserLocaton setCenter:intersect];
+                    
+                    
+                    
                 }
-                
-                [self.offScreenUserLocaton setHidden:false];
-                CGPoint intersect=[self calcRectIntersectionPoint:a.coordinate];
-                [self.offScreenUserLocaton setCenter:intersect];
-                
-                
-                
-            }
-        }else{
-            if([a isKindOfClass:[MKUserLocation class]]){
-                [self.offScreenUserLocaton setHidden:true];
-            }
-            
-            
+        }
+    }else{
+        if([a isKindOfClass:[MKUserLocation class]]){
+            [self.offScreenUserLocaton setHidden:true];
         }
         
-    }
-    int c=(int)[self.offScreenViews count];
-    for(int j=c-1; j>=i; j--){
-        UIImageView *v= [self.offScreenViews objectAtIndex:j];
-        [self.offScreenViews removeObjectAtIndex:j];
-        [v removeFromSuperview];
-        v=nil;
+        
     }
     
-    
-    if(_updating){
-        [self performSelector:@selector(updateOffscreenItems) withObject:nil afterDelay:0.05];
-    }
-    
+}
+int c=(int)[self.offScreenViews count];
+for(int j=c-1; j>=i; j--){
+    UIImageView *v= [self.offScreenViews objectAtIndex:j];
+    [self.offScreenViews removeObjectAtIndex:j];
+    [v removeFromSuperview];
+    v=nil;
+}
+
+
+if(_updating){
+    [self performSelector:@selector(updateOffscreenItems) withObject:nil afterDelay:0.05];
+}
+
 }
 
 

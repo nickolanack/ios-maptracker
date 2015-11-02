@@ -15,5 +15,6 @@
 @required
 
 -(UIView *)viewForOffscreenPointFeature:(MKPointAnnotation *)point;
+-(bool)shouldRenderViewForOffscreenPointFeature:(MKPointAnnotation *)point;
 
 @end

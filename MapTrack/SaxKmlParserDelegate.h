@@ -7,13 +7,16 @@
 
 @protocol SaxKmlParserDelegate <NSObject>
 
-@required
+@optional
 
 -(void) onKmlPlacemark:(NSDictionary *)dictionary;
 -(void) onKmlPolyline:(NSDictionary *)dictionary;
 -(void) onKmlPolygon:(NSDictionary *)dictionary;
+-(void) onKmlGroundOverlay:(NSDictionary *)dictionary;
+
+@optional
+
 -(void) onKmlStyle:(NSDictionary *)dictionary;
 -(void) onKmlFolder:(NSDictionary *)dictionary;
--(void) onKmlGroundOverlay:(NSDictionary *)dictionary;
 
 @end

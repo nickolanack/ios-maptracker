@@ -9,6 +9,9 @@
 @property NSMutableArray *currentObjectType;
 
 
+@property NSMutableDictionary *styleMaps;
+@property NSMutableDictionary *styles;
+
 @end
 
 
@@ -18,6 +21,11 @@
 -(instancetype)initWithDelegate:(id<SaxKmlParserDelegate>)delegate{
     self=[super init];
     self.delegate=delegate;
+    
+    
+    self.styleMaps=[[NSMutableDictionary alloc] init];
+    self.styles=[[NSMutableDictionary alloc] init];
+    
     return self;
 }
 
@@ -112,6 +120,15 @@
         }
         [self.currentObject setObject:@"style" forKey:@"mapitemtype"];
         //NSLog(@"Polygon");
+    }else if([tagName isEqualToString:@"stylemap"]){
+        [self.currentObjectType addObject:@"stylemap"];
+        self.currentObject=[[NSMutableDictionary alloc] init];
+        NSString *ID=[attributeDict objectForKey:@"id"];
+        if(ID!=nil){
+            [self.currentObject setObject:[NSString stringWithFormat:@"%@%@",@"#",ID] forKey:@"id"];
+        }
+        [self.currentObject setObject:@"stylemap" forKey:@"mapitemtype"];
+        //NSLog(@"Polygon");
     }else if([tagName isEqualToString:@"name"]){
         [self.currentObjectType addObject:@"name"];
     }else if([tagName isEqualToString:@"description"]){
@@ -157,6 +174,8 @@
         [self.currentObjectType addObject:@"href"];
     }else if([tagName isEqualToString:@"tessellate"]){
         [self.currentObjectType addObject:@"tessellate"];
+    }else if([tagName isEqualToString:@"key"]){
+        [self.currentObjectType addObject:@"key"];
     }else{
         NSLog(@"Unknown Tag %@", tagName);
     }
@@ -178,26 +197,23 @@
     
     if([tagName isEqualToString:@"placemark"]){
         if(self.delegate!=nil){
+            
+            NSDictionary *feature=[self prepareData:self.currentObject];
+            
             if([[self.currentObject objectForKey:@"mapitemtype"] isEqualToString:@"polyline"]){
-                [self.delegate onKmlPolyline:self.currentObject];
+                [self.delegate onKmlPolyline:feature];
             }else if([[self.currentObject objectForKey:@"mapitemtype"] isEqualToString:@"polygon"]){
-                [self.delegate onKmlPolygon:self.currentObject];
+                [self.delegate onKmlPolygon:feature];
             }else{
-             [self.delegate onKmlPlacemark:self.currentObject];
+             [self.delegate onKmlPlacemark:feature];
             }
         }
-    }else if([tagName isEqualToString:@"polyline"]){
-        if(self.delegate!=nil){
-            [self.delegate onKmlPolyline:self.currentObject];
-        }
-    }else if([tagName isEqualToString:@"polygon"]){
-        if(self.delegate!=nil){
-            [self.delegate onKmlPolygon:self.currentObject];
-        }
     }else if([tagName isEqualToString:@"style"]){
-        if(self.delegate!=nil){
-            [self.delegate onKmlStyle:self.currentObject];
-        }
+        [self onKmlStyle:self.currentObject];
+       
+    }else if([tagName isEqualToString:@"stylemap"]){
+        [self onKmlStyleMap:self.currentObject];
+       
     }else if([tagName isEqualToString:@"groundoverlay"]){
         if(self.delegate!=nil){
             [self.delegate onKmlGroundOverlay:self.currentObject];
@@ -246,10 +262,18 @@
     }
     
     if([current isEqualToString:@"name"] || [current isEqualToString:@"description"] || [current isEqualToString:@"coordinates"]|| [current isEqualToString:@"styleurl"] || [current isEqualToString:@"width"] || [current isEqualToString:@"outline"]){
+        
+        NSString *key=[self.currentObject objectForKey:@"key"];
+        if(key!=nil){
+            current=key;
+            [self.currentObject removeObjectForKey:@"key"];
+        }
+        
         NSString *previous=[self.currentObject objectForKey:current];
         if(previous==nil){
             previous=@"";
         }
+        
         [self.currentObject setObject:[NSString stringWithFormat:@"%@%@",previous,data] forKey:[NSString stringWithString:current]];
     }else if([current isEqualToString:@"color"]){
         NSString *parent=[self.currentObjectType objectAtIndex:([self.currentObjectType count]-2)];
@@ -314,7 +338,75 @@
 // If validation is on, this will report a fatal validation error to the delegate. The parser will stop parsing.
 
 
+-(void)onKmlStyleMap:(NSDictionary *)dictionary{
 
+   
+    [self.styleMaps setValue:dictionary forKey:[dictionary objectForKey:@"id"]];
+
+}
+-(void)onKmlStyle:(NSDictionary *)dictionary{
+    
+    [self.styles setValue:dictionary forKey:[dictionary objectForKey:@"id"]];
+    
+    if(self.delegate!=nil&&[self.delegate respondsToSelector:@selector(onKmlStyle:)]){
+        [self.delegate onKmlStyle:dictionary];
+    }
+    
+}
+
+
+-(NSDictionary *)prepareData:(NSDictionary *) dictionary{
+
+    NSMutableDictionary *feature=[[NSMutableDictionary alloc] initWithDictionary:dictionary];
+    
+    NSString *styleUrl=[dictionary objectForKey:@"styleurl"];
+    
+    if(styleUrl!=nil&&[[styleUrl substringToIndex:1] isEqualToString:@"#"]){
+    
+        NSDictionary *style=[self.styles objectForKey:styleUrl];
+        if(style!=nil){
+            
+            styleUrl=[style objectForKey:@"href"];
+            
+        }else{
+            NSDictionary *stylemap=[self.styleMaps objectForKey:styleUrl];
+            if(stylemap!=nil){
+                
+                stylemap=[self prepareData:stylemap];
+                styleUrl=[[stylemap objectForKey:@"highlight"] objectForKey:@"href"];
+                
+               
+                
+               
+            }else{
+                
+                //error!
+            
+            }
+        
+        }
+    
+    }else if([[dictionary objectForKey:@"mapitemtype"] isEqualToString:@"stylemap"]){
+        //resolve stylemap.
+        NSString *normal=[dictionary objectForKey:@"normal"];
+        NSDictionary *normalStyle=[self.styles objectForKey:normal];
+        
+        NSString *highlight=[dictionary objectForKey:@"highlight"];
+        NSDictionary *highlightStyle=[self.styles objectForKey:highlight];
+        
+        return @{@"normal":normalStyle, @"highlight":highlightStyle};
+        
+    
+    }
+    
+    [feature setValue:styleUrl forKey:@"href"];
+    [feature removeObjectForKey:@"styleurl"];
+    
+    return [[NSDictionary alloc] initWithDictionary:feature];
+
+
+
+}
 
 
 +(NSArray*) ParseCoordinateArrayString:(NSString *)coordinates{

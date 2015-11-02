@@ -39,6 +39,9 @@
 		901B796C1BE7FF0F00D28CD2 /* tracklog-0.json in Resources */ = {isa = PBXBuildFile; fileRef = 904953861BE3EFF3006D32BD /* tracklog-0.json */; };
 		901B796D1BE7FF0F00D28CD2 /* tracklog-1.json in Resources */ = {isa = PBXBuildFile; fileRef = 904953871BE3EFF3006D32BD /* tracklog-1.json */; };
 		901B796E1BE7FF0F00D28CD2 /* tracklog-2.json in Resources */ = {isa = PBXBuildFile; fileRef = 904953881BE3EFF3006D32BD /* tracklog-2.json */; };
+		901B79721BE8158800D28CD2 /* locationlog-0.json in Resources */ = {isa = PBXBuildFile; fileRef = 901B796F1BE8158800D28CD2 /* locationlog-0.json */; };
+		901B79731BE8158800D28CD2 /* locationlog-2.json in Resources */ = {isa = PBXBuildFile; fileRef = 901B79701BE8158800D28CD2 /* locationlog-2.json */; };
+		901B79741BE8158800D28CD2 /* locationlog-16.json in Resources */ = {isa = PBXBuildFile; fileRef = 901B79711BE8158800D28CD2 /* locationlog-16.json */; };
 		90424EC71BE2857900ADA8E6 /* icon-waypointcamera-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 90424EC61BE2857900ADA8E6 /* icon-waypointcamera-100.png */; };
 		904BFAEB1BE7CD0400014109 /* xsm_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 904BFAEA1BE7CD0300014109 /* xsm_edit.png */; };
 		904CFD211BDC86AA004947CD /* icon-layers-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 904CFD201BDC86AA004947CD /* icon-layers-100.png */; };
@@ -110,6 +113,9 @@
 		900723FC1BD6DC7D009793A0 /* waypoint-offscreen-15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "waypoint-offscreen-15.png"; sourceTree = "<group>"; };
 		900723FE1BD6E541009793A0 /* userlocation-offscreen-15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userlocation-offscreen-15.png"; sourceTree = "<group>"; };
 		90115C2B1BE4080E002E8B20 /* icon-userlocationlock-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-userlocationlock-100.png"; sourceTree = "<group>"; };
+		901B796F1BE8158800D28CD2 /* locationlog-0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "locationlog-0.json"; sourceTree = "<group>"; };
+		901B79701BE8158800D28CD2 /* locationlog-2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "locationlog-2.json"; sourceTree = "<group>"; };
+		901B79711BE8158800D28CD2 /* locationlog-16.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "locationlog-16.json"; sourceTree = "<group>"; };
 		90424EC61BE2857900ADA8E6 /* icon-waypointcamera-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-waypointcamera-100.png"; sourceTree = "<group>"; };
 		904953861BE3EFF3006D32BD /* tracklog-0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "tracklog-0.json"; sourceTree = "<group>"; };
 		904953871BE3EFF3006D32BD /* tracklog-1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "tracklog-1.json"; sourceTree = "<group>"; };
@@ -299,6 +305,9 @@
 				904953861BE3EFF3006D32BD /* tracklog-0.json */,
 				904953871BE3EFF3006D32BD /* tracklog-1.json */,
 				904953881BE3EFF3006D32BD /* tracklog-2.json */,
+				901B796F1BE8158800D28CD2 /* locationlog-0.json */,
+				901B79701BE8158800D28CD2 /* locationlog-2.json */,
+				901B79711BE8158800D28CD2 /* locationlog-16.json */,
 			);
 			name = sampledata;
 			path = ../MapTrack;
@@ -490,12 +499,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				901B79741BE8158800D28CD2 /* locationlog-16.json in Resources */,
 				901B796E1BE7FF0F00D28CD2 /* tracklog-2.json in Resources */,
 				901B796B1BE7FF0F00D28CD2 /* ok-mnt-wild-horse-canyon.kml in Resources */,
+				901B79721BE8158800D28CD2 /* locationlog-0.json in Resources */,
 				901B796A1BE7FF0F00D28CD2 /* ok-mnt-park.png in Resources */,
 				901B79691BE7FF0F00D28CD2 /* ok-mnt-park.kml in Resources */,
 				901B79681BE7FF0F00D28CD2 /* ok-mnt-places.kml in Resources */,
 				901B796D1BE7FF0F00D28CD2 /* tracklog-1.json in Resources */,
+				901B79731BE8158800D28CD2 /* locationlog-2.json in Resources */,
 				901B796C1BE7FF0F00D28CD2 /* tracklog-0.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

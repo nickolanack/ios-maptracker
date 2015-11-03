@@ -44,6 +44,7 @@
 		901B79721BE8158800D28CD2 /* locationlog-0.json in Resources */ = {isa = PBXBuildFile; fileRef = 901B796F1BE8158800D28CD2 /* locationlog-0.json */; };
 		901B79731BE8158800D28CD2 /* locationlog-2.json in Resources */ = {isa = PBXBuildFile; fileRef = 901B79701BE8158800D28CD2 /* locationlog-2.json */; };
 		901B79741BE8158800D28CD2 /* locationlog-16.json in Resources */ = {isa = PBXBuildFile; fileRef = 901B79711BE8158800D28CD2 /* locationlog-16.json */; };
+		9032B1A81BE84B09000AC852 /* MKPolylineTapDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 9032B1A71BE84B09000AC852 /* MKPolylineTapDetector.m */; };
 		90424EC71BE2857900ADA8E6 /* icon-waypointcamera-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 90424EC61BE2857900ADA8E6 /* icon-waypointcamera-100.png */; };
 		904BFAEB1BE7CD0400014109 /* xsm_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 904BFAEA1BE7CD0300014109 /* xsm_edit.png */; };
 		904CFD211BDC86AA004947CD /* icon-layers-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 904CFD201BDC86AA004947CD /* icon-layers-100.png */; };
@@ -122,6 +123,9 @@
 		901B796F1BE8158800D28CD2 /* locationlog-0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "locationlog-0.json"; sourceTree = "<group>"; };
 		901B79701BE8158800D28CD2 /* locationlog-2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "locationlog-2.json"; sourceTree = "<group>"; };
 		901B79711BE8158800D28CD2 /* locationlog-16.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "locationlog-16.json"; sourceTree = "<group>"; };
+		9032B1A61BE84B08000AC852 /* MKPolylineTapDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPolylineTapDetector.h; sourceTree = "<group>"; };
+		9032B1A71BE84B09000AC852 /* MKPolylineTapDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPolylineTapDetector.m; sourceTree = "<group>"; };
+		9032B1A91BE84B40000AC852 /* MKPolylineTapDetectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPolylineTapDetectorDelegate.h; sourceTree = "<group>"; };
 		90424EC61BE2857900ADA8E6 /* icon-waypointcamera-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-waypointcamera-100.png"; sourceTree = "<group>"; };
 		904953861BE3EFF3006D32BD /* tracklog-0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "tracklog-0.json"; sourceTree = "<group>"; };
 		904953871BE3EFF3006D32BD /* tracklog-1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "tracklog-1.json"; sourceTree = "<group>"; };
@@ -342,6 +346,9 @@
 				900A82A31BE8207E00FBEDE4 /* MKPlacemarkAnnotation.m */,
 				900A82A71BE8441300FBEDE4 /* MKStyledPolyline.h */,
 				900A82A81BE8441300FBEDE4 /* MKStyledPolyline.m */,
+				9032B1A61BE84B08000AC852 /* MKPolylineTapDetector.h */,
+				9032B1A71BE84B09000AC852 /* MKPolylineTapDetector.m */,
+				9032B1A91BE84B40000AC852 /* MKPolylineTapDetectorDelegate.h */,
 			);
 			name = overlays;
 			sourceTree = "<group>";
@@ -541,6 +548,7 @@
 				900A82A41BE8207E00FBEDE4 /* MKPlacemarkAnnotation.m in Sources */,
 				90A5A2841BD940B800FFE3F1 /* SaxKmlParser.m in Sources */,
 				90CB07861BE02E0E004F9183 /* MKUserTracker.m in Sources */,
+				9032B1A81BE84B09000AC852 /* MKPolylineTapDetector.m in Sources */,
 				90EB2CA91BE3402100C0F975 /* MockCLLocationManager.m in Sources */,
 				90A5A28C1BD95A7600FFE3F1 /* MKImageOverlayRenderer.m in Sources */,
 				90AEDFF21BE2D4B7002316FF /* MKPhotoAnnotation.m in Sources */,

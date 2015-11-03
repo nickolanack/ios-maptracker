@@ -8,10 +8,11 @@
 
 #import "MKUserTracker.h"
 #import "SaxKmlParser.h"
+#import "MKStyledPolyline.h"
 
 @interface MKUserTracker()
 
-@property MKPolyline *currentPath;
+@property MKStyledPolyline *currentPath;
 @property NSMutableArray *previousPaths;
 @property NSMutableArray *currentPoints;
 @property CLLocationManager *lm;
@@ -200,7 +201,7 @@
         locations[i]= c;
     }
     
-    _currentPath=[MKPolyline polylineWithCoordinates:locations count:[self.currentPoints count]];
+    _currentPath=[MKStyledPolyline polylineWithCoordinates:locations count:[self.currentPoints count]];
     
     [self.mapView addOverlay:_currentPath];
     int c=(int)[self.currentPoints count];
@@ -312,7 +313,7 @@
     NSFileManager *f=[NSFileManager defaultManager];
     if([f fileExistsAtPath:file]){
         
-        NSLog(@"File Exists");
+        NSLog(@"Restoring User File: %@", file);
         NSError *err;
         SaxKmlParser *parser=[[SaxKmlParser alloc] init];
         [parser setDelegate:self];
@@ -333,14 +334,17 @@
     }
     
     
-    MKPolyline * p= [MKPolyline polylineWithCoordinates:locations count:[coordinateStrings count]];
+    MKStyledPolyline * p= [MKStyledPolyline polylineWithCoordinates:locations count:[coordinateStrings count]];
+    
+    [p setColor:[SaxKmlParser ParseColorString:[dictionary objectForKey:@"color"]]];
+    [p setWidth:[[dictionary objectForKey:@"width"] floatValue]];
     
     [_mapView addOverlay:p];
     [self addPolylineToPreviousPaths:p];
     
 }
 
--(void)addPolylineToPreviousPaths:(MKPolyline *) path{
+-(void)addPolylineToPreviousPaths:(MKStyledPolyline *) path{
     if(!_previousPaths){
         _previousPaths=[[NSMutableArray alloc] init];
     }
@@ -379,7 +383,7 @@
     
 }
 
--(NSString *)polyline:(MKPolyline *) polyline ToKmlString:(NSString *) name{
+-(NSString *)polyline:(MKStyledPolyline *) polyline ToKmlString:(NSString *) name{
     
     
     NSString *kmlSnippit=[NSString stringWithFormat:@"<Placemark><name>%@</name><LineString><tessellate>1</tessellate><coordinates>", name];

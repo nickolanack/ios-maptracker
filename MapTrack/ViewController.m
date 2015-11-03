@@ -14,6 +14,8 @@
 #import "MKOffscreenFeatureRenderer.h"
 #import "MKUserTracker.h"
 #import "MKPhotoAnnotation.h"
+#import "MKPlacemarkAnnotation.h"
+#import "MKStyledPolyline.h"
 
 @interface ViewController ()
 
@@ -113,8 +115,18 @@
         
         
         MKPolylineRenderer *p= [[MKPolylineRenderer alloc]initWithOverlay:overlay];
+        
+        if([overlay isKindOfClass:[MKStyledPolyline class]]){
+            
+            [p setStrokeColor:((MKStyledPolyline *) overlay).color];
+            [p setLineWidth:((MKStyledPolyline *) overlay).width];
+        
+        }else{
+        
         [p setStrokeColor:[UIColor blueColor]];
         [p setLineWidth:2.0f];
+            
+        }
         r=p;
     }
     
@@ -131,14 +143,16 @@
         return nil;
     }
     
-    
-    
-    
     MKAnnotationView *p=[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
-    
     
     if([annotation isKindOfClass:[MKPhotoAnnotation class]]){
         [p setImage:[((MKPhotoAnnotation *) annotation) getIcon]];
+    }else if([annotation isKindOfClass:[MKPlacemarkAnnotation class]]){
+        
+        [p setImage:[((MKPlacemarkAnnotation *) annotation) getIcon]];
+        [p setCanShowCallout:true];
+        [p setRightCalloutAccessoryView:[UIButton buttonWithType:UIButtonTypeDetailDisclosure]];
+        
     }else{
         [p setImage:[UIImage imageNamed:@"waypoint-default-25x28.png"]];
         [p setCanShowCallout:true];
@@ -278,7 +292,7 @@
 
 
 - (IBAction)onMarkerDropButtonClick:(id)sender {
-    MKPointAnnotation *point=[[MKPointAnnotation alloc] init];
+    MKPlacemarkAnnotation *point=[[MKPlacemarkAnnotation alloc] init];
     [point setCoordinate:self.mapView.centerCoordinate];
     
     
@@ -362,9 +376,10 @@
 -(void) onKmlPlacemark:(NSDictionary *)dictionary{
     
     
-    MKPointAnnotation *point=[[MKPointAnnotation alloc] init];
+    MKPlacemarkAnnotation *point=[[MKPlacemarkAnnotation alloc] init];
     [point setCoordinate:[SaxKmlParser ParseCoordinateString:[dictionary valueForKey:@"coordinates"]]];
     [point setTitle:[dictionary valueForKey:@"name"]];
+    [point setIconUrl:[dictionary valueForKey:@"href"]];
     
     [self.mapView addAnnotation:point];
     
@@ -400,10 +415,11 @@
     for (int i=0; i<[coordinateStrings count]; i++) {
         locations[i]= [SaxKmlParser ParseCoordinateString:[coordinateStrings objectAtIndex:i]];
     }
+   
     
-    
-    MKPolyline * p= [MKPolyline polylineWithCoordinates:locations count:[coordinateStrings count]];
-    
+    MKStyledPolyline * p= [MKStyledPolyline polylineWithCoordinates:locations count:[coordinateStrings count]];
+    [p setColor:[SaxKmlParser ParseColorString:[dictionary objectForKey:@"color"]]];
+    [p setWidth:[[dictionary objectForKey:@"width"] floatValue]];
     [self.mapView addOverlay:p];
     
 }

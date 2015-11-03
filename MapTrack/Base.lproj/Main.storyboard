@@ -18,6 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="hybrid" translatesAutoresizingMaskIntoConstraints="NO" id="tFz-53-MLp" userLabel="MK Map View">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="557"/>
+                                <animations/>
+                            </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJ4-k9-cVt" customClass="StyleButton">
                                 <rect key="frame" x="5" y="38" width="35" height="35"/>
                                 <animations/>
@@ -138,10 +142,6 @@
                                     <constraint firstItem="coI-gc-NuY" firstAttribute="centerX" secondItem="a85-M8-HF2" secondAttribute="centerX" id="Pzg-lF-6QA"/>
                                 </constraints>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="hybrid" translatesAutoresizingMaskIntoConstraints="NO" id="tFz-53-MLp" userLabel="MK Map View">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="557"/>
-                                <animations/>
-                            </mapView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

@@ -31,6 +31,8 @@
 		900723F81BD6CC47009793A0 /* waypoint-default-25x28.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723F71BD6CC47009793A0 /* waypoint-default-25x28.png */; };
 		900723FD1BD6DC7D009793A0 /* waypoint-offscreen-15.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723FC1BD6DC7D009793A0 /* waypoint-offscreen-15.png */; };
 		900723FF1BD6E541009793A0 /* userlocation-offscreen-15.png in Resources */ = {isa = PBXBuildFile; fileRef = 900723FE1BD6E541009793A0 /* userlocation-offscreen-15.png */; };
+		900A82A41BE8207E00FBEDE4 /* MKPlacemarkAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 900A82A31BE8207E00FBEDE4 /* MKPlacemarkAnnotation.m */; };
+		900A82A91BE8441300FBEDE4 /* MKStyledPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = 900A82A81BE8441300FBEDE4 /* MKStyledPolyline.m */; };
 		90115C2C1BE4080E002E8B20 /* icon-userlocationlock-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 90115C2B1BE4080E002E8B20 /* icon-userlocationlock-100.png */; };
 		901B79681BE7FF0F00D28CD2 /* ok-mnt-places.kml in Resources */ = {isa = PBXBuildFile; fileRef = 90A5A28D1BD9AB5800FFE3F1 /* ok-mnt-places.kml */; };
 		901B79691BE7FF0F00D28CD2 /* ok-mnt-park.kml in Resources */ = {isa = PBXBuildFile; fileRef = 90A5A27C1BD93FB300FFE3F1 /* ok-mnt-park.kml */; };
@@ -112,6 +114,10 @@
 		900723FB1BD6DC76009793A0 /* offscreen.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = offscreen.xcf; sourceTree = "<group>"; };
 		900723FC1BD6DC7D009793A0 /* waypoint-offscreen-15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "waypoint-offscreen-15.png"; sourceTree = "<group>"; };
 		900723FE1BD6E541009793A0 /* userlocation-offscreen-15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userlocation-offscreen-15.png"; sourceTree = "<group>"; };
+		900A82A21BE8207E00FBEDE4 /* MKPlacemarkAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPlacemarkAnnotation.h; sourceTree = "<group>"; };
+		900A82A31BE8207E00FBEDE4 /* MKPlacemarkAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPlacemarkAnnotation.m; sourceTree = "<group>"; };
+		900A82A71BE8441300FBEDE4 /* MKStyledPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKStyledPolyline.h; sourceTree = "<group>"; };
+		900A82A81BE8441300FBEDE4 /* MKStyledPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKStyledPolyline.m; sourceTree = "<group>"; };
 		90115C2B1BE4080E002E8B20 /* icon-userlocationlock-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-userlocationlock-100.png"; sourceTree = "<group>"; };
 		901B796F1BE8158800D28CD2 /* locationlog-0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "locationlog-0.json"; sourceTree = "<group>"; };
 		901B79701BE8158800D28CD2 /* locationlog-2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "locationlog-2.json"; sourceTree = "<group>"; };
@@ -332,6 +338,10 @@
 				90A5A28B1BD95A7600FFE3F1 /* MKImageOverlayRenderer.m */,
 				90AEDFF01BE2D4B7002316FF /* MKPhotoAnnotation.h */,
 				90AEDFF11BE2D4B7002316FF /* MKPhotoAnnotation.m */,
+				900A82A21BE8207E00FBEDE4 /* MKPlacemarkAnnotation.h */,
+				900A82A31BE8207E00FBEDE4 /* MKPlacemarkAnnotation.m */,
+				900A82A71BE8441300FBEDE4 /* MKStyledPolyline.h */,
+				900A82A81BE8441300FBEDE4 /* MKStyledPolyline.m */,
 			);
 			name = overlays;
 			sourceTree = "<group>";
@@ -526,7 +536,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				900A82A91BE8441300FBEDE4 /* MKStyledPolyline.m in Sources */,
 				900723AC1BD592B7009793A0 /* ViewController.m in Sources */,
+				900A82A41BE8207E00FBEDE4 /* MKPlacemarkAnnotation.m in Sources */,
 				90A5A2841BD940B800FFE3F1 /* SaxKmlParser.m in Sources */,
 				90CB07861BE02E0E004F9183 /* MKUserTracker.m in Sources */,
 				90EB2CA91BE3402100C0F975 /* MockCLLocationManager.m in Sources */,

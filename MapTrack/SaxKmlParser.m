@@ -365,15 +365,49 @@
     
         NSDictionary *style=[self.styles objectForKey:styleUrl];
         if(style!=nil){
+          
+            if([[dictionary objectForKey:@"mapitemtype"] isEqualToString:@"marker"]){
+                [feature setValue:[style objectForKey:@"href"] forKey:@"href"];
+                [feature removeObjectForKey:@"styleurl"];
+            }
             
-            styleUrl=[style objectForKey:@"href"];
+            if([[dictionary objectForKey:@"mapitemtype"] isEqualToString:@"polyline"]){
+                [feature setValue:[style objectForKey:@"width"]  forKey:@"width"];
+                [feature setValue:[style objectForKey:@"color"]  forKey:@"color"];
+                [feature removeObjectForKey:@"styleurl"];
+            }
+            
+            if([[dictionary objectForKey:@"mapitemtype"] isEqualToString:@"polygon"]){
+                [feature setValue:[style objectForKey:@"width"]  forKey:@"width"];
+                [feature setValue:[style objectForKey:@"color"]  forKey:@"color"];
+                [feature removeObjectForKey:@"styleurl"];
+            }
+            
             
         }else{
             NSDictionary *stylemap=[self.styleMaps objectForKey:styleUrl];
             if(stylemap!=nil){
                 
+                
+                
                 stylemap=[self prepareData:stylemap];
-                styleUrl=[[stylemap objectForKey:@"highlight"] objectForKey:@"href"];
+                
+                if([[dictionary objectForKey:@"mapitemtype"] isEqualToString:@"marker"]){
+                    [feature setValue:[[stylemap objectForKey:@"normal"] objectForKey:@"href"] forKey:@"href"];
+                    [feature removeObjectForKey:@"styleurl"];
+                }
+                
+                if([[dictionary objectForKey:@"mapitemtype"] isEqualToString:@"polyline"]){
+                    [feature setValue:[[stylemap objectForKey:@"normal"] objectForKey:@"width"]  forKey:@"width"];
+                    [feature setValue:[[stylemap objectForKey:@"normal"] objectForKey:@"color"]  forKey:@"color"];
+                    [feature removeObjectForKey:@"styleurl"];
+                }
+                
+                if([[dictionary objectForKey:@"mapitemtype"] isEqualToString:@"polygon"]){
+                    [feature setValue:[[stylemap objectForKey:@"normal"] objectForKey:@"width"]  forKey:@"width"];
+                    [feature setValue:[[stylemap objectForKey:@"normal"] objectForKey:@"color"]  forKey:@"color"];
+                    [feature removeObjectForKey:@"styleurl"];
+                }
                 
                
                 
@@ -395,16 +429,10 @@
         NSDictionary *highlightStyle=[self.styles objectForKey:highlight];
         
         return @{@"normal":normalStyle, @"highlight":highlightStyle};
-        
     
     }
     
-    [feature setValue:styleUrl forKey:@"href"];
-    [feature removeObjectForKey:@"styleurl"];
-    
     return [[NSDictionary alloc] initWithDictionary:feature];
-
-
 
 }
 
@@ -425,6 +453,27 @@
 return CLLocationCoordinate2DMake([[[coords objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] floatValue], [[[coords objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] floatValue]);
 
 
+}
+
+
++(UIColor *)ParseColorString:(NSString *)color{
+    
+    if(color==nil){
+        return [UIColor blackColor];
+    }
+
+    NSString *aStr=[color substringWithRange:NSMakeRange(0, 2)];
+    NSString *bStr=[color substringWithRange:NSMakeRange(2, 2)];
+    NSString *gStr=[color substringWithRange:NSMakeRange(4, 2)];
+    NSString *rStr=[color substringWithRange:NSMakeRange(6, 2)];
+    
+    long a=strtol([aStr UTF8String], NULL, 16);
+    long r=strtol([rStr UTF8String], NULL, 16);
+    long g=strtol([gStr UTF8String], NULL, 16);
+    long b=strtol([bStr UTF8String], NULL, 16);
+    
+    return [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a/255.0];
+ 
 }
 
 

@@ -21,5 +21,6 @@
 
 +(NSArray*) ParseCoordinateArrayString:(NSString *)coordinates; 
 +(CLLocationCoordinate2D)ParseCoordinateString:(NSString *)coordinate;
++(UIColor *)ParseColorString:(NSString *)color;
 
 @end

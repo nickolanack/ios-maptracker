@@ -27,19 +27,28 @@
     [super tearDown];
 }
 
-- (void)testExample {
+- (void)testSaxKmlParser {
     
     SaxKmlParser *parser=[[SaxKmlParser alloc] initWithDelegate:self];
-   
-    NSError *err;
+    NSError *err=nil;
     NSString *kml=[NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"ok-mnt-places.kml" ofType:nil] encoding:NSUTF8StringEncoding error:&err];
-    
     XCTAssertNil(err, @"kml file error");
+    [parser parseString:kml];
     
+    
+    parser=[[SaxKmlParser alloc] initWithDelegate:self];
+    err=nil;
+    kml=[NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"ok-mnt-park.kml" ofType:nil] encoding:NSUTF8StringEncoding error:&err];
+    XCTAssertNil(err, @"kml file error");
+    [parser parseString:kml];
+    
+    parser=[[SaxKmlParser alloc] initWithDelegate:self];
+    err=nil;
+    kml=[NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"ok-mnt-wild-horse-canyon.kml" ofType:nil] encoding:NSUTF8StringEncoding error:&err];
+    XCTAssertNil(err, @"kml file error");
     [parser parseString:kml];
     
 }
-
 
 -(void) onKmlPlacemark:(NSDictionary *)dictionary{
     NSLog(@"%@", dictionary);
@@ -63,20 +72,23 @@
         XCTAssertEqualObjects(@"http://maps.google.com/mapfiles/kml/shapes/picnic.png", [dictionary objectForKey:@"href"]);
     }
 }
+
 -(void) onKmlPolyline:(NSDictionary *)dictionary{
     NSLog(@"%@", dictionary);
-
 }
+
 -(void) onKmlPolygon:(NSDictionary *)dictionary{
     NSLog(@"%@", dictionary);
-
 }
+
 -(void) onKmlStyle:(NSDictionary *)dictionary{
     NSLog(@"%@", dictionary);
 }
+
 -(void) onKmlFolder:(NSDictionary *)dictionary{
     NSLog(@"%@", dictionary);
 }
+
 -(void) onKmlGroundOverlay:(NSDictionary *)dictionary{
     NSLog(@"%@", dictionary);
 }

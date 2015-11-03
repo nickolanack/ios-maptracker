@@ -293,6 +293,7 @@
     
     
     [self.lockLocationButton setHidden:!self.locatonButton.selected];
+    [self.addUserLocationButton setHidden:!self.locatonButton.selected];
     
 }
 
@@ -345,6 +346,9 @@
         
     }
     
+}
+
+- (IBAction)onAddUserLocationButtonClick:(id)sender {
 }
 
 

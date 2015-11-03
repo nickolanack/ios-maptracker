@@ -30,7 +30,9 @@
 - (IBAction)onMarkerDropButtonClick:(id)sender;
 - (IBAction)onTakePhotoButtonClick:(id)sender;
 - (IBAction)onLockLocationButtonClick:(id)sender;
+- (IBAction)onAddUserLocationButtonClick:(id)sender;
 
+@property (weak, nonatomic) IBOutlet StyleButton *addUserLocationButton;
 
 @property (weak, nonatomic) IBOutlet StyleButton *locatonButton;
 @property (weak, nonatomic) IBOutlet StyleButton *waypointButton;

@@ -39,6 +39,9 @@
     
     self.defaultColor=self.backgroundColor;
     
+    if(self.isSelected){
+        [self setBackgroundColor:[UIColor magentaColor]];
+    }
     return self;
     
 }

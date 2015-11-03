@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
 @interface MockCLLocationManager : NSObject
+
+@property id<CLLocationManagerDelegate> locationManagerDelegate;
+@property NSArray *locationSamples;
+
+
+-(void)run;
++(NSArray *)ReadSamplesFromFile:(NSString *)path;
 
 @end

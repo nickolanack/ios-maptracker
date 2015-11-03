@@ -42,9 +42,11 @@
 		901B796D1BE7FF0F00D28CD2 /* tracklog-1.json in Resources */ = {isa = PBXBuildFile; fileRef = 904953871BE3EFF3006D32BD /* tracklog-1.json */; };
 		901B796E1BE7FF0F00D28CD2 /* tracklog-2.json in Resources */ = {isa = PBXBuildFile; fileRef = 904953881BE3EFF3006D32BD /* tracklog-2.json */; };
 		901B79721BE8158800D28CD2 /* locationlog-0.json in Resources */ = {isa = PBXBuildFile; fileRef = 901B796F1BE8158800D28CD2 /* locationlog-0.json */; };
-		901B79731BE8158800D28CD2 /* locationlog-2.json in Resources */ = {isa = PBXBuildFile; fileRef = 901B79701BE8158800D28CD2 /* locationlog-2.json */; };
 		901B79741BE8158800D28CD2 /* locationlog-16.json in Resources */ = {isa = PBXBuildFile; fileRef = 901B79711BE8158800D28CD2 /* locationlog-16.json */; };
 		901B79761BE91A1000D28CD2 /* MKPolylineTapDetectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 901B79751BE91A1000D28CD2 /* MKPolylineTapDetectorTests.m */; };
+		901B79781BE9505100D28CD2 /* MKUserTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 901B79771BE9505100D28CD2 /* MKUserTrackerTests.m */; };
+		901B797A1BE9509C00D28CD2 /* MockCLLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EB2CA81BE3402100C0F975 /* MockCLLocationManager.m */; };
+		901B797C1BE9646300D28CD2 /* icon-userlocation-add-user-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 901B797B1BE9646300D28CD2 /* icon-userlocation-add-user-100.png */; };
 		9032B1A81BE84B09000AC852 /* MKPolylineTapDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 9032B1A71BE84B09000AC852 /* MKPolylineTapDetector.m */; };
 		90424EC71BE2857900ADA8E6 /* icon-waypointcamera-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 90424EC61BE2857900ADA8E6 /* icon-waypointcamera-100.png */; };
 		904BFAEB1BE7CD0400014109 /* xsm_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 904BFAEA1BE7CD0300014109 /* xsm_edit.png */; };
@@ -58,7 +60,6 @@
 		90B920D91BE179A6004CC6EF /* icon-waypointdrop-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B920D81BE179A6004CC6EF /* icon-waypointdrop-100.png */; };
 		90CB07811BE01370004F9183 /* MKOffscreenFeatureRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CB07801BE01370004F9183 /* MKOffscreenFeatureRenderer.m */; };
 		90CB07861BE02E0E004F9183 /* MKUserTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CB07851BE02E0E004F9183 /* MKUserTracker.m */; };
-		90EB2CA91BE3402100C0F975 /* MockCLLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EB2CA81BE3402100C0F975 /* MockCLLocationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,9 +123,10 @@
 		900A82A81BE8441300FBEDE4 /* MKStyledPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKStyledPolyline.m; sourceTree = "<group>"; };
 		90115C2B1BE4080E002E8B20 /* icon-userlocationlock-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-userlocationlock-100.png"; sourceTree = "<group>"; };
 		901B796F1BE8158800D28CD2 /* locationlog-0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "locationlog-0.json"; sourceTree = "<group>"; };
-		901B79701BE8158800D28CD2 /* locationlog-2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "locationlog-2.json"; sourceTree = "<group>"; };
 		901B79711BE8158800D28CD2 /* locationlog-16.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "locationlog-16.json"; sourceTree = "<group>"; };
 		901B79751BE91A1000D28CD2 /* MKPolylineTapDetectorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPolylineTapDetectorTests.m; sourceTree = "<group>"; };
+		901B79771BE9505100D28CD2 /* MKUserTrackerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKUserTrackerTests.m; sourceTree = "<group>"; };
+		901B797B1BE9646300D28CD2 /* icon-userlocation-add-user-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-userlocation-add-user-100.png"; sourceTree = "<group>"; };
 		9032B1A61BE84B08000AC852 /* MKPolylineTapDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPolylineTapDetector.h; sourceTree = "<group>"; };
 		9032B1A71BE84B09000AC852 /* MKPolylineTapDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPolylineTapDetector.m; sourceTree = "<group>"; };
 		9032B1A91BE84B40000AC852 /* MKPolylineTapDetectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPolylineTapDetectorDelegate.h; sourceTree = "<group>"; };
@@ -157,8 +159,8 @@
 		90CB07841BE02E0E004F9183 /* MKUserTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKUserTracker.h; sourceTree = "<group>"; };
 		90CB07851BE02E0E004F9183 /* MKUserTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKUserTracker.m; sourceTree = "<group>"; };
 		90CB07871BE0311A004F9183 /* MKUserTrackerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKUserTrackerDelegate.h; sourceTree = "<group>"; };
-		90EB2CA71BE3402100C0F975 /* MockCLLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockCLLocationManager.h; sourceTree = "<group>"; };
-		90EB2CA81BE3402100C0F975 /* MockCLLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockCLLocationManager.m; sourceTree = "<group>"; };
+		90EB2CA71BE3402100C0F975 /* MockCLLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MockCLLocationManager.h; path = ../MapTrack/MockCLLocationManager.h; sourceTree = "<group>"; };
+		90EB2CA81BE3402100C0F975 /* MockCLLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MockCLLocationManager.m; path = ../MapTrack/MockCLLocationManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,11 +244,13 @@
 		900723BD1BD592B9009793A0 /* MapTrackTests */ = {
 			isa = PBXGroup;
 			children = (
+				901B79791BE9507600D28CD2 /* userTracker */,
 				90A5A2791BD93CC300FFE3F1 /* sampledata */,
 				900723BE1BD592B9009793A0 /* MapTrackTests.m */,
 				900723C01BD592B9009793A0 /* Info.plist */,
 				90AAFE751BE7F3EB00CF927C /* SaxParserTests.m */,
 				901B79751BE91A1000D28CD2 /* MKPolylineTapDetectorTests.m */,
+				901B79771BE9505100D28CD2 /* MKUserTrackerTests.m */,
 			);
 			path = MapTrackTests;
 			sourceTree = "<group>";
@@ -271,6 +275,7 @@
 				90424EC61BE2857900ADA8E6 /* icon-waypointcamera-100.png */,
 				904CFD221BDC8918004947CD /* icon-userlocation-100.png */,
 				90115C2B1BE4080E002E8B20 /* icon-userlocationlock-100.png */,
+				901B797B1BE9646300D28CD2 /* icon-userlocation-add-user-100.png */,
 				90B920D71BE16FF5004CC6EF /* buttons.xcf */,
 				900723F21BD6B42D009793A0 /* StyleButton.h */,
 				900723F31BD6B42D009793A0 /* StyleButton.m */,
@@ -288,6 +293,15 @@
 				900723FB1BD6DC76009793A0 /* offscreen.xcf */,
 			);
 			name = waypoints;
+			sourceTree = "<group>";
+		};
+		901B79791BE9507600D28CD2 /* userTracker */ = {
+			isa = PBXGroup;
+			children = (
+				90EB2CA71BE3402100C0F975 /* MockCLLocationManager.h */,
+				90EB2CA81BE3402100C0F975 /* MockCLLocationManager.m */,
+			);
+			name = userTracker;
 			sourceTree = "<group>";
 		};
 		907C79551BD63A61001AEFD8 /* appicon */ = {
@@ -319,7 +333,6 @@
 				904953871BE3EFF3006D32BD /* tracklog-1.json */,
 				904953881BE3EFF3006D32BD /* tracklog-2.json */,
 				901B796F1BE8158800D28CD2 /* locationlog-0.json */,
-				901B79701BE8158800D28CD2 /* locationlog-2.json */,
 				901B79711BE8158800D28CD2 /* locationlog-16.json */,
 			);
 			name = sampledata;
@@ -372,8 +385,6 @@
 				90CB07841BE02E0E004F9183 /* MKUserTracker.h */,
 				90CB07851BE02E0E004F9183 /* MKUserTracker.m */,
 				90CB07871BE0311A004F9183 /* MKUserTrackerDelegate.h */,
-				90EB2CA71BE3402100C0F975 /* MockCLLocationManager.h */,
-				90EB2CA81BE3402100C0F975 /* MockCLLocationManager.m */,
 			);
 			name = userTracking;
 			sourceTree = "<group>";
@@ -512,6 +523,7 @@
 				900723FF1BD6E541009793A0 /* userlocation-offscreen-15.png in Resources */,
 				900723EA1BD6AAA9009793A0 /* maptracker-icon-152.png in Resources */,
 				900723AF1BD592B8009793A0 /* Main.storyboard in Resources */,
+				901B797C1BE9646300D28CD2 /* icon-userlocation-add-user-100.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,7 +539,6 @@
 				901B79691BE7FF0F00D28CD2 /* ok-mnt-park.kml in Resources */,
 				901B79681BE7FF0F00D28CD2 /* ok-mnt-places.kml in Resources */,
 				901B796D1BE7FF0F00D28CD2 /* tracklog-1.json in Resources */,
-				901B79731BE8158800D28CD2 /* locationlog-2.json in Resources */,
 				901B796C1BE7FF0F00D28CD2 /* tracklog-0.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -552,7 +563,6 @@
 				90A5A2841BD940B800FFE3F1 /* SaxKmlParser.m in Sources */,
 				90CB07861BE02E0E004F9183 /* MKUserTracker.m in Sources */,
 				9032B1A81BE84B09000AC852 /* MKPolylineTapDetector.m in Sources */,
-				90EB2CA91BE3402100C0F975 /* MockCLLocationManager.m in Sources */,
 				90A5A28C1BD95A7600FFE3F1 /* MKImageOverlayRenderer.m in Sources */,
 				90AEDFF21BE2D4B7002316FF /* MKPhotoAnnotation.m in Sources */,
 				900723F41BD6B42D009793A0 /* StyleButton.m in Sources */,
@@ -568,6 +578,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				901B79761BE91A1000D28CD2 /* MKPolylineTapDetectorTests.m in Sources */,
+				901B79781BE9505100D28CD2 /* MKUserTrackerTests.m in Sources */,
+				901B797A1BE9509C00D28CD2 /* MockCLLocationManager.m in Sources */,
 				900723BF1BD592B9009793A0 /* MapTrackTests.m in Sources */,
 				90AAFE761BE7F3EB00CF927C /* SaxParserTests.m in Sources */,
 			);

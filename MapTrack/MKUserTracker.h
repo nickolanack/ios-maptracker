@@ -17,8 +17,12 @@
 
 @property id<MKUserTrackerDelegate> delegate;
 @property (readonly) CLLocation *currentLocation;
--(instancetype)initWithMap:(MKMapView *)map;
 
+@property UIColor *pathColor;
+@property float pathWidth;
+
+
+-(instancetype)initWithMap:(MKMapView *)map;
 
 -(void)startTrackingLocation;
 -(void)stopTrackingLocation;

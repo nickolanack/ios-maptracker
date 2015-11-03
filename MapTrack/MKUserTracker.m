@@ -39,11 +39,11 @@
 
 @implementation MKUserTracker
 
-@synthesize delegate, currentLocation;
+@synthesize delegate, currentLocation, pathColor, pathWidth;
 
 -(instancetype)initWithMap:(MKMapView *)map{
     
-    self=[super init];
+    self=[self init];
     self.mapView=map;
     
     _lm = [[CLLocationManager alloc]init];
@@ -60,11 +60,17 @@
     // location samples to file. which can be used for debuging, or for generating unit tests.
     _isLogging=true;
     
-    
-    
-    
     return self;
     
+}
+
+-(instancetype)init{
+    self =[super init];
+    
+    self.pathWidth=0.5;
+    self.pathColor=[UIColor blueColor];
+    
+    return self;
 }
 
 -(void)startLogging{
@@ -188,7 +194,7 @@
     
     // check for loops?
     // redraw
-    if(_currentPath){
+    if(_currentPath&&self.mapView){
         [self.mapView removeOverlay:_currentPath];
     }
     
@@ -203,7 +209,9 @@
     
     _currentPath=[MKStyledPolyline polylineWithCoordinates:locations count:[self.currentPoints count]];
     
-    [self.mapView addOverlay:_currentPath];
+    if(self.mapView){
+        [self.mapView addOverlay:_currentPath];
+    }
     int c=(int)[self.currentPoints count];
     NSLog(@" Draw line with %d point",c);
     
@@ -248,10 +256,10 @@
 -(void)startMonitoringLocation{
     
     
-    
-    [self.mapView setShowsUserLocation:true];
-    [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
-    
+    if(self.mapView){
+        [self.mapView setShowsUserLocation:true];
+        [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
+    }
     
     
     [_lm startUpdatingLocation];
@@ -425,7 +433,9 @@
 
 -(void)updateUserFollowMode{
 
-
+    if(!self.mapView){
+        @throw [[NSException alloc] initWithName:@"Null MKMapView" reason:@"Attempted to update user tracking mode with nil MKMapView" userInfo:nil];
+    }
     if(_isMovingWithLocation){
         if(_isRotatingWithLocation){
             [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];

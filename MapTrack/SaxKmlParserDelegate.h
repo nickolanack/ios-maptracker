@@ -7,7 +7,7 @@
 
 @protocol SaxKmlParserDelegate <NSObject>
 
-@optional
+@required
 
 -(void) onKmlPlacemark:(NSDictionary *)dictionary;
 -(void) onKmlPolyline:(NSDictionary *)dictionary;

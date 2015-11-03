@@ -16,4 +16,6 @@
 
 -(instancetype)initWithMap:(MKMapView *)map;
 
++(MKMapPoint)IntersectionPointFrom:(MKMapPoint)ptA toTangentDefinedByPoint:(MKMapPoint)ptB andPoint:(MKMapPoint)ptC;
+
 @end

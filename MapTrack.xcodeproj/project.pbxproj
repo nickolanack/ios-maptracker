@@ -44,6 +44,7 @@
 		901B79721BE8158800D28CD2 /* locationlog-0.json in Resources */ = {isa = PBXBuildFile; fileRef = 901B796F1BE8158800D28CD2 /* locationlog-0.json */; };
 		901B79731BE8158800D28CD2 /* locationlog-2.json in Resources */ = {isa = PBXBuildFile; fileRef = 901B79701BE8158800D28CD2 /* locationlog-2.json */; };
 		901B79741BE8158800D28CD2 /* locationlog-16.json in Resources */ = {isa = PBXBuildFile; fileRef = 901B79711BE8158800D28CD2 /* locationlog-16.json */; };
+		901B79761BE91A1000D28CD2 /* MKPolylineTapDetectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 901B79751BE91A1000D28CD2 /* MKPolylineTapDetectorTests.m */; };
 		9032B1A81BE84B09000AC852 /* MKPolylineTapDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 9032B1A71BE84B09000AC852 /* MKPolylineTapDetector.m */; };
 		90424EC71BE2857900ADA8E6 /* icon-waypointcamera-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 90424EC61BE2857900ADA8E6 /* icon-waypointcamera-100.png */; };
 		904BFAEB1BE7CD0400014109 /* xsm_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 904BFAEA1BE7CD0300014109 /* xsm_edit.png */; };
@@ -123,6 +124,7 @@
 		901B796F1BE8158800D28CD2 /* locationlog-0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "locationlog-0.json"; sourceTree = "<group>"; };
 		901B79701BE8158800D28CD2 /* locationlog-2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "locationlog-2.json"; sourceTree = "<group>"; };
 		901B79711BE8158800D28CD2 /* locationlog-16.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "locationlog-16.json"; sourceTree = "<group>"; };
+		901B79751BE91A1000D28CD2 /* MKPolylineTapDetectorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPolylineTapDetectorTests.m; sourceTree = "<group>"; };
 		9032B1A61BE84B08000AC852 /* MKPolylineTapDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPolylineTapDetector.h; sourceTree = "<group>"; };
 		9032B1A71BE84B09000AC852 /* MKPolylineTapDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPolylineTapDetector.m; sourceTree = "<group>"; };
 		9032B1A91BE84B40000AC852 /* MKPolylineTapDetectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPolylineTapDetectorDelegate.h; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				900723BE1BD592B9009793A0 /* MapTrackTests.m */,
 				900723C01BD592B9009793A0 /* Info.plist */,
 				90AAFE751BE7F3EB00CF927C /* SaxParserTests.m */,
+				901B79751BE91A1000D28CD2 /* MKPolylineTapDetectorTests.m */,
 			);
 			path = MapTrackTests;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				901B79761BE91A1000D28CD2 /* MKPolylineTapDetectorTests.m in Sources */,
 				900723BF1BD592B9009793A0 /* MapTrackTests.m in Sources */,
 				90AAFE761BE7F3EB00CF927C /* SaxParserTests.m in Sources */,
 			);

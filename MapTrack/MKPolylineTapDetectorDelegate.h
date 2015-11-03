@@ -8,7 +8,7 @@
 @protocol MKPolylineTapDetectorDelegate <NSObject>
 
 
--(void) onPolylineTap:(MKPolyline *)polyline atCoordinate:(CLLocationCoordinate2D)coord;
+-(void) onPolylineTap:(MKPolyline *)polyline atCoordinate:(CLLocationCoordinate2D)coord andTouch:(CGPoint)touch;
 
 
 

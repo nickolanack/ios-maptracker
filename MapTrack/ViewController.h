@@ -12,8 +12,9 @@
 #import "SaxKmlParserDelegate.h"
 #import "MKOffscreenFeatureRendererDelegate.h"
 #import "MKUserTrackerDelegate.h"
+#import "MKPolylineTapDetectorDelegate.h"
 
-@interface ViewController : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate, UIAlertViewDelegate, SaxKmlParserDelegate, MKOffscreenFeatureRendererDelegate, UIImagePickerControllerDelegate, MKUserTrackerDelegate, UINavigationControllerDelegate>
+@interface ViewController : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate, UIAlertViewDelegate, SaxKmlParserDelegate, MKOffscreenFeatureRendererDelegate, UIImagePickerControllerDelegate, MKUserTrackerDelegate, UINavigationControllerDelegate, MKPolylineTapDetectorDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 

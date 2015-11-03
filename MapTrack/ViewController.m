@@ -16,13 +16,14 @@
 #import "MKPhotoAnnotation.h"
 #import "MKPlacemarkAnnotation.h"
 #import "MKStyledPolyline.h"
+#import "MKPolylineTapDetector.h"
 
 @interface ViewController ()
 
 
 @property MKUserTracker *tracker;
 @property MKOffscreenFeatureRenderer *offscreenRenderer;
-
+@property MKPolylineTapDetector *tapDetector;
 
 @end
 
@@ -51,6 +52,16 @@
 
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
     
+    
+    _tapDetector=[[MKPolylineTapDetector alloc] initWithMap:self.mapView];
+    [_tapDetector setDelegate:self];
+    
+    
+}
+
+-(void) onPolylineTap:(MKPolyline *)polyline{
+
+
 }
 
 -(void)updateTimer{

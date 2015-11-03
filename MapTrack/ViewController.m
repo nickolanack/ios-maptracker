@@ -49,7 +49,7 @@
      addObserver:self selector:@selector(orientationChanged:)
      name:UIDeviceOrientationDidChangeNotification
      object:[UIDevice currentDevice]];
-
+    
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
     
     
@@ -59,13 +59,19 @@
     
 }
 
--(void) onPolylineTap:(MKPolyline *)polyline{
-
-
+-(void)onPolylineTap:(MKPolyline *)polyline atCoordinate:(CLLocationCoordinate2D)coord andTouch:(CGPoint)touchPt{
+//    NSLog(@"PolyTap: %f, %f", coord.latitude, coord.longitude);
+//    
+//    MKPlacemarkAnnotation *p=[[MKPlacemarkAnnotation alloc] init];
+//    [p setCoordinate:coord];
+//    NSString *icon=[[NSBundle mainBundle] pathForResource:@"waypoint-offscreen-15.png" ofType:nil];
+//    [p setIconUrl:icon];
+//    
+//    [self.mapView addAnnotation:p];
 }
 
 -(void)updateTimer{
-
+    
     NSString *timeStr=@"";
     int seconds=[_tracker getTimeInterval];
     if(seconds>60){
@@ -93,15 +99,13 @@
         
         NSString *ext=[path substringFromIndex:path.length-4];
         
-        
-        if([ext isEqualToString:@".kml"]&&(!([path characterAtIndex:0]=='.'))){
+        if([ext isEqualToString:@".kml"]&&(![[NSCharacterSet characterSetWithCharactersInString:@"._"] characterIsMember:[path characterAtIndex:0]])){
             
             NSError *err;
             NSString *kml=[NSString stringWithContentsOfFile:[folder stringByAppendingPathComponent:path] encoding:NSUTF8StringEncoding error:&err];
             [[[SaxKmlParser alloc] initWithDelegate:self] parseString:kml];
         }
     }
-    
 }
 
 #pragma mark Map View
@@ -118,24 +122,15 @@
         }else{
             [r setAlpha:0.1];
         }
-        
-        
-        
-        
     }else{
-        
-        
         MKPolylineRenderer *p= [[MKPolylineRenderer alloc]initWithOverlay:overlay];
-        
         if([overlay isKindOfClass:[MKStyledPolyline class]]){
-            
             [p setStrokeColor:((MKStyledPolyline *) overlay).color];
             [p setLineWidth:((MKStyledPolyline *) overlay).width];
-        
         }else{
-        
-        [p setStrokeColor:[UIColor blueColor]];
-        [p setLineWidth:2.0f];
+            
+            [p setStrokeColor:[UIColor blueColor]];
+            [p setLineWidth:2.0f];
             
         }
         r=p;
@@ -165,6 +160,7 @@
         [p setRightCalloutAccessoryView:[UIButton buttonWithType:UIButtonTypeDetailDisclosure]];
         
     }else{
+        
         [p setImage:[UIImage imageNamed:@"waypoint-default-25x28.png"]];
         [p setCanShowCallout:true];
         [p setRightCalloutAccessoryView:[UIButton buttonWithType:UIButtonTypeDetailDisclosure]];
@@ -187,9 +183,9 @@
 }
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
-
+    
     NSLog(@"Callout Tapped");
-
+    
 }
 
 -(bool)shouldRenderViewForOffscreenPointFeature:(MKPointAnnotation *)point {
@@ -231,9 +227,9 @@
 }
 
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
-
+    
     NSLog(@"Annotation Selected");
-
+    
 }
 
 #pragma mark Button Clicks
@@ -284,20 +280,20 @@
     [self.locatonButton setSelected:!self.locatonButton.selected];
     
     if(self.locatonButton.selected){
-       
-
         
-            MKMapRect mr=self.mapView.visibleMapRect;
-            
-            MKMapPoint p=MKMapPointForCoordinate(_tracker.currentLocation.coordinate);
-            if(!MKMapRectContainsPoint(mr, p)){
-                [self.mapView setCenterCoordinate:_tracker.currentLocation.coordinate animated:true];
-            }
+        
+        
+        MKMapRect mr=self.mapView.visibleMapRect;
+        
+        MKMapPoint p=MKMapPointForCoordinate(_tracker.currentLocation.coordinate);
+        if(!MKMapRectContainsPoint(mr, p)){
+            [self.mapView setCenterCoordinate:_tracker.currentLocation.coordinate animated:true];
+        }
     }
     
     
     [self.lockLocationButton setHidden:!self.locatonButton.selected];
-
+    
 }
 
 
@@ -366,7 +362,7 @@
         MKPhotoAnnotation  *point=[[MKPhotoAnnotation alloc] initWithUIImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
         [point setCoordinate:[_tracker.currentLocation coordinate]];
         [self.mapView addAnnotation:point];
-
+        
     }else{
         NSLog(@"Unknown Media Type: %@",type);
     }
@@ -426,7 +422,7 @@
     for (int i=0; i<[coordinateStrings count]; i++) {
         locations[i]= [SaxKmlParser ParseCoordinateString:[coordinateStrings objectAtIndex:i]];
     }
-   
+    
     
     MKStyledPolyline * p= [MKStyledPolyline polylineWithCoordinates:locations count:[coordinateStrings count]];
     [p setColor:[SaxKmlParser ParseColorString:[dictionary objectForKey:@"color"]]];

@@ -17,22 +17,37 @@
     
     NSRange r=[self.iconUrl rangeOfString:@"http://"];
     if(r.location==0){
-    
+        
         NSString *httpsString=[self.iconUrl stringByReplacingOccurrencesOfString:@"http://" withString:@"https://"];
         NSError *err;
         NSData * imageData=[[NSData alloc] initWithContentsOfURL:[NSURL URLWithString: [httpsString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]] options:NSDataReadingMappedIfSafe error:&err];
         if(!err){
             return [MKPlacemarkAnnotation ThumbnailImage:[UIImage imageWithData:imageData]];
         }
+        
+    }
     
+    r=[self.iconUrl rangeOfString:@"http"];
+    if(r.location==0){
+        
+        NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: [self.iconUrl stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]]];
+        UIImage *theImage = [UIImage imageWithData:imageData];
+        return [MKPlacemarkAnnotation ThumbnailImage:theImage];
+        
+    }else{
+        
+        if([[NSFileManager defaultManager] fileExistsAtPath:self.iconUrl]){
+            
+            return [UIImage imageWithContentsOfFile:self.iconUrl];
+            
+        }else{
+            //throw;
+            return nil;
+        }
+        
     }
     
     
-    NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: [self.iconUrl stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]]];
-    UIImage *theImage = [UIImage imageWithData:imageData];
-    
-    
-    return [MKPlacemarkAnnotation ThumbnailImage:theImage];
 }
 
 

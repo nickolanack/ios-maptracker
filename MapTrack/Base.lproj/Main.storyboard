@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="hybrid" translatesAutoresizingMaskIntoConstraints="NO" id="tFz-53-MLp" userLabel="MK Map View">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" mapType="hybrid" translatesAutoresizingMaskIntoConstraints="NO" id="tFz-53-MLp" userLabel="MK Map View">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="557"/>
                                 <animations/>
                             </mapView>

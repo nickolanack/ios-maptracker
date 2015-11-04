@@ -117,7 +117,7 @@
         MKImageOverlayRenderer *p=[[MKImageOverlayRenderer alloc] initWithOverlay:overlay];
         r=p;
         
-        if([self.onOverlaysButton isSelected]){
+        if([self.usersOverlaysButton isSelected]){
             [r setAlpha:0.5];
         }else{
             [r setAlpha:0.1];
@@ -265,7 +265,13 @@
 }
 
 - (IBAction)onOverlaysButtonClick:(id)sender {
-    [self.onOverlaysButton setSelected:![sender isSelected]];
+    [self.overlaysButton setSelected:!self.overlaysButton.selected];
+    [self.usersOverlaysButton setHidden:!self.overlaysButton.selected];
+    [self.overlaysListButton setHidden:!self.overlaysButton.selected];
+}
+
+- (IBAction)onUsersOverlaysButtonClick:(id)sender {
+    [self.usersOverlaysButton setSelected:!self.usersOverlaysButton.selected];
     for(id o in self.mapView.overlays) {
         
         [self.mapView removeOverlay:o];
@@ -273,6 +279,10 @@
         
         //[o setNeedsDisplay];
     }
+}
+
+- (IBAction)onOverlaysListButtonClick:(id)sender{
+
 }
 
 - (IBAction)onUserLocationClick:(id)sender {
@@ -350,6 +360,8 @@
 
 - (IBAction)onAddUserLocationButtonClick:(id)sender {
 }
+
+
 
 
 
@@ -452,14 +464,14 @@
     UIDevice * device = note.object;
     switch(device.orientation)
     {
-        case UIDeviceOrientationPortrait:
-        case UIDeviceOrientationPortraitUpsideDown:
-            /* start special animation */
-            [self.topBar setHidden:false];
+        case UIDeviceOrientationLandscapeLeft:
+        case UIDeviceOrientationLandscapeRight:
+            
+            [self.topBar setHidden:true];
             break;
             
         default:
-            [self.topBar setHidden:true];
+            [self.topBar setHidden:false];
             break;
     };
 }

@@ -47,6 +47,10 @@
 		901B79781BE9505100D28CD2 /* MKUserTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 901B79771BE9505100D28CD2 /* MKUserTrackerTests.m */; };
 		901B797A1BE9509C00D28CD2 /* MockCLLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EB2CA81BE3402100C0F975 /* MockCLLocationManager.m */; };
 		901B797C1BE9646300D28CD2 /* icon-userlocation-add-user-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 901B797B1BE9646300D28CD2 /* icon-userlocation-add-user-100.png */; };
+		901B797E1BE96DEC00D28CD2 /* icon-layers-userlayers-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 901B797D1BE96DEC00D28CD2 /* icon-layers-userlayers-100.png */; };
+		901B79801BEA24B900D28CD2 /* icon-layers-list-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 901B797F1BEA24B900D28CD2 /* icon-layers-list-100.png */; };
+		901B79821BEA2E2300D28CD2 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 901B79811BEA2E2300D28CD2 /* close.png */; };
+		901B79881BEA2FDE00D28CD2 /* DismissView.m in Sources */ = {isa = PBXBuildFile; fileRef = 901B79871BEA2FDE00D28CD2 /* DismissView.m */; };
 		9032B1A81BE84B09000AC852 /* MKPolylineTapDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 9032B1A71BE84B09000AC852 /* MKPolylineTapDetector.m */; };
 		90424EC71BE2857900ADA8E6 /* icon-waypointcamera-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 90424EC61BE2857900ADA8E6 /* icon-waypointcamera-100.png */; };
 		904BFAEB1BE7CD0400014109 /* xsm_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 904BFAEA1BE7CD0300014109 /* xsm_edit.png */; };
@@ -127,6 +131,11 @@
 		901B79751BE91A1000D28CD2 /* MKPolylineTapDetectorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPolylineTapDetectorTests.m; sourceTree = "<group>"; };
 		901B79771BE9505100D28CD2 /* MKUserTrackerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKUserTrackerTests.m; sourceTree = "<group>"; };
 		901B797B1BE9646300D28CD2 /* icon-userlocation-add-user-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-userlocation-add-user-100.png"; sourceTree = "<group>"; };
+		901B797D1BE96DEC00D28CD2 /* icon-layers-userlayers-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-layers-userlayers-100.png"; sourceTree = "<group>"; };
+		901B797F1BEA24B900D28CD2 /* icon-layers-list-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-layers-list-100.png"; sourceTree = "<group>"; };
+		901B79811BEA2E2300D28CD2 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		901B79861BEA2FDE00D28CD2 /* DismissView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissView.h; sourceTree = "<group>"; };
+		901B79871BEA2FDE00D28CD2 /* DismissView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissView.m; sourceTree = "<group>"; };
 		9032B1A61BE84B08000AC852 /* MKPolylineTapDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPolylineTapDetector.h; sourceTree = "<group>"; };
 		9032B1A71BE84B09000AC852 /* MKPolylineTapDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPolylineTapDetector.m; sourceTree = "<group>"; };
 		9032B1A91BE84B40000AC852 /* MKPolylineTapDetectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPolylineTapDetectorDelegate.h; sourceTree = "<group>"; };
@@ -224,6 +233,8 @@
 				900723A81BD592B7009793A0 /* AppDelegate.m */,
 				900723AA1BD592B7009793A0 /* ViewController.h */,
 				900723AB1BD592B7009793A0 /* ViewController.m */,
+				901B79861BEA2FDE00D28CD2 /* DismissView.h */,
+				901B79871BEA2FDE00D28CD2 /* DismissView.m */,
 				900723AD1BD592B8009793A0 /* Main.storyboard */,
 				900723B01BD592B8009793A0 /* Assets.xcassets */,
 				900723B21BD592B8009793A0 /* LaunchScreen.storyboard */,
@@ -268,7 +279,10 @@
 			isa = PBXGroup;
 			children = (
 				904BFAEA1BE7CD0300014109 /* xsm_edit.png */,
+				901B79811BEA2E2300D28CD2 /* close.png */,
 				904CFD201BDC86AA004947CD /* icon-layers-100.png */,
+				901B797D1BE96DEC00D28CD2 /* icon-layers-userlayers-100.png */,
+				901B797F1BEA24B900D28CD2 /* icon-layers-list-100.png */,
 				900723F01BD6B18E009793A0 /* icon-track-100.png */,
 				900723F51BD6C7AE009793A0 /* icon-waypointadd-100.png */,
 				90B920D81BE179A6004CC6EF /* icon-waypointdrop-100.png */,
@@ -500,6 +514,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				901B79821BEA2E2300D28CD2 /* close.png in Resources */,
 				904CFD231BDC8918004947CD /* icon-userlocation-100.png in Resources */,
 				900723F81BD6CC47009793A0 /* waypoint-default-25x28.png in Resources */,
 				900723EB1BD6AAA9009793A0 /* maptracker-icon-180.png in Resources */,
@@ -510,6 +525,7 @@
 				904BFAEB1BE7CD0400014109 /* xsm_edit.png in Resources */,
 				90115C2C1BE4080E002E8B20 /* icon-userlocationlock-100.png in Resources */,
 				900723F11BD6B18E009793A0 /* icon-track-100.png in Resources */,
+				901B79801BEA24B900D28CD2 /* icon-layers-list-100.png in Resources */,
 				900723F61BD6C7AF009793A0 /* icon-waypointadd-100.png in Resources */,
 				900723ED1BD6AAE5009793A0 /* maptracker-icon-58.png in Resources */,
 				900723E71BD6AAA9009793A0 /* maptracker-icon-80.png in Resources */,
@@ -524,6 +540,7 @@
 				900723EA1BD6AAA9009793A0 /* maptracker-icon-152.png in Resources */,
 				900723AF1BD592B8009793A0 /* Main.storyboard in Resources */,
 				901B797C1BE9646300D28CD2 /* icon-userlocation-add-user-100.png in Resources */,
+				901B797E1BE96DEC00D28CD2 /* icon-layers-userlayers-100.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +585,7 @@
 				900723F41BD6B42D009793A0 /* StyleButton.m in Sources */,
 				900723A91BD592B7009793A0 /* AppDelegate.m in Sources */,
 				90CB07811BE01370004F9183 /* MKOffscreenFeatureRenderer.m in Sources */,
+				901B79881BEA2FDE00D28CD2 /* DismissView.m in Sources */,
 				90A5A2891BD95A6600FFE3F1 /* MKImageOverlay.m in Sources */,
 				900723A61BD592B7009793A0 /* main.m in Sources */,
 			);

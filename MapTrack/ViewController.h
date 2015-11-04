@@ -53,4 +53,3 @@
 @property (weak, nonatomic) IBOutlet UILabel *trackDistance;
 
 @end
-

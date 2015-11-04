@@ -310,7 +310,7 @@
 
 
 - (IBAction)onMarkerDropButtonClick:(id)sender {
-    MKPlacemarkAnnotation *point=[[MKPlacemarkAnnotation alloc] init];
+    MKPointAnnotation *point=[[MKPointAnnotation alloc] init];
     [point setCoordinate:self.mapView.centerCoordinate];
     
     

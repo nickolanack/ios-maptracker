@@ -23,6 +23,7 @@
 
 -(void)setNorth:(float) n South:(float) s East:(float) e West:(float) w;
 
+-(UIImage *)getUIImage;
 
 
 @end

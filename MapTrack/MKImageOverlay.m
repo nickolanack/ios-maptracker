@@ -43,6 +43,10 @@
                                        
 }
 
+-(UIImage *)getUIImage{
+    return [UIImage imageWithContentsOfFile:image];
+}
+
 -(NSArray *)points{
 
    

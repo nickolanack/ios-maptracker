@@ -18,6 +18,10 @@
 #import "MKStyledPolyline.h"
 #import "MKPolylineTapDetector.h"
 
+#import "MapOverlayListViewController.h"
+#import "OverlayCell.h"
+#import "MockPolylineRenderer.h"
+
 @interface ViewController ()
 
 
@@ -60,14 +64,14 @@
 }
 
 -(void)onPolylineTap:(MKPolyline *)polyline atCoordinate:(CLLocationCoordinate2D)coord andTouch:(CGPoint)touchPt{
-//    NSLog(@"PolyTap: %f, %f", coord.latitude, coord.longitude);
-//    
-//    MKPlacemarkAnnotation *p=[[MKPlacemarkAnnotation alloc] init];
-//    [p setCoordinate:coord];
-//    NSString *icon=[[NSBundle mainBundle] pathForResource:@"waypoint-offscreen-15.png" ofType:nil];
-//    [p setIconUrl:icon];
-//    
-//    [self.mapView addAnnotation:p];
+    //    NSLog(@"PolyTap: %f, %f", coord.latitude, coord.longitude);
+    //
+    //    MKPlacemarkAnnotation *p=[[MKPlacemarkAnnotation alloc] init];
+    //    [p setCoordinate:coord];
+    //    NSString *icon=[[NSBundle mainBundle] pathForResource:@"waypoint-offscreen-15.png" ofType:nil];
+    //    [p setIconUrl:icon];
+    //
+    //    [self.mapView addAnnotation:p];
 }
 
 -(void)updateTimer{
@@ -123,7 +127,7 @@
             [r setAlpha:0.1];
         }
     }else{
-        MKPolylineRenderer *p= [[MKPolylineRenderer alloc]initWithOverlay:overlay];
+        MockPolylineRenderer *p= [[MockPolylineRenderer alloc]initWithOverlay:overlay];
         if([overlay isKindOfClass:[MKStyledPolyline class]]){
             [p setStrokeColor:((MKStyledPolyline *) overlay).color];
             [p setLineWidth:((MKStyledPolyline *) overlay).width];
@@ -282,7 +286,7 @@
 }
 
 - (IBAction)onOverlaysListButtonClick:(id)sender{
-
+    
 }
 
 - (IBAction)onUserLocationClick:(id)sender {
@@ -448,8 +452,6 @@
 }
 -(void)onKmlPolygon:(NSDictionary *)dictionary{}
 
-
-
 #pragma mark Tracking
 
 -(void)userTrackerPaceDidChangeTo:(float) pace From:(float) previousPace{}
@@ -480,5 +482,135 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    UIViewController *vc=[segue destinationViewController];
+    if([vc isKindOfClass:[MapOverlayListViewController class]]){
+        
+        MapOverlayListViewController *mOverlayvc=(MapOverlayListViewController *)vc;
+        [mOverlayvc setDelegate:self];
+        [mOverlayvc setDataSource:self];
+        
+    }
+    
+}
+
+#pragma mark OverlayTable Cells
+
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return _mapView.overlays.count+_mapView.annotations.count;
+}
+
+// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
+// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    int section=indexPath.section;
+    int row=indexPath.row;
+    
+    OverlayCell *cell;
+    
+    if(section>0){
+        
+    }else{
+        
+        NSString *textLabel=@"Feature";
+        NSString *detailTextLabel=@"";
+        UIImage *image;
+        
+        if(row>=_mapView.overlays.count){
+            row=row%_mapView.overlays.count;
+            MKPointAnnotation *a=[_mapView.annotations objectAtIndex:row];
+            
+            textLabel= @"Point";
+            //cell.detailTextLabel.text= a.title;
+            
+            if([a isKindOfClass:[MKPhotoAnnotation class]]){
+                MKPhotoAnnotation *phA=(MKPhotoAnnotation *)a;
+                image=[phA getIcon];
+            }
+            
+            if([a isKindOfClass:[MKPlacemarkAnnotation class]]){
+                MKPlacemarkAnnotation *plA=(MKPlacemarkAnnotation *)a;
+                image=[plA getIcon];
+            }
+            
+            detailTextLabel=a.title;
+            
+        }else{
+            
+            
+            NSObject<MKOverlay> *o=[_mapView.overlays objectAtIndex:row];
+            textLabel= @"Overlay";
+            //cell.detailTextLabel.text= o.title;
+            
+            if([o isKindOfClass:[MKImageOverlay class]]){
+                MKImageOverlay *iO=(MKImageOverlay *)o;
+                image=[iO getUIImage];
+            }
+            
+            if([o isKindOfClass:[MKStyledPolyline class]]){
+                
+                MKStyledPolyline *sPO=(MKStyledPolyline *)o;
+                
+                
+                MockPolylineRenderer *pl=[[MockPolylineRenderer alloc] initWithPolyline:sPO];
+                [pl setStrokeColor:sPO.color];
+                [pl setLineWidth:sPO.width];
+                
+                
+                MKMapRect pr=sPO.boundingMapRect;
+
+                float max=MAX(pr.size.height, pr.size.width);
+                float size =64;
+                CGSize imageSize=CGSizeMake(size*(pr.size.width/max),size*(pr.size.height/max));
+                
+                MKZoomScale scale= size / max;
+
+                UIGraphicsBeginImageContextWithOptions(imageSize, false, 1.0);
+      
+                CGContextRef context=UIGraphicsGetCurrentContext();
+                CGContextScaleCTM(context, scale, scale);
+                [pl drawMapRect:pr zoomScale:scale inContext:context];
+                image = UIGraphicsGetImageFromCurrentImageContext();  // UIImage returned.
+                UIGraphicsEndImageContext();
+
+
+            }
+            
+        }
+        
+        
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:@"MapOverlayCell"];
+        
+        if (cell == nil){
+            cell = [[OverlayCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MapOverlayCell"];
+            
+        }
+        
+        
+        
+        cell.featureText.text=textLabel;
+        cell.detailFeatureText.text=detailTextLabel;
+        
+        if(image != nil){
+            [cell.featureImage setImage:image];
+        }
+        
+        
+    }
+    
+    return cell;
+    
+}
+
+
 
 @end

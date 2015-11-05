@@ -19,7 +19,7 @@
     MKImageOverlay *o=self.overlay;
     //NSString *path=[[NSBundle mainBundle] pathForResource:o.image ofType:nil];
 
-    UIImage *image = [UIImage imageWithContentsOfFile:o.image];
+    UIImage *image = [o getUIImage];
     CGImageRef imageReference = image.CGImage;
     
     MKMapRect theMapRect = [self.overlay boundingMapRect];

@@ -13,4 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *detailFeatureText;
 @property (weak, nonatomic) IBOutlet UIImageView *featureImage;
 
+@property (weak, nonatomic) IBOutlet UISwitch *featureSwitch;
+
 @end

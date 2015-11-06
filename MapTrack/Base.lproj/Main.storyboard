@@ -273,40 +273,45 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XcB-Nh-yxk">
+                                                    <rect key="frame" x="8" y="6" width="51" height="31"/>
+                                                    <animations/>
+                                                </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7B2-7v-imf">
-                                                    <rect key="frame" x="43" y="8" width="48" height="27"/>
+                                                    <rect key="frame" x="100" y="8" width="48" height="27"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBj-uR-AUf">
+                                                    <rect key="frame" x="156" y="8" width="161" height="27"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cm6-l4-DGt">
-                                                    <rect key="frame" x="8" y="8" width="27" height="27"/>
+                                                    <rect key="frame" x="65" y="8" width="27" height="27"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="27" id="0sH-5X-3q2"/>
                                                         <constraint firstAttribute="height" constant="27" id="G4r-jG-SWs"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBj-uR-AUf">
-                                                    <rect key="frame" x="99" y="8" width="161" height="27"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstItem="TBj-uR-AUf" firstAttribute="leading" secondItem="7B2-7v-imf" secondAttribute="trailing" constant="8" id="EuZ-tH-VlS"/>
                                                 <constraint firstItem="7B2-7v-imf" firstAttribute="leading" secondItem="Cm6-l4-DGt" secondAttribute="trailing" constant="8" id="RYC-gt-v4E"/>
-                                                <constraint firstItem="Cm6-l4-DGt" firstAttribute="leading" secondItem="yRa-hY-Z6F" secondAttribute="leadingMargin" id="RyA-XF-ss8"/>
+                                                <constraint firstItem="XcB-Nh-yxk" firstAttribute="centerY" secondItem="yRa-hY-Z6F" secondAttribute="centerY" id="ay3-FB-NuO"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
                                             <outlet property="detailFeatureText" destination="TBj-uR-AUf" id="G5h-D9-4c5"/>
                                             <outlet property="featureImage" destination="Cm6-l4-DGt" id="CQr-MV-Ew6"/>
+                                            <outlet property="featureSwitch" destination="XcB-Nh-yxk" id="FP5-Nh-v95"/>
                                             <outlet property="featureText" destination="7B2-7v-imf" id="K8D-rt-HeW"/>
                                         </connections>
                                     </tableViewCell>

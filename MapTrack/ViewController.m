@@ -28,6 +28,7 @@
 @property MKUserTracker *tracker;
 @property MKOffscreenFeatureRenderer *offscreenRenderer;
 @property MKPolylineTapDetector *tapDetector;
+@property UITableView *tableView;
 
 @end
 
@@ -144,6 +145,7 @@
     
     
 }
+
 
 
 
@@ -498,11 +500,24 @@
 
 #pragma mark OverlayTable Cells
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    return 2;
 
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return _mapView.overlays.count+_mapView.annotations.count;
+    if(_tableView==nil){
+        _tableView=tableView;
+    }
+    
+    if(section==0){
+        return _mapView.overlays.count;
+    }else{
+        return _mapView.annotations.count;
+    }
+    
 }
 
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
@@ -516,18 +531,57 @@
     
     OverlayCell *cell;
     
-    if(section>0){
+    NSString *textLabel=@"Feature";
+    NSString *detailTextLabel=@"";
+    UIImage *image;
+    
+
+       
         
-    }else{
+    if(section==0){
         
-        NSString *textLabel=@"Feature";
-        NSString *detailTextLabel=@"";
-        UIImage *image;
         
-        if(row>=_mapView.overlays.count){
-            row=row%_mapView.overlays.count;
-            MKPointAnnotation *a=[_mapView.annotations objectAtIndex:row];
+        NSObject<MKOverlay> *o=[_mapView.overlays objectAtIndex:row];
+        textLabel= @"Overlay";
+        //cell.detailTextLabel.text= o.title;
+        
+        if([o isKindOfClass:[MKImageOverlay class]]){
+            MKImageOverlay *iO=(MKImageOverlay *)o;
+            image=[iO getUIImage];
+        }
+        
+        if([o isKindOfClass:[MKStyledPolyline class]]){
             
+            MKStyledPolyline *sPO=(MKStyledPolyline *)o;
+            
+            
+            MockPolylineRenderer *pl=[[MockPolylineRenderer alloc] initWithPolyline:sPO];
+            [pl setStrokeColor:sPO.color];
+            [pl setLineWidth:sPO.width];
+            
+            
+            MKMapRect pr=sPO.boundingMapRect;
+            
+            float max=MAX(pr.size.height, pr.size.width);
+            float size =64;
+            CGSize imageSize=CGSizeMake(size*(pr.size.width/max),size*(pr.size.height/max));
+            
+            MKZoomScale scale= size / max;
+            
+            UIGraphicsBeginImageContextWithOptions(imageSize, false, 1.0);
+            
+            CGContextRef context=UIGraphicsGetCurrentContext();
+            CGContextScaleCTM(context, scale, scale);
+            [pl drawMapRect:pr zoomScale:scale inContext:context];
+            image = UIGraphicsGetImageFromCurrentImageContext();  // UIImage returned.
+            UIGraphicsEndImageContext();
+            
+            
+        }
+        
+    }else if(section==1){
+            MKPointAnnotation *a=[_mapView.annotations objectAtIndex:row];
+        
             textLabel= @"Point";
             //cell.detailTextLabel.text= a.title;
             
@@ -541,48 +595,16 @@
                 image=[plA getIcon];
             }
             
+            if([a isKindOfClass:[MKUserLocation class]]){
+                image=[UIImage imageNamed:@"userlocation-offscreen-15.png"];
+            }
+        
+            if([a isKindOfClass:[MKPointAnnotation class]]){
+                image=[UIImage imageNamed:@"waypoint-offscreen-15.png"];
+            }
+            
+            
             detailTextLabel=a.title;
-            
-        }else{
-            
-            
-            NSObject<MKOverlay> *o=[_mapView.overlays objectAtIndex:row];
-            textLabel= @"Overlay";
-            //cell.detailTextLabel.text= o.title;
-            
-            if([o isKindOfClass:[MKImageOverlay class]]){
-                MKImageOverlay *iO=(MKImageOverlay *)o;
-                image=[iO getUIImage];
-            }
-            
-            if([o isKindOfClass:[MKStyledPolyline class]]){
-                
-                MKStyledPolyline *sPO=(MKStyledPolyline *)o;
-                
-                
-                MockPolylineRenderer *pl=[[MockPolylineRenderer alloc] initWithPolyline:sPO];
-                [pl setStrokeColor:sPO.color];
-                [pl setLineWidth:sPO.width];
-                
-                
-                MKMapRect pr=sPO.boundingMapRect;
-
-                float max=MAX(pr.size.height, pr.size.width);
-                float size =64;
-                CGSize imageSize=CGSizeMake(size*(pr.size.width/max),size*(pr.size.height/max));
-                
-                MKZoomScale scale= size / max;
-
-                UIGraphicsBeginImageContextWithOptions(imageSize, false, 1.0);
-      
-                CGContextRef context=UIGraphicsGetCurrentContext();
-                CGContextScaleCTM(context, scale, scale);
-                [pl drawMapRect:pr zoomScale:scale inContext:context];
-                image = UIGraphicsGetImageFromCurrentImageContext();  // UIImage returned.
-                UIGraphicsEndImageContext();
-
-
-            }
             
         }
         
@@ -593,24 +615,51 @@
         if (cell == nil){
             cell = [[OverlayCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MapOverlayCell"];
             
+            
         }
         
-        
-        
-        cell.featureText.text=textLabel;
-        cell.detailFeatureText.text=detailTextLabel;
-        
-        if(image != nil){
-            [cell.featureImage setImage:image];
-        }
-        
-        
-    }
+  
     
+    cell.featureText.text=textLabel;
+    cell.detailFeatureText.text=detailTextLabel;
+    
+    if(image != nil){
+        [cell.featureImage setImage:image];
+    }
+    cell.featureSwitch.transform = CGAffineTransformMakeScale(0.75, 0.75);
     return cell;
     
 }
 
+-(void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray<MKAnnotationView *> *)views{
+    if(_tableView){
+        [_tableView reloadData];
+    }
+}
+-(void)mapView:(MKMapView *)mapView didAddOverlayRenderers:(NSArray<MKOverlayRenderer *> *)renderers{
+    if(_tableView){
+        [_tableView reloadData];
+    }
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        //add code here for when you hit delete
+    }
+}
 
 
 @end
